@@ -1,0 +1,14 @@
+body {
+  padding-top: 50px;
+  font-family: 'Merriweather', serif;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+.title h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
