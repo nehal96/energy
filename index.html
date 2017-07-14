@@ -36,8 +36,16 @@
       </div>
     </div>
 
-    <div class="container text-center">
-      <div id="energy-chart">
+    <div class="container-fluid graphic">
+      <div class="col-lg-4 graphic_prose">
+        <p class="trigger" data-step=0>Some random fact about Industrialization and the rapid rise in demand for energy at 1965.</p>
+        <p class="trigger" data-step=1>Some fact about the Technology age beginning in 2000, and the acceleration of energy demand.</p>
+        <p class="trigger" data-step=2>The sudden decrease in energy consumption happened as a result of the 2009 financial crisis.</p>
+        <p class="trigger" data-step=3>As of 2016, the yearly World Energy Consumption is a little above 154,000 TWh. That's insane.</p>
+      </div>
+      <div class="col-lg-8">
+        <div id="energy-chart">
+        </div>
       </div>
     </div>
 
@@ -55,5 +63,8 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript" src="js/energy-chart.js"></script>
+
+    <!-- ScrollMagic Library -->
+    <script src='js/ScrollMagic.min.js'></script>
   </body>
 </html>

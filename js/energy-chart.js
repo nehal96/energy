@@ -1,7 +1,7 @@
 
 // Setting margin, width, height of plot
 var margin = 50,
-    width = 950 - margin,
+    width = 850 - margin,
     height = 550 - margin;
 
 // Creating svg element for the plot
@@ -66,9 +66,9 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   g.append('path')
     .datum(data)
     .attr('fill', 'none')
-    .attr('stroke', 'steelblue')
+    .attr('stroke', '#c2faf1')
     .attr('stroke-linejoin', 'round')
     .attr('stroke-linecap', 'round')
-    .attr('stroke-width', 1.5)
+    .attr('stroke-width', 3)
     .attr('d', line);
 });
