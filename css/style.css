@@ -2,7 +2,9 @@
 body {
   padding-top: 50px;
   font-family: 'Merriweather', serif;
-  background: linear-gradient(145deg, #509bf5, #f037a6);
+  /*background: linear-gradient(145deg, #509bf5, #f037a6);*/
+  background: linear-gradient(135deg, #355c7d, #f67280);
+  /*background: linear-gradient(135deg, #31588a, #be3144);*/
   margin-bottom: 50px;
 }
 
@@ -14,5 +16,48 @@ body {
 .title h1 {
   font-size: 60px;
   margin-bottom: 75px;
-  color: #e1f5f2;
+  color: #eae7ed;
+}
+
+.slide {
+  background: #eae7ed;
+  border-left: 4px solid #f67280;
+  padding: 1rem 1.5rem;
+}
+
+.graphic_prose p {
+  margin-top: 20px;
+  margin-bottom: 16rem;
+}
+
+/*
+    Manually changing Energy plot x- and y-axes (Need to figure out how to do
+    this through JavaScript/d3)
+*/
+#energy-x-axis path {
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}
+
+#energy-x-axis .tick line {
+  stroke: #ccc;
+}
+
+#energy-x-axis .tick text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#energy-y-axis .tick line {
+  stroke: #ccc;
+}
+
+#energy-y-axis path {
+  stroke: #ccc;
+  shape-rendering: crispEdges;
+}
+
+#energy-y-axis .tick text {
+  font-size: 12px;
+  font-weight: 400;
 }

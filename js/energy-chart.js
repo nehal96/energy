@@ -47,15 +47,18 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   // Add x-axis to plot
   g.append('g')
     .attr('transform', 'translate(0,' + 500 + ')')
+    .attr('id', 'energy-x-axis')
     .call(d3.axisBottom(x))
    //.select(".domain")
   //  .remove();
 
   // Add y-axis to plot
   g.append('g')
+    .attr('id', 'energy-y-axis')
     .call(d3.axisLeft(y))
    .append('text')
     .attr('fill', '#000')
+    .attr('font-size', 12)
     .attr('transform', 'rotate(-90)')
     .attr('y', 6)
     .attr('dy', '0.71em')
