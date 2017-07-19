@@ -69,7 +69,7 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   g.append('path')
     .datum(data)
     .attr('fill', 'none')
-    .attr('stroke', '#c2faf1')
+    .attr('stroke', '#f67280')
     .attr('stroke-linejoin', 'round')
     .attr('stroke-linecap', 'round')
     .attr('stroke-width', 3)

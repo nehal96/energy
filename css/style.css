@@ -1,9 +1,16 @@
+header {
+  height: 100vh;
+  padding-top: 50px;
+  background: #ececec;
+  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
+}
 
 body {
-  padding-top: 50px;
   font-family: 'Merriweather', serif;
+  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
   /*background: linear-gradient(145deg, #509bf5, #f037a6);*/
-  background: linear-gradient(135deg, #355c7d, #f67280);
+  /*background: linear-gradient(135deg, #355c7d, #f67280);*/ /* Flat blue -> Flat pink-red */
+  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
   /*background: linear-gradient(135deg, #31588a, #be3144);*/
   margin-bottom: 50px;
 }
@@ -15,12 +22,16 @@ body {
 
 .title h1 {
   font-size: 60px;
-  margin-bottom: 75px;
-  color: #eae7ed;
+  /*color: #eae7ed;*/
+  color: #393e46;
+}
+
+.energy-plot {
+  margin-top: 50px;
 }
 
 .slide {
-  background: #eae7ed;
+  background: #eee;
   border-left: 4px solid #f67280;
   padding: 1rem 1.5rem;
 }
@@ -35,12 +46,12 @@ body {
     this through JavaScript/d3)
 */
 #energy-x-axis path {
-  stroke: #ccc;
+  stroke: #bbb;
   shape-rendering: crispEdges;
 }
 
 #energy-x-axis .tick line {
-  stroke: #ccc;
+  stroke: #bbb;
 }
 
 #energy-x-axis .tick text {
@@ -49,11 +60,11 @@ body {
 }
 
 #energy-y-axis .tick line {
-  stroke: #ccc;
+  stroke: #bbb;
 }
 
 #energy-y-axis path {
-  stroke: #ccc;
+  stroke: #bbb;
   shape-rendering: crispEdges;
 }
 
