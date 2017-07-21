@@ -32,6 +32,12 @@ var line = d3.line()
                   return y(d['World (TWh)'])
              });
 
+// Initialize area chart
+var area = d3.area()
+             .x(function(d) { return x(d['Year']) })
+             .y0(y(0))
+             .y1(function(d) { return y(d['World (TWh)']) });
+
 // Load data and apply main function
 d3.csv("data/Sample-Energy-Data.csv", function(d) {
   d['Year'] = parseYear(d['Year']);
@@ -74,4 +80,12 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
     .attr('stroke-linecap', 'round')
     .attr('stroke-width', 3)
     .attr('d', line);
+
+  // Add area to line graph
+  g.append('path')
+   .datum(data)
+   .attr('fill', '#f67280')
+   .attr('opacity', 0.1)
+   .attr('d', area);
+   
 });
