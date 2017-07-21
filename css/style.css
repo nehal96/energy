@@ -24,6 +24,7 @@ body {
   font-size: 60px;
   /*color: #eae7ed;*/
   color: #393e46;
+  line-height: 1.3;
 }
 
 .energy-plot {
