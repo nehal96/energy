@@ -46,12 +46,16 @@ body {
     this through JavaScript/d3)
 */
 #energy-x-axis path {
-  stroke: #bbb;
+  stroke: black;
+  stroke-width: 1.5;
+  opacity: 0.5;
   shape-rendering: crispEdges;
 }
 
 #energy-x-axis .tick line {
-  stroke: #bbb;
+  stroke: black;
+  stroke-width: 1.5;
+  opacity: 0.5;
 }
 
 #energy-x-axis .tick text {
@@ -61,11 +65,13 @@ body {
 
 #energy-y-axis .tick line {
   stroke: #bbb;
+  opacity: 0.5;
 }
 
 #energy-y-axis path {
   stroke: #bbb;
   shape-rendering: crispEdges;
+  opacity: 0;
 }
 
 #energy-y-axis .tick text {

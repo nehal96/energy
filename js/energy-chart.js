@@ -23,6 +23,7 @@ var x = d3.scaleTime()
 var y = d3.scaleLinear()
           .rangeRound([height, 0]);
 
+
 // Initialize d3 line function
 var line = d3.line()
              .x(function(d) {
@@ -48,28 +49,40 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
 
   // Set x- and y-axis domains
   x.domain(d3.extent(data, function(d) { return d['Year']; }));
-  y.domain(d3.extent(data, function(d) { return d['World (TWh)']; }));
+
+  var min_energy = d3.min(data, function(d) {
+        return d['World (TWh)'];
+  })
+
+  y.domain([min_energy, 160000]);
+  //y.domain(d3.extent(data, function(d) { return d['World (TWh)']; }));
+
+  // Set x- and y-axes
+  var x_axis = d3.axisBottom(x)
+
+  var y_axis = d3.axisLeft(y)
+
+  x_axis.ticks(5)
+        .tickSizeOuter(0)
+        .tickSizeInner(5)
+        .tickPadding(4);
+
+  y_axis.ticks(5)
+        .tickSizeInner(-width)
+        .tickSizeOuter(0)
+        .tickPadding(8);
+
 
   // Add x-axis to plot
   g.append('g')
     .attr('transform', 'translate(0,' + 500 + ')')
     .attr('id', 'energy-x-axis')
-    .call(d3.axisBottom(x))
-   //.select(".domain")
-  //  .remove();
+    .call(x_axis)
 
   // Add y-axis to plot
   g.append('g')
     .attr('id', 'energy-y-axis')
-    .call(d3.axisLeft(y))
-   .append('text')
-    .attr('fill', '#000')
-    .attr('font-size', 12)
-    .attr('transform', 'rotate(-90)')
-    .attr('y', 6)
-    .attr('dy', '0.71em')
-    .attr('text-anchor', 'end')
-    .text("World Energy Consumption (TWh)");
+    .call(y_axis)
 
   // Add line graph to plot
   g.append('path')
@@ -87,5 +100,5 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
    .attr('fill', '#f67280')
    .attr('opacity', 0.1)
    .attr('d', area);
-   
+
 });
