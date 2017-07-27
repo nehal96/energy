@@ -2,13 +2,17 @@
 // Setting margin, width, height of plot
 var margin = 50,
     width = 850 - margin,
-    height = 550 - margin;
+    height = 500 - margin;
 
-// Creating svg element for the plot
+// Creating a responsive svg element for the plot
+// https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
 var svg = d3.select('#energy-chart')
+            .append('div')
+            .classed('svg-container', true)
             .append('svg')
-            .attr('width', (width + margin))
-            .attr('height', (height + margin));
+            .attr('preserveAspectRatio', 'xMinyMin meet')
+            .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
+            .classed('svg-content-responsive', true);
 
 var g = svg.append('g')
            .attr('transform', 'translate(' + margin + ',' + 20 + ')');
@@ -75,7 +79,7 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
 
   // Add x-axis to plot
   g.append('g')
-    .attr('transform', 'translate(0,' + 500 + ')')
+    .attr('transform', 'translate(0,' + height + ')')
     .attr('id', 'energy-x-axis')
     .call(x_axis)
 
