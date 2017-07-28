@@ -30,6 +30,7 @@ var y = d3.scaleLinear()
 
 // Initialize d3 line function
 var line = d3.line()
+             .curve(d3.curveLinear)
              .x(function(d) {
                   return x(d['Year']);
              })
@@ -38,10 +39,10 @@ var line = d3.line()
              });
 
 // Initialize area chart
-var area = d3.area()
-             .x(function(d) { return x(d['Year']) })
-             .y0(y(0))
-             .y1(function(d) { return y(d['World (TWh)']) });
+//var area = d3.area()
+//             .x(function(d) { return x(d['Year']) })
+//             .y0(y(0))
+//             .y1(function(d) { return y(d['World (TWh)']) });
 
 // Load data and apply main function
 d3.csv("data/Sample-Energy-Data.csv", function(d) {
@@ -89,20 +90,31 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
     .call(y_axis)
 
   // Add line graph to plot
-  g.append('path')
-    .datum(data)
-    .attr('fill', 'none')
-    .attr('stroke', '#f67280')
-    .attr('stroke-linejoin', 'round')
-    .attr('stroke-linecap', 'round')
-    .attr('stroke-width', 3)
-    .attr('d', line);
+  var path = g.append('path')
+              //.datum(data)
+              .attr('d', line(data))
+              .attr('fill', 'none')
+              .attr('stroke', '#f67280')
+              .attr('stroke-linejoin', 'round')
+              .attr('stroke-linecap', 'round')
+              .attr('stroke-width', 3);
+              //.attr('d', line);
+
+  var totalLength = path.node().getTotalLength();
+
+  // Animate path
+  path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+      .attr('stroke-dashoffset', totalLength)
+      .transition()
+        .duration(1500)
+        .ease(d3.easeLinear)
+        .attr('stroke-dashoffset', 0);
 
   // Add area to line graph
-  g.append('path')
-   .datum(data)
-   .attr('fill', '#f67280')
-   .attr('opacity', 0.1)
-   .attr('d', area);
+  //g.append('path')
+  // .datum(data)
+  // .attr('fill', '#f67280')
+  // .attr('opacity', 0.1)
+  // .attr('d', area);
 
 });
