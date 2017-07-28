@@ -4,6 +4,8 @@ var margin = 50,
     width = 850 - margin,
     height = 500 - margin;
 
+const STAGES = [2000, 2009, 2016];
+
 // Creating a responsive svg element for the plot
 // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
 var svg = d3.select('#energy-chart')

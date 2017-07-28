@@ -47,10 +47,19 @@ body {
   left: 0;
 }
 
+.spacer {
+  height: 200px;
+}
+
 .slide {
   background: #eee;
+  opacity: 0.3;
   border-left: 4px solid #f67280;
   padding: 1rem 1.5rem;
+}
+
+.active {
+  opacity: 1;
 }
 
 .graphic_prose p {
