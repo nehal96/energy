@@ -4,7 +4,7 @@ var margin = 50,
     width = 850 - margin,
     height = 500 - margin;
 
-const STAGES = [2000, 2009, 2016];
+const STAGES = [{maxyear:1980}, {maxyear:2000}, {maxyear:2009}, {maxyear:2016}];
 
 // Creating a responsive svg element for the plot
 // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
@@ -40,11 +40,6 @@ var line = d3.line()
                   return y(d['World (TWh)'])
              });
 
-// Initialize area chart
-//var area = d3.area()
-//             .x(function(d) { return x(d['Year']) })
-//             .y0(y(0))
-//             .y1(function(d) { return y(d['World (TWh)']) });
 
 // Load data and apply main function
 d3.csv("data/Sample-Energy-Data.csv", function(d) {
@@ -62,7 +57,6 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   })
 
   y.domain([min_energy, 160000]);
-  //y.domain(d3.extent(data, function(d) { return d['World (TWh)']; }));
 
   // Set x- and y-axes
   var x_axis = d3.axisBottom(x)
@@ -91,32 +85,70 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
     .attr('id', 'energy-y-axis')
     .call(y_axis)
 
-  // Add line graph to plot
-  var path = g.append('path')
-              //.datum(data)
-              .attr('d', line(data))
-              .attr('fill', 'none')
-              .attr('stroke', '#f67280')
-              .attr('stroke-linejoin', 'round')
-              .attr('stroke-linecap', 'round')
-              .attr('stroke-width', 3);
-              //.attr('d', line);
+  // Set up scrollytelling for prose and line animation
+  /*
+    TO-DO: Would be better if I could make this into a function.
+    Also, it would look better if the trigger were halfway through the plot,
+    or a third of the browser window, instead of half the browser window.
+  */
 
-  var totalLength = path.node().getTotalLength();
+  // Create ScrollMagic controller
+  var controller = new ScrollMagic.Controller();
 
-  // Animate path
-  path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-      .attr('stroke-dashoffset', totalLength)
-      .transition()
-        .duration(1500)
-        .ease(d3.easeLinear)
-        .attr('stroke-dashoffset', 0);
+  // Scene that pins the energy plot when scrolled to
+  new ScrollMagic.Scene({
+        offset: window.innerHeight, // start scene after scrolling length of browser height
+        duration: 700 // pin the element for a total of 400 px
+  })
+  .setPin('#energy-chart')
+  .addTo(controller)
 
-  // Add area to line graph
-  //g.append('path')
-  // .datum(data)
-  // .attr('fill', '#f67280')
-  // .attr('opacity', 0.1)
-  // .attr('d', area);
+  // Scene that activates 1st slide and performs line aninmation (full line for now).
+  new ScrollMagic.Scene({
+      triggerElement: "#energy-slide-1",
+      duration: 220
+  })
+  .setClassToggle("#energy-slide-1", "active")
+  .on('enter', function() {
+    this.path = g.append('path')
+                //.datum(data)
+                .attr('d', line(data))
+                .attr('fill', 'none')
+                .attr('stroke', '#f67280')
+                .attr('stroke-linejoin', 'round')
+                .attr('stroke-linecap', 'round')
+                .attr('stroke-width', 3);
+                //.attr('d', line);
+    var totalLength = this.path.node().getTotalLength();
+
+    this.path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+             .attr('stroke-dashoffset', totalLength)
+             .transition()
+              .duration(1500)
+              .ease(d3.easeLinear)
+              .attr('stroke-dashoffset', 0);
+  })
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+      triggerElement: "#energy-slide-2",
+      duration: 220
+  })
+  .setClassToggle("#energy-slide-2", "active")
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+      triggerElement: "#energy-slide-3",
+      duration: 220
+  })
+  .setClassToggle("#energy-slide-3", "active")
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+      triggerElement: "#energy-slide-4",
+      duration: 220
+  })
+  .setClassToggle("#energy-slide-4", "active")
+  .addTo(controller)
 
 });
