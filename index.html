@@ -36,7 +36,7 @@
       </div>
     </header>
 
-    <div class="container-fluid graphic energy-plot">
+    <section class="container-fluid graphic energy-plot">
       <div class="col-lg-4 col-md-4 graphic_prose">
         <div class="spacer">
         </div>
@@ -50,7 +50,11 @@
           <h3>World Energy Consumption (TWh)</h3>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="fuel-flow-chart" class="container-fluid sankey-diagram">
+      <h3 class="text-center">Fuel Flow Chart</h3>
+    </section>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -65,10 +69,13 @@
     <!-- D3js JavaScript -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script type="text/javascript" src="js/energy-chart.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0"></script>
 
     <!-- ScrollMagic Library -->
     <script src='js/ScrollMagic.min.js'></script>
-    <script src="js/scrollytelling.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" src="js/energy-chart.js"></script>
+    <script type="text/javascript" src="js/fuel-flow-chart.js"></script>
   </body>
 </html>

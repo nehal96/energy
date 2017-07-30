@@ -110,17 +110,19 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   })
   .setClassToggle("#energy-slide-1", "active")
   .on('enter', function() {
+
+    // Create line path
     this.path = g.append('path')
-                //.datum(data)
                 .attr('d', line(data))
                 .attr('fill', 'none')
                 .attr('stroke', '#f67280')
                 .attr('stroke-linejoin', 'round')
                 .attr('stroke-linecap', 'round')
                 .attr('stroke-width', 3);
-                //.attr('d', line);
+
     var totalLength = this.path.node().getTotalLength();
 
+    // Implement path animation
     this.path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
              .attr('stroke-dashoffset', totalLength)
              .transition()

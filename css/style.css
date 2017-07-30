@@ -104,3 +104,8 @@ body {
   font-size: 12px;
   font-weight: 400;
 }
+
+/* Fuel sankey diagram/flow chart CSS */
+#fuel-flow-chart {
+  margin-top: 100px;
+}
