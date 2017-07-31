@@ -29,6 +29,8 @@ body {
 
 .energy-plot {
   margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
 }
 
 .svg-container {
@@ -108,4 +110,6 @@ body {
 /* Fuel sankey diagram/flow chart CSS */
 #fuel-flow-chart {
   margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
