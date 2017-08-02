@@ -48,8 +48,20 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                .enter()
                .append('path')
                 .attr('d', d3.sankeyLinkHorizontal())
+                .attr('class', function(d) {
+                    return d.source.name.replace(/ /g,'');
+                })
+                .attr('id', function(d) {
+                    return (d.source.name + "2" + d.target.name).replace(/ /g,'');
+                })
                 .attr('stroke-width', function(d) {
-                    return Math.max(1, d.width);
+                    return Math.max(2, d.width);
+                })
+                .on('mouseover', function() {
+                    colorPaths('.' + this.getAttribute('class'), '#' + this.getAttribute('class'))
+                })
+                .on('mouseout', function() {
+                    defaultColor('.' + this.getAttribute('class'))
                 });
 
     link.append('title')
@@ -62,6 +74,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                .append('g');
 
     node.append('rect')
+          .attr('id', function(d) {
+              return d.name.replace(/ /g,'');
+          })
           .attr('x', function(d) {
               return d.x0;
           })
@@ -103,4 +118,22 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         .text(function(d) {
             return d.name + "\n" + format(d.value);
         })
+
+
+    function defaultColor(pathClass) {
+        return d3.selectAll(pathClass)
+                 .attr('stroke', '#000')
+                 .style('cursor', 'pointer');
+    }
+
+    // Takes the color of the rectangle (through nodeID), and changes the path
+    // stroke to that color.
+    function colorPaths(pathClass, nodeID) {
+        color = d3.select(nodeID)
+                  .attr('fill');
+
+        return d3.selectAll(pathClass)
+                 .attr('stroke', color)
+                 .style('cursor', 'pointer')
+    };
 });
