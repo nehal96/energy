@@ -16,7 +16,12 @@ var formatNumber = d3.format(",.0f"),
     format = function(d) {
         return formatNumber(d) + " TWh";
     },
-    color = d3.scaleOrdinal(d3.schemeCategory10);
+    // Colours picked from http://www.flatuicolorpicker.com/:
+    // In order: Flamingo, Radical Red, Medium Purple, Rebecca Purple, San Marino,
+    // Dodger Blue, Jade, Turquoise, Ripe Lemon, Ecstasy, Sunset Orange
+    color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
+                             "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
+                             "#F7CA18", "#F9690E", "#F64747"])
 
 var sankey = d3.sankey()
                .nodeId(function(d) {
@@ -141,6 +146,30 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             return d.name + "\n" + format(d.value);
         })
 
+    customNodeColors();
+
+    // Custom colours for particular nodes
+    function customNodeColors() {
+        // Rejected Energy:
+        d3.select('#RejectedEnergy')
+          .attr('fill', '#f67280');
+
+        // Energy Services:
+        d3.select('#EnergyServices')
+          .attr('fill', '#00B16A');
+
+        // Industrial:
+        d3.select('#Industrial')
+          .attr('fill', '#4B77BE');
+
+        // Commercial:
+        d3.select('#Commercial')
+          .attr('fill', '#F7CA18');
+
+        // Residential:
+        d3.select('#Residential')
+          .attr('fill', '#19B5FE');
+    };
 
     function defaultColor(pathClass) {
         return d3.selectAll(pathClass)
