@@ -58,10 +58,32 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                     return Math.max(2, d.width);
                 })
                 .on('mouseover', function() {
-                    colorPaths('.' + this.getAttribute('class'), '#' + this.getAttribute('class'))
+                    if (d3.select(this).classed('clicked') != true) {
+                      colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
+                    }
                 })
                 .on('mouseout', function() {
-                    defaultColor('.' + this.getAttribute('class'))
+                    if (d3.select(this).classed('clicked') != true) {
+                      defaultColor('.' + d3.select(this).attr('class'))
+                    }
+                })
+                .on('click', function() {
+                    if (d3.select(this).classed('clicked')) {
+                        // When 'clicked' class is active, calling for the class attributes
+                        // gives "<Name of fuel> clicked". .split(" ") will split this into
+                        // two words, so that all the paths in that fuel class can be 'unclicked'
+                        var path_class = d3.select(this).attr('class').split(" ")
+                        defaultColor('.' + path_class[0])
+
+                        d3.selectAll('.' + path_class)
+                          .classed('clicked', false);
+                    } else {
+                        var path_class = d3.select(this).attr('class')
+                        colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
+
+                        d3.selectAll('.' + path_class)
+                          .classed('clicked', true);
+                    }
                 });
 
     link.append('title')
@@ -122,15 +144,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     function defaultColor(pathClass) {
         return d3.selectAll(pathClass)
-                 .attr('stroke', '#000')
-                 .style('cursor', 'pointer');
-    }
+                 .attr('stroke', '#000');
+    };
 
     // Takes the color of the rectangle (through nodeID), and changes the path
     // stroke to that color.
     function colorPaths(pathClass, nodeID) {
-        color = d3.select(nodeID)
-                  .attr('fill');
+        var color = d3.select(nodeID)
+                      .attr('fill');
 
         return d3.selectAll(pathClass)
                  .attr('stroke', color)
