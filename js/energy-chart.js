@@ -78,11 +78,13 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   g.append('g')
     .attr('transform', 'translate(0,' + height + ')')
     .attr('id', 'energy-x-axis')
+    .attr('class', 'line-chart-x-axis')
     .call(x_axis)
 
   // Add y-axis to plot
   g.append('g')
     .attr('id', 'energy-y-axis')
+    .attr('class', 'line-chart-y-axis')
     .call(y_axis)
 
   // Set up scrollytelling for prose and line animation

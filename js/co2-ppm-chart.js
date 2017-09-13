@@ -77,11 +77,13 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
   g.append('g')
    .attr('transform', 'translate(0,' + co2_height + ')')
    .attr('id', 'co2-x-axis')
+   .attr('class', 'line-chart-x-axis')
    .call(x_axis)
 
   // Add y-axis to plot
   g.append('g')
    .attr('id', 'co2-y-axis')
+   .attr('class', 'line-chart-y-axis')
    .call(y_axis)
 
   // Create line path

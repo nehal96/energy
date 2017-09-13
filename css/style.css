@@ -70,39 +70,39 @@ body {
 }
 
 /*
-    Manually changing Energy plot x- and y-axes (Need to figure out how to do
-    this through JavaScript/d3)
+    Custom line chart CSS to ensure all line charts follow my beautiful custom
+    design.
 */
-#energy-x-axis path {
+.line-chart-x-axis path {
   stroke: black;
   stroke-width: 1.5;
   opacity: 0.5;
   shape-rendering: crispEdges;
 }
 
-#energy-x-axis .tick line {
+.line-chart-x-axis .tick line {
   stroke: black;
   stroke-width: 1.5;
   opacity: 0.5;
 }
 
-#energy-x-axis .tick text {
+.line-chart-x-axis .tick text {
   font-size: 12px;
   font-weight: 400;
 }
 
-#energy-y-axis .tick line {
+.line-chart-y-axis .tick line {
   stroke: #bbb;
   opacity: 0.5;
 }
 
-#energy-y-axis path {
+.line-chart-y-axis path {
   stroke: #bbb;
   shape-rendering: crispEdges;
   opacity: 0;
 }
 
-#energy-y-axis .tick text {
+.line-chart-y-axis .tick text {
   font-size: 12px;
   font-weight: 400;
 }
