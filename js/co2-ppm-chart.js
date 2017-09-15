@@ -52,9 +52,10 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
       return d['Year BP'];
   })
 
-  x.domain([min_x - 10000, max_x])
+  // The addition/subtractions are to make space for the axes labels
+  x.domain([min_x - 5000, max_x + 15000])
 
-  var max_co2 = 440
+  var max_co2 = 450
 
   y.domain([150, max_co2]);
 
