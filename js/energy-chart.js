@@ -1,45 +1,6 @@
 
-// Setting margin, width, height of plot
-var margin = 50,
-    width = 850 - margin,
-    height = 500 - margin;
-
-const STAGES = [{maxyear:1980}, {maxyear:2000}, {maxyear:2009}, {maxyear:2016}];
-
-// Creating a responsive svg element for the plot
-// https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
-var svg = d3.select('#energy-chart')
-            .append('div')
-            .classed('svg-container', true)
-            .append('svg')
-            .attr('preserveAspectRatio', 'xMinyMin meet')
-            .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-            .classed('svg-content-responsive', true);
-
-var g = svg.append('g')
-           .attr('transform', 'translate(' + margin + ',' + 20 + ')');
-
 // Convert Year column into date format
 var parseYear = d3.timeParse("%Y")
-
-// Set x- and y-axis scales
-var x = d3.scaleTime()
-          .rangeRound([0, width]);
-
-var y = d3.scaleLinear()
-          .rangeRound([height, 0]);
-
-
-// Initialize d3 line function
-var line = d3.line()
-             .curve(d3.curveLinear)
-             .x(function(d) {
-                  return x(d['Year']);
-             })
-             .y(function(d) {
-                  return y(d['World (TWh)'])
-             });
-
 
 // Load data and apply main function
 d3.csv("data/Sample-Energy-Data.csv", function(d) {
@@ -48,6 +9,44 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   return d;
 }, function(error, data) {
   if (error) throw error;
+
+  // Setting margin, width, height of plot
+  var margin = 50,
+      width = 850 - margin,
+      height = 500 - margin;
+
+  const STAGES = [{maxyear:1980}, {maxyear:2000}, {maxyear:2009}, {maxyear:2016}];
+
+  // Creating a responsive svg element for the plot
+  // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
+  var svg = d3.select('#energy-chart')
+              .append('div')
+              .classed('svg-container', true)
+              .append('svg')
+              .attr('preserveAspectRatio', 'xMinyMin meet')
+              .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
+              .classed('svg-content-responsive', true);
+
+  var g = svg.append('g')
+             .attr('transform', 'translate(' + margin + ',' + 20 + ')');
+
+  // Set x- and y-axis scales
+  var x = d3.scaleTime()
+            .rangeRound([0, width]);
+
+  var y = d3.scaleLinear()
+            .rangeRound([height, 0]);
+
+
+  // Initialize d3 line function
+  var line = d3.line()
+               .curve(d3.curveLinear)
+               .x(function(d) {
+                    return x(d['Year']);
+               })
+               .y(function(d) {
+                    return y(d['World (TWh)'])
+               });
 
   // Set x- and y-axis domains
   x.domain(d3.extent(data, function(d) { return d['Year']; }));

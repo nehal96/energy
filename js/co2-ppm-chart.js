@@ -8,9 +8,9 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var co2_margin = 50,
-      co2_width = 850 - co2_margin,
-      co2_height = 500 - co2_margin;
+  var margin = 50,
+      width = 850 - margin,
+      height = 500 - margin;
 
   // Creating a responsive svg element for the plot
   // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
@@ -20,18 +20,18 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
               .classed('svg-container', true)
               .append('svg')
               .attr('preserveAspectRatio', 'xMinyMin meet')
-              .attr('viewBox', '0 0 ' + (co2_width + co2_margin) + ' ' + (co2_height + co2_margin))
+              .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
               .classed('svg-content-responsive', true);
 
   var g = svg.append('g')
-             .attr('transform', 'translate(' + co2_margin + ',' + 20 + ')');
+             .attr('transform', 'translate(' + margin + ',' + 20 + ')');
 
   // Set x- and y-axis scales
   var x = d3.scaleLinear()
-            .rangeRound([co2_width, 0]);
+            .rangeRound([width, 0]);
 
   var y = d3.scaleLinear()
-            .rangeRound([co2_height, 0]);
+            .rangeRound([height, 0]);
 
   // Initialize d3 line function
   var line = d3.line()
@@ -71,12 +71,12 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
 
   y_axis.ticks(5)
         .tickSizeOuter(0)
-        .tickSizeInner(-co2_width)
+        .tickSizeInner(-width)
         .tickPadding(8);
 
   // Add x-axis to plot
   g.append('g')
-   .attr('transform', 'translate(0,' + co2_height + ')')
+   .attr('transform', 'translate(0,' + height + ')')
    .attr('id', 'co2-x-axis')
    .attr('class', 'line-chart-x-axis')
    .call(x_axis)

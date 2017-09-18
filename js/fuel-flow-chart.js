@@ -1,51 +1,51 @@
 
-var margin = 100,
-    width = 900 - margin,
-    flow_height = 500 - margin; /* for some reason this gets confused with energy-chart's height
-                                   if named 'height' */
-
-var svg = d3.select('#fuel-flow-chart')
-            .append('div')
-            .classed('svg-container', true)
-            .append('svg')
-            .attr('preserveAspectRatio', 'xMinyMin meet')
-            .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (flow_height + margin))
-            .classed('svg-content-responsive', true)
-
-var formatNumber = d3.format(",.0f"),
-    format = function(d) {
-        return formatNumber(d) + " TWh";
-    },
-    // Colours picked from http://www.flatuicolorpicker.com/:
-    // In order: Flamingo, Radical Red, Medium Purple, Rebecca Purple, San Marino,
-    // Dodger Blue, Jade, Turquoise, Ripe Lemon, Ecstasy, Sunset Orange
-    color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
-                             "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
-                             "#F7CA18", "#F9690E", "#F64747"])
-
-var sankey = d3.sankey()
-               .nodeId(function(d) {
-                  return d.name;
-               })
-               .nodeWidth(15)
-               .nodePadding(10)
-               .extent([[1, 1], [width + margin, height - 6]]);
-
-var link = svg.append('g')
-                .attr('class', 'links')
-                .attr('fill', 'none')
-                .attr('stroke', '#000')
-                .attr('stroke-opacity', 0.2)
-              .selectAll('path');
-
-var node = svg.append('g')
-                .attr('class', 'nodes')
-                .attr('font-family', 'Merriweather, serif')
-                .attr('font-size', 10)
-              .selectAll('g');
-
 d3.json('data/fuel-flow-chart.json', function(error, energy) {
     if (error) throw error;
+
+    var margin = 100,
+        width = 900 - margin,
+        height = 500 - margin; /* for some reason this gets confused with energy-chart's height
+                                       if named 'height' */
+
+    var svg = d3.select('#fuel-flow-chart')
+                .append('div')
+                .classed('svg-container', true)
+                .append('svg')
+                .attr('preserveAspectRatio', 'xMinyMin meet')
+                .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
+                .classed('svg-content-responsive', true)
+
+    var formatNumber = d3.format(",.0f"),
+        format = function(d) {
+            return formatNumber(d) + " TWh";
+        },
+        // Colours picked from http://www.flatuicolorpicker.com/:
+        // In order: Flamingo, Radical Red, Medium Purple, Rebecca Purple, San Marino,
+        // Dodger Blue, Jade, Turquoise, Ripe Lemon, Ecstasy, Sunset Orange
+        color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
+                                 "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
+                                 "#F7CA18", "#F9690E", "#F64747"])
+
+    var sankey = d3.sankey()
+                   .nodeId(function(d) {
+                      return d.name;
+                   })
+                   .nodeWidth(15)
+                   .nodePadding(10)
+                   .extent([[1, 1], [width + margin, height - 6]]);
+
+    var link = svg.append('g')
+                    .attr('class', 'links')
+                    .attr('fill', 'none')
+                    .attr('stroke', '#000')
+                    .attr('stroke-opacity', 0.2)
+                  .selectAll('path');
+
+    var node = svg.append('g')
+                    .attr('class', 'nodes')
+                    .attr('font-family', 'Merriweather, serif')
+                    .attr('font-size', 10)
+                  .selectAll('g');
 
     sankey(energy);
 
