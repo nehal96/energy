@@ -1,120 +1,23 @@
-header {
-  height: 100vh;
-  padding-top: 50px;
-  background: #ececec;
-  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
-}
-
+/* Custom CSS */
+/*
 body {
-  font-family: 'Merriweather', serif;
-  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
-  /*background: linear-gradient(145deg, #509bf5, #f037a6);*/
-  /*background: linear-gradient(135deg, #355c7d, #f67280);*/ /* Flat blue -> Flat pink-red */
-  /*background: linear-gradient(135deg, #ffc867, #f037a6);*/
-  /*background: linear-gradient(135deg, #31588a, #be3144);*/
-  margin-bottom: 50px;
-}
-
-.title {
-  text-align: center;
-  font-family: 'Merriweather', serif;
-}
-
-.title h1 {
-  font-size: 60px;
-  /*color: #eae7ed;*/
-  color: #393e46;
-  line-height: 1.3;
-}
-
-.energy-plot {
-  margin-top: 50px;
-  margin-right: 50px;
-  margin-left: 50px;
-}
-
-.svg-container {
-  display: inline-block;
-  position: relative;
   width: 100%;
-  padding-bottom: 62.5%; /* aspect ratio */
-  vertical-align: top;
   overflow: hidden;
 }
-
-.svg-content-responsive {
-  display: inline-block;
-  position: absolute;
-  top: 10px;
-  left: 0;
-}
-
-.spacer {
-  height: 200px;
-}
-
-.slide {
-  background: #eee;
-  opacity: 0.3;
-  border-left: 4px solid #f67280;
-  padding: 1rem 1.5rem;
-}
-
-.active {
-  opacity: 1;
-}
-
-.graphic_prose p {
-  margin-top: 20px;
-  margin-bottom: 16rem;
-}
-
-/*
-    Custom line chart CSS to ensure all line charts follow my beautiful custom
-    design.
 */
-.line-chart-x-axis path {
-  stroke: black;
-  stroke-width: 1.5;
-  opacity: 0.5;
-  shape-rendering: crispEdges;
+/*
+header {
+  height: 100vh;
+  text-align: center;
+  z-index: 3000;
+  margin-bottom: 4rem;
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
 }
+*/
 
-.line-chart-x-axis .tick line {
-  stroke: black;
-  stroke-width: 1.5;
-  opacity: 0.5;
-}
-
-.line-chart-x-axis .tick text {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.line-chart-y-axis .tick line {
-  stroke: #bbb;
-  opacity: 0.5;
-}
-
-.line-chart-y-axis path {
-  stroke: #bbb;
-  shape-rendering: crispEdges;
-  opacity: 0;
-}
-
-.line-chart-y-axis .tick text {
-  font-size: 12px;
-  font-weight: 400;
-}
-
-/* Fuel sankey diagram/flow chart CSS */
-#fuel-flow-chart {
-  margin-top: 100px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-#co2-ppm-chart-container {
-  margin-left: 50px;
-  margin-right: 50px;
+#heading {
+  height: 100vh;
+  background-color: #ececec;
 }
