@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang='en' data-version='1504895452960'>
 
 <head>
@@ -174,12 +174,43 @@
 			<h2 class="prose__hed tk-canela">Introduction</h2>
 			<p>Two hundred thousand years ago...</p>
 		</div>
+		<div id="energy-consumption" class="container">
+			<div id="energy-chart" class="graphic-container">
+				<h2 class="tk-canela graphic-title">World Energy Consumption</h2>
+			</div>
+			<div id="energy-prose" class="graphic-prose">
+				<div class="spacer"></div>
+				<div class="slide-wrapper">
+					<p class="trigger slide" id="energy-slide-1" data-step=0>Some random fact about Industrialization and the rapid rise in demand for energy at 1965.</p>
+				</div>
+				<div class="slide-wrapper">
+					<p class="trigger slide" id="energy-slide-2" data-step=0>Some fact about the Technology age beginning in 2000, and the acceleration of energy demand.</p>
+				</div>
+				<div class="slide-wrapper">
+					<p class="trigger slide" id="energy-slide-3" data-step=0>The sudden decrease in energy consumption happened as a result of the 2009 financial crisis.</p>
+				</div>
+				<div class="slide-wrapper">
+					<p class="trigger slide" id="energy-slide-4" data-step=0>
+						As of 2016, the yearly World Energy Consumption is a little above 154,000 TWh. That's insane.
+						<br>
+						 If you could somehow squeeze all the energy into a Tesla Model S P100D battery, you could drive to the Sun - and back - 2450 times!
+					</p>
+				</div>
+			</div>
+		</div>
 	</section>
 
-
+	<!-- Pudding JS -->
 	<script src='https://pudding.cool/assets/scripts/d3.v4.9.1.min.js'></script>
 	<script src='js/bundle.js?version=1504895452960' async></script>
 	<script src='https://pudding.cool/assets/scripts/pudding-footer.js' async></script>
+
+	<!-- ScrollMagic JS -->
+	<script src="js/ScrollMagic.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="js/energy-chart.js"></script>
+
 </body>
 
 </html>

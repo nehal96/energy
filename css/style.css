@@ -17,7 +17,94 @@ header {
 }
 */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #heading {
   height: 100vh;
   background-color: #ececec;
+}
+
+.container {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.graphic-container {
+  height: 100%;
+  display: flex;
+  flex: 2;
+  order: 1;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.graphic-prose {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  order: 0;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.graphic-title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.spacer {
+  height: 200px;
+  width: 100%;
+}
+
+.slide {
+  background: #eee;
+  opacity: 0.3;
+  border-left: 4px solid #f67280;
+  padding: 1rem 1.5rem;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/*
+    Custom line chart CSS to ensure all line charts follow my beautiful custom
+    design.
+*/
+.line-chart-x-axis path {
+  stroke: black;
+  stroke-width: 1.5;
+  opacity: 0.5;
+  shape-rendering: crispEdges;
+}
+
+.line-chart-x-axis .tick line {
+  stroke: black;
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+
+.line-chart-x-axis .tick text {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.line-chart-y-axis .tick line {
+  stroke: #bbb;
+  opacity: 0.5;
+}
+
+.line-chart-y-axis path {
+  stroke: #bbb;
+  shape-rendering: crispEdges;
+  opacity: 0;
+}
+
+.line-chart-y-axis .tick text {
+  font-size: 12px;
+  font-weight: 400;
 }

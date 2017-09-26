@@ -20,12 +20,12 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   // Creating a responsive svg element for the plot
   // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
   var svg = d3.select('#energy-chart')
-              .append('div')
-              .classed('svg-container', true)
+              //.append('div')
+              //.classed('svg-container', true)
               .append('svg')
-              .attr('preserveAspectRatio', 'xMinyMin meet')
+              //.attr('preserveAspectRatio', 'xMinyMin meet')
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-              .classed('svg-content-responsive', true);
+              //.classed('svg-content-responsive', true);
 
   var g = svg.append('g')
              .attr('transform', 'translate(' + margin + ',' + 20 + ')');
@@ -93,6 +93,7 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
     or a third of the browser window, instead of half the browser window.
   */
 
+  /*
   // Create ScrollMagic controller
   var controller = new ScrollMagic.Controller();
 
@@ -153,5 +154,5 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   })
   .setClassToggle("#energy-slide-4", "active")
   .addTo(controller)
-
+  */
 });
