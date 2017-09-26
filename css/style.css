@@ -34,13 +34,20 @@ header {
   justify-content: space-around;
 }
 
+#fuel-sankey {
+  flex-direction: column;
+}
+
 .graphic-container {
   height: 100%;
   display: flex;
-  flex: 2;
-  order: 1;
   padding: 1rem;
   flex-direction: column;
+}
+
+#energy-chart {
+  flex: 2;
+  order: 1;
 }
 
 .graphic-prose {
@@ -54,6 +61,17 @@ header {
 
 .graphic-title {
   font-weight: 600;
+  margin: 0;
+  padding: 1rem 0rem;
+}
+
+#fuel-flow-title {
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+
+#fuel-flow-title h2 {
   margin: 0;
 }
 
@@ -107,4 +125,10 @@ header {
 .line-chart-y-axis .tick text {
   font-size: 12px;
   font-weight: 400;
+}
+
+/* Fuel sankey diagram/flow chart CSS */
+#fuel-flow-chart text{
+  font-size: 11px;
+  font-weight: 500;
 }

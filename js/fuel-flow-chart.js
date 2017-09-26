@@ -8,12 +8,12 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                                        if named 'height' */
 
     var svg = d3.select('#fuel-flow-chart')
-                .append('div')
-                .classed('svg-container', true)
+                //.append('div')
+                //.classed('svg-container', true)
                 .append('svg')
-                .attr('preserveAspectRatio', 'xMinyMin meet')
+                //.attr('preserveAspectRatio', 'xMinyMin meet')
                 .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-                .classed('svg-content-responsive', true)
+                //.classed('svg-content-responsive', true)
 
     var formatNumber = d3.format(",.0f"),
         format = function(d) {
