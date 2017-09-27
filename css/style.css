@@ -36,6 +36,7 @@ header {
 
 #fuel-sankey {
   flex-direction: column;
+  margin-bottom: 0;
 }
 
 .graphic-container {
@@ -48,6 +49,10 @@ header {
 #energy-chart {
   flex: 2;
   order: 1;
+}
+
+#fuel-flow-chart {
+  padding-bottom: 0;
 }
 
 #co2-ppm-chart {
@@ -143,5 +148,5 @@ header {
 /* Fuel sankey diagram/flow chart CSS */
 #fuel-flow-chart text{
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
 }
