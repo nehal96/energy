@@ -50,6 +50,10 @@ header {
   order: 1;
 }
 
+#co2-ppm-chart {
+  flex: 2;
+}
+
 .graphic-prose {
   height: 100%;
   display: flex;
@@ -71,6 +75,10 @@ header {
   margin: 0;
 }
 
+#co2-ppm-title {
+  padding-left: 20px;
+}
+
 #fuel-flow-title h2 {
   margin: 0;
 }
@@ -87,6 +95,11 @@ header {
   padding: 1rem 1.5rem;
   font-size: 15px;
   line-height: 1.5;
+}
+
+.co2-slide {
+  border-left: 0;
+  border-right: 4px solid #f67280;;
 }
 
 /*
