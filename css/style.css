@@ -93,6 +93,12 @@ header {
   width: 100%;
 }
 
+/*
+.slide-wrapper {
+  padding: 0rem 0rem;
+}
+*/
+
 .slide {
   background: #eee;
   opacity: 0.3;
@@ -101,6 +107,20 @@ header {
   font-size: 15px;
   line-height: 1.5;
 }
+
+.active {
+  opacity: 1;
+}
+
+/*
+.is-fixed {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+*/
 
 .co2-slide {
   border-left: 0;

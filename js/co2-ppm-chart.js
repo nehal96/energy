@@ -95,4 +95,39 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
    .attr('stroke-linejoin', 'round')
    .attr('stroke-linecap', 'round')
    .attr('stroke-width', 3);
+
+
+  // Set up scrollytelling with ScrollMagic
+
+  // Create ScrollMagic controller
+  var controller = new ScrollMagic.Controller();
+
+  // Scenes that activates slides
+  new ScrollMagic.Scene({
+    triggerElement: "#co2-slide-1",
+    duration: 105
+  })
+  .setClassToggle('#co2-slide-1', "active")
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+    triggerElement: "#co2-slide-2",
+    duration: 105
+  })
+  .setClassToggle('#co2-slide-2', "active")
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+    triggerElement: "#co2-slide-3",
+    duration: 105
+  })
+  .setClassToggle('#co2-slide-3', "active")
+  .addTo(controller)
+
+  new ScrollMagic.Scene({
+    triggerElement: "#co2-slide-4",
+    duration: 105
+  })
+  .setClassToggle('#co2-slide-4', "active")
+  .addTo(controller)
 })
