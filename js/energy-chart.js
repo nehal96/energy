@@ -97,18 +97,18 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   var controller = new ScrollMagic.Controller();
 
   // Scene that pins the energy plot when scrolled to
-  //new ScrollMagic.Scene({
-  //      offset: window.innerHeight, // start scene after scrolling length of browser height
-  //      duration: 700 // pin the element for a total of 400 px
-  //})
-  //.setPin('#energy-chart', {pushFollowers: false})
-  //.addTo(controller)
+  new ScrollMagic.Scene({
+        offset: window.innerHeight + 100, // start scene after scrolling length of browser height
+        duration: 1100 // pin the element for a total of 400 px
+  })
+  .setPin('#energy-chart', {pushFollowers: false})
+  .addTo(controller)
 
 
   // Scene that activates 1st slide and performs line aninmation (full line for now).
   new ScrollMagic.Scene({
       triggerElement: "#energy-slide-1",
-      duration: 125
+      duration: 275
   })
   .setClassToggle("#energy-slide-1", "active")
   .on('enter', function() {
@@ -139,21 +139,21 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
 
   new ScrollMagic.Scene({
       triggerElement: "#energy-slide-2",
-      duration: 125
+      duration: 275
   })
   .setClassToggle("#energy-slide-2", "active")
   .addTo(controller)
 
   new ScrollMagic.Scene({
       triggerElement: "#energy-slide-3",
-      duration: 125
+      duration: 275
   })
   .setClassToggle("#energy-slide-3", "active")
   .addTo(controller)
 
   new ScrollMagic.Scene({
       triggerElement: "#energy-slide-4",
-      duration: 125
+      duration: 275
   })
   .setClassToggle("#energy-slide-4", "active")
   .addTo(controller)

@@ -34,21 +34,42 @@ header {
   justify-content: space-around;
 }
 
+#energy-consumption {
+  display: flex;
+  /*width: 90%;*/
+  margin: 0 2rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+}
+
 #fuel-sankey {
   flex-direction: column;
   margin-bottom: 0;
+  margin-top: 4rem;
 }
 
 .graphic-container {
-  height: 100%;
+  /*height: 100%;*/
   display: flex;
   padding: 1rem;
   flex-direction: column;
 }
 
+.energy-graphic-container {
+  width: 66.666667%;
+}
+
+.energy-prose-container {
+  width: 33.333333%;
+}
+
 #energy-chart {
   flex: 2;
   order: 1;
+  flex-wrap: wrap;
+  transform: translate3d(0,0,0);
 }
 
 #fuel-flow-chart {
@@ -63,6 +84,7 @@ header {
   height: 100%;
   display: flex;
   flex: 1;
+  flex-grow: 1;
   order: 0;
   padding: 1rem;
   flex-direction: column;
@@ -93,11 +115,13 @@ header {
   width: 100%;
 }
 
-/*
 .slide-wrapper {
-  padding: 0rem 0rem;
+  padding: 6rem 0rem;
 }
-*/
+
+.last-slide {
+  padding-bottom: 16rem;
+}
 
 .slide {
   background: #eee;
