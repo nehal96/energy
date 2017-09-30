@@ -102,6 +102,14 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
   // Create ScrollMagic controller
   var controller = new ScrollMagic.Controller();
 
+  // Scene that pins CO2 plot
+  new ScrollMagic.Scene({
+    triggerElement: "#co2-slide-1",
+    duration: 900
+  })
+  .setPin('#co2-ppm-chart')
+  .addTo(controller)
+
   // Scenes that activates slides
   new ScrollMagic.Scene({
     triggerElement: "#co2-slide-1",

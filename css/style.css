@@ -36,12 +36,18 @@ header {
 
 #energy-consumption {
   display: flex;
-  /*width: 90%;*/
   margin: 0 2rem;
   overflow: hidden;
   position: relative;
   z-index: 1;
+}
 
+#co2-ppm {
+  display: flex;
+  margin: 0 2rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 #fuel-sankey {
@@ -78,6 +84,10 @@ header {
 
 #co2-ppm-chart {
   flex: 2;
+  order: 1;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  transform: translate3d(0,0,0);
 }
 
 .graphic-prose {
