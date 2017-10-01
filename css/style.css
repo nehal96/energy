@@ -1,21 +1,4 @@
 /* Custom CSS */
-/*
-body {
-  width: 100%;
-  overflow: hidden;
-}
-*/
-/*
-header {
-  height: 100vh;
-  text-align: center;
-  z-index: 3000;
-  margin-bottom: 4rem;
-  background: #ececec;
-  display: flex;
-  flex-direction: column;
-}
-*/
 
 * {
   margin: 0;
@@ -34,15 +17,7 @@ header {
   justify-content: space-around;
 }
 
-#energy-consumption {
-  display: flex;
-  margin: 0 2rem;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-}
-
-#co2-ppm {
+.line-scrolly {
   display: flex;
   margin: 0 2rem;
   overflow: hidden;
@@ -57,21 +32,20 @@ header {
 }
 
 .graphic-container {
-  /*height: 100%;*/
+  width: 66.666667%;
+}
+
+.graphic-prose-container {
+  width: 33.333333%;
+}
+
+.graphic {
   display: flex;
   padding: 1rem;
   flex-direction: column;
 }
 
-.energy-graphic-container {
-  width: 66.666667%;
-}
-
-.energy-prose-container {
-  width: 33.333333%;
-}
-
-#energy-chart {
+.line-scrolly-chart {
   flex: 2;
   order: 1;
   flex-wrap: wrap;
@@ -80,14 +54,6 @@ header {
 
 #fuel-flow-chart {
   padding-bottom: 0;
-}
-
-#co2-ppm-chart {
-  flex: 2;
-  order: 1;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  transform: translate3d(0,0,0);
 }
 
 .graphic-prose {
@@ -112,12 +78,12 @@ header {
   margin: 0;
 }
 
-#co2-ppm-title {
-  padding-left: 20px;
-}
-
 #fuel-flow-title h2 {
   margin: 0;
+}
+
+#co2-ppm-title {
+  padding-left: 20px;
 }
 
 .spacer {
@@ -145,16 +111,6 @@ header {
 .active {
   opacity: 1;
 }
-
-/*
-.is-fixed {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-*/
 
 .co2-slide {
   border-left: 0;
