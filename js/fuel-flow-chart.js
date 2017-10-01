@@ -4,16 +4,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     var margin = 100,
         width = 900 - margin,
-        height = 500 - margin; /* for some reason this gets confused with energy-chart's height
-                                       if named 'height' */
+        height = 500 - margin;
 
     var svg = d3.select('#fuel-flow-chart')
-                //.append('div')
-                //.classed('svg-container', true)
                 .append('svg')
-                //.attr('preserveAspectRatio', 'xMinyMin meet')
                 .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-                //.classed('svg-content-responsive', true)
 
     var formatNumber = d3.format(",.0f"),
         format = function(d) {

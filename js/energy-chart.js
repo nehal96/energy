@@ -18,14 +18,9 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   const STAGES = [{maxyear:1980}, {maxyear:2000}, {maxyear:2009}, {maxyear:2016}];
 
   // Creating a responsive svg element for the plot
-  // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
   var svg = d3.select('#energy-chart')
-              //.append('div')
-              //.classed('svg-container', true)
               .append('svg')
-              //.attr('preserveAspectRatio', 'xMinyMin meet')
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-              //.classed('svg-content-responsive', true);
 
   var g = svg.append('g')
              .attr('transform', 'translate(' + margin + ',' + 20 + ')');
@@ -112,9 +107,6 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
   })
   .setClassToggle("#energy-slide-1", "active")
   .on('enter', function() {
-
-    //d3.select('#energy-chart')
-      //.classed('is-fixed', true)
 
     // Create line path
     this.path = g.append('path')

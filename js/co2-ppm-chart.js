@@ -13,15 +13,9 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
       height = 500 - margin;
 
   // Creating a responsive svg element for the plot
-  // https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js - Responsive SVG
-
   var svg = d3.select('#co2-ppm-chart')
-              //.append('div')
-              //.classed('svg-container', true)
               .append('svg')
-              //.attr('preserveAspectRatio', 'xMinyMin meet')
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
-              //.classed('svg-content-responsive', true);
 
   var g = svg.append('g')
              .attr('transform', 'translate(' + margin + ',' + 20 + ')');
