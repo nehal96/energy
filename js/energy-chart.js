@@ -93,7 +93,7 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
 
   // Scene that pins the energy plot when scrolled to
   new ScrollMagic.Scene({
-        offset: window.innerHeight + 100, // start scene after scrolling length of browser height
+        triggerElement: "#energy-slide-1", // start scene after scrolling length of browser height
         duration: 1100 // pin the element for a total of 400 px
   })
   .setPin('#energy-chart', {pushFollowers: false})

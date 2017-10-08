@@ -9,6 +9,7 @@
 #heading {
   height: 100vh;
   background-color: #ececec;
+  margin-bottom: 4rem;
 }
 
 .container {
@@ -70,6 +71,12 @@
   font-weight: 600;
   margin: 0;
   padding: 1rem 0rem;
+}
+
+.prose-subtitle {
+  font-weight: 600;
+  font-size: 22px;
+  padding-top: 1rem;
 }
 
 #fuel-flow-title {
