@@ -16,6 +16,7 @@
   margin: 2rem;
   display: flex;
   justify-content: space-around;
+  padding-top: 1rem;
 }
 
 .line-scrolly {
