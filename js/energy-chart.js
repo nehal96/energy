@@ -3,7 +3,7 @@
 var parseYear = d3.timeParse("%Y")
 
 // Load data and apply main function
-d3.csv("data/Sample-Energy-Data.csv", function(d) {
+d3.csv("data/Energy-Consumption-Data.csv", function(d) {
   d['Year'] = parseYear(d['Year']);
   d['World (TWh)'] = +d['World (TWh)'];
   return d;
@@ -123,7 +123,7 @@ d3.csv("data/Sample-Energy-Data.csv", function(d) {
     this.path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
              .attr('stroke-dashoffset', totalLength)
              .transition()
-              .duration(1500)
+              .duration(2000)
               .ease(d3.easeLinear)
               .attr('stroke-dashoffset', 0);
   })
