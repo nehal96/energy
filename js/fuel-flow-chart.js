@@ -33,7 +33,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                     .attr('class', 'links')
                     .attr('fill', 'none')
                     .attr('stroke', '#000')
-                    .attr('stroke-opacity', 0.2)
+                    .attr('stroke-opacity', 0.1)
                   .selectAll('path');
 
     var node = svg.append('g')
@@ -168,7 +168,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     function defaultColor(pathClass) {
         return d3.selectAll(pathClass)
-                 .attr('stroke', '#000');
+                 .attr('stroke', '#000')
+                 // Set opacity back to default value
+                 .attr('stroke-opacity', 0.1);
     };
 
     // Takes the color of the rectangle (through nodeID), and changes the path
@@ -179,6 +181,8 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
         return d3.selectAll(pathClass)
                  .attr('stroke', color)
+                 // Increases opacity so coloured path stands out
+                 .attr('stroke-opacity', 0.3)
                  .style('cursor', 'pointer')
     };
 });
