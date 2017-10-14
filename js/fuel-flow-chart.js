@@ -4,7 +4,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     var margin = 100,
         width = 900 - margin,
-        height = 500 - margin;
+        height = 450 - margin;
 
     var svg = d3.select('#fuel-flow-chart')
                 .append('svg')

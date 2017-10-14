@@ -90,6 +90,25 @@
   margin: 0;
 }
 
+#fuel-flow-prose-container {
+  display: flex;
+  padding: 0rem 1rem;
+}
+
+#fuel-flow-prose {
+  display: flex;
+  width: 66.6666667%;
+  padding: 0rem 1.5rem;
+  border: 1px solid black;
+}
+
+#fuel-flow-calc {
+  display: flex;
+  width: 33.3333333%;
+  padding: 0rem 1.5rem;
+  border: 1px solid black;
+}
+
 #co2-ppm-title {
   padding-left: 20px;
 }
