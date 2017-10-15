@@ -67,7 +67,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                       defaultColor('.' + d3.select(this).attr('class'))
                     }
                 })
-                .on('click', function() {
+                .on('click', function(d) {
                     if (d3.select(this).classed('clicked')) {
                         // When 'clicked' class is active, calling for the class attributes
                         // gives "<Name of fuel> clicked". .split(" ") will split this into
@@ -77,12 +77,21 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
                         d3.selectAll('.' + path_class)
                           .classed('clicked', false);
+
+                        // When unclicked, remove title from calculator section
+                        d3.select('#fuel-name')
+                          .text('');
                     } else {
                         var path_class = d3.select(this).attr('class')
                         colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
 
                         d3.selectAll('.' + path_class)
                           .classed('clicked', true);
+
+                        // Add fuel name as title in calculator section
+                        var fuel_name = convertToTitleCase(d3.select(this).attr('class').split(" ")[0])
+                        d3.select('#fuel-name')
+                          .text(fuel_name);
                     }
                 });
 
@@ -166,6 +175,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
           .attr('fill', '#19B5FE');
     };
 
+    // Returns path stroke to default grey color.
     function defaultColor(pathClass) {
         return d3.selectAll(pathClass)
                  .attr('stroke', '#000')
@@ -185,4 +195,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                  .attr('stroke-opacity', 0.3)
                  .style('cursor', 'pointer')
     };
+
+    // Takes a pseudo-camelCase text (ex. 'ElectricityGeneration') and converts
+    // it to Title Case (ex. 'Electricity Generation').
+    function convertToTitleCase(text) {
+        return text.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
+    }
 });
