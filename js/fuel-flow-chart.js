@@ -56,53 +56,19 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 })
                 .attr('stroke-width', function(d) {
                     return Math.max(2, d.width);
-                })
-                .on('mouseover', function() {
-                    if (d3.select(this).classed('clicked') != true) {
-                      colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
-                    }
-                })
-                .on('mouseout', function() {
-                    if (d3.select(this).classed('clicked') != true) {
-                      defaultColor('.' + d3.select(this).attr('class'))
-                    }
-                })
-                .on('click', function(d) {
-                    if (d3.select(this).classed('clicked')) {
-                        // When 'clicked' class is active, calling for the class attributes
-                        // gives "<Name of fuel> clicked". .split(" ") will split this into
-                        // two words, so that all the paths in that fuel class can be 'unclicked'
-                        var path_class = d3.select(this).attr('class').split(" ")
-                        defaultColor('.' + path_class[0])
-
-                        d3.selectAll('.' + path_class)
-                          .classed('clicked', false);
-
-                        // When unclicked, remove title from calculator section
-                        d3.select('#fuel-name')
-                          .text('');
-                    } else {
-                        var path_class = d3.select(this).attr('class')
-                        colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
-
-                        d3.selectAll('.' + path_class)
-                          .classed('clicked', true);
-
-                        // Add fuel name as title in calculator section
-                        var fuel_name = convertToTitleCase(d3.select(this).attr('class').split(" ")[0])
-                        d3.select('#fuel-name')
-                          .text(fuel_name);
-                    }
                 });
 
     link.append('title')
-          .text(function(d) {
-              return d.source.name + " → " + d.target.name + "\n" + format(d.value);
-          });
+        .text(function(d) {
+            return d.source.name + " → " + d.target.name + "\n" + format(d.value);
+        });
 
     node = node.data(energy.nodes)
                .enter()
-               .append('g');
+               .append('g')
+               .attr('id', function(d) {
+                 return d.name.replace(/ /g,'') + "-g";
+               });
 
     node.append('rect')
           .attr('id', function(d) {
@@ -151,6 +117,55 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         })
 
     customNodeColors();
+
+    link.on('mouseover', function() {
+            if (d3.select(this).classed('clicked') != true) {
+              colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
+            }
+        })
+        .on('mouseout', function() {
+            if (d3.select(this).classed('clicked') != true) {
+              defaultColor('.' + d3.select(this).attr('class'))
+            }
+        })
+        .on('click', function(d) {
+            if (d3.select(this).classed('clicked')) {
+                // When 'clicked' class is active, calling for the class attributes
+                // gives "<Name of fuel> clicked". .split(" ") will split this into
+                // two words, so that all the paths in that fuel class can be 'unclicked'
+                var path_class = d3.select(this).attr('class').split(" ")
+                defaultColor('.' + path_class[0])
+
+                d3.selectAll('.' + path_class)
+                  .classed('clicked', false);
+
+                // When unclicked, remove title from calculator section
+                d3.select('#fuel-name')
+                  .text('Fuel');
+
+                d3.select('#fuel-total-energy')
+                  .text('Total Energy: ');
+            } else {
+                var path_class = d3.select(this).attr('class')
+                colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
+
+                d3.selectAll('.' + path_class)
+                  .classed('clicked', true);
+
+                // Add fuel name as title in calculator section
+                var fuel_name = convertToTitleCase(d3.select(this).attr('class').split(" ")[0])
+                d3.select('#fuel-name')
+                  .text(fuel_name);
+
+                var node_g_id = "#" + d3.select(this).attr('class').split(" ")[0] + "-g";
+                var total_energy = d3.select(node_g_id)
+                                     .select("title")
+                                     .text();
+
+                d3.select('#fuel-total-energy')
+                  .text("Total Energy: " + total_energy);
+            }
+        });
 
     // Custom colours for particular nodes
     function customNodeColors() {
