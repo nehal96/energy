@@ -153,14 +153,15 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                   .classed('clicked', true);
 
                 // Add fuel name as title in calculator section
-                var fuel_name = convertToTitleCase(d3.select(this).attr('class').split(" ")[0])
+                var node_g_id = "#" + d3.select(this).attr('class').split(" ")[0] + "-g";
+                var fuel_name = d3.select(node_g_id)
+                                  .select("text")
+                                  .text()
+
                 d3.select('#fuel-name')
                   .text(fuel_name);
 
-                var node_g_id = "#" + d3.select(this).attr('class').split(" ")[0] + "-g";
-                var total_energy = d3.select(node_g_id)
-                                     .select("title")
-                                     .text();
+                var total_energy = getTotalEnergy(total_energy_dict, fuel_name);
 
                 d3.select('#fuel-total-energy')
                   .text("Total Energy: " + total_energy);
@@ -211,9 +212,32 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                  .style('cursor', 'pointer')
     };
 
-    // Takes a pseudo-camelCase text (ex. 'ElectricityGeneration') and converts
-    // it to Title Case (ex. 'Electricity Generation').
-    function convertToTitleCase(text) {
-        return text.replace(/([A-Z]+)/g, " $1").replace(/([A-Z][a-z])/g, " $1")
+    // Creates a dictionary object with energy source/target as the key and total
+    // energy consumed as the value. Creating a dictionary will make it easy to
+    // access the numbers required for calculations.
+    // (Also not sure if putting this in JSON is better; too afraid to make
+    // changes to JSON data)
+    function createTotalEnergyDict(energy) {
+        var energy_list = energy["nodes"];
+
+        var total_energy_dict = {};
+
+        for (i = 0; i < energy_list.length; i++) {
+          var name = energy_list[i]["name"];
+          var value = energy_list[i]["value"];
+
+          total_energy_dict[name] = value;
+        };
+
+        return total_energy_dict;
+    };
+
+    // Create dictionary object
+    let total_energy_dict = createTotalEnergyDict(energy);
+
+    // Gets total energy for the particular energy source/target from
+    // dictionary created above.
+    function getTotalEnergy(total_energy_dict, node) {
+        return format(total_energy_dict[node]);
     }
 });
