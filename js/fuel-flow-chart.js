@@ -143,8 +143,13 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 d3.select('#fuel-name')
                   .text('Fuel');
 
+                // When unclicked, remove energy produced value
                 d3.select('#fuel-total-energy')
                   .text('Energy Produced: ');
+
+                // When unclicked, remove % total energy value
+                d3.select('#fuel-percent-total')
+                  .text('% Total Energy: ')
             } else {
                 var path_class = d3.select(this).attr('class')
                 colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
@@ -161,10 +166,15 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 d3.select('#fuel-name')
                   .text(fuel_name);
 
-                var total_energy = getEnergyProduced(total_energy_dict, fuel_name);
+                var energy_produced = format(getEnergyProduced(total_energy_dict, fuel_name));
 
                 d3.select('#fuel-total-energy')
-                  .text("Energy Produced: " + total_energy);
+                  .text("Energy Produced: " + energy_produced);
+
+                var percent_total_energy = ((getEnergyProduced(total_energy_dict, fuel_name) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
+
+                d3.select('#fuel-percent-total')
+                  .text("% Total Energy: " + percent_total_energy + " %");
             }
         });
 
@@ -238,6 +248,21 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     // Gets total energy for the particular energy source/target from
     // dictionary created above.
     function getEnergyProduced(total_energy_dict, node) {
-        return format(total_energy_dict[node]);
+        return total_energy_dict[node];
     }
+
+    function totalFuelEnergy(total_energy_dict) {
+
+        var fuels = ["Biomass", "Coal", "Geothermal", "Hydro", "Natural Gas",
+                     "Nuclear", "Petroleum", "Solar", "Wind"]
+
+        var total_fuel_energy = 0
+
+        for (i = 0; i < fuels.length; i++) {
+            var fuel = fuels[i];
+            total_fuel_energy += total_energy_dict[fuel];
+        }
+
+        return total_fuel_energy;
+    };
 });
