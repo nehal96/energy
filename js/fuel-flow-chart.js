@@ -144,7 +144,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                   .text('Fuel');
 
                 d3.select('#fuel-total-energy')
-                  .text('Total Energy: ');
+                  .text('Energy Produced: ');
             } else {
                 var path_class = d3.select(this).attr('class')
                 colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
@@ -164,7 +164,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 var total_energy = getTotalEnergy(total_energy_dict, fuel_name);
 
                 d3.select('#fuel-total-energy')
-                  .text("Total Energy: " + total_energy);
+                  .text("Energy Produced: " + total_energy);
             }
         });
 
