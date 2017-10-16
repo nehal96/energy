@@ -113,10 +113,12 @@
 
 #fuel-flow-calc h3 {
   margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 #fuel-flow-calc p {
   align-self: flex-start;
+  margin: 0.5rem 0rem;
 }
 
 #co2-ppm-title {

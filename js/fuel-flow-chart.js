@@ -161,7 +161,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 d3.select('#fuel-name')
                   .text(fuel_name);
 
-                var total_energy = getTotalEnergy(total_energy_dict, fuel_name);
+                var total_energy = getEnergyProduced(total_energy_dict, fuel_name);
 
                 d3.select('#fuel-total-energy')
                   .text("Energy Produced: " + total_energy);
@@ -237,7 +237,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     // Gets total energy for the particular energy source/target from
     // dictionary created above.
-    function getTotalEnergy(total_energy_dict, node) {
+    function getEnergyProduced(total_energy_dict, node) {
         return format(total_energy_dict[node]);
     }
 });
