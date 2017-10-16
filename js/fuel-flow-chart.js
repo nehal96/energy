@@ -2,6 +2,12 @@
 d3.json('data/fuel-flow-chart.json', function(error, energy) {
     if (error) throw error;
 
+    const FUELS = ["Biomass", "Coal", "Geothermal", "Hydro", "Natural Gas",
+                 "Nuclear", "Petroleum", "Solar", "Wind"];
+
+    const SECTORS = ["Electricity Generation", "Residential", "Commercial",
+                     "Industrial", "Transportation"];
+
     var margin = 100,
         width = 900 - margin,
         height = 450 - margin;
@@ -160,22 +166,35 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 // Add fuel name as title in calculator section
                 var node_g_id = "#" + d3.select(this).attr('class').split(" ")[0] + "-g";
                 var fuel_name = d3.select(node_g_id)
-                                  .select("text")
+                                  .select("text") // Gets Title Cased text
                                   .text()
 
                 d3.select('#fuel-name')
                   .text(fuel_name);
 
+                // Add energy produced values in calculator section
                 var energy_produced = format(getEnergyProduced(total_energy_dict, fuel_name));
 
                 d3.select('#fuel-total-energy')
                   .text("Energy Produced: " + energy_produced);
 
-                var percent_total_energy = ((getEnergyProduced(total_energy_dict, fuel_name) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
+                if (FUELS.includes(fuel_name)) {
+                    // Add % total energy values (for just fuels) in calculator
+                    // section
+                    var percent_total_energy_fuel = ((getEnergyProduced(total_energy_dict, fuel_name) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
 
-                d3.select('#fuel-percent-total')
-                  .text("% Total Energy: " + percent_total_energy + " %");
-            }
+                    d3.select('#fuel-percent-total')
+                      .text("% Total Energy (Fuels): " + percent_total_energy_fuel + " %");
+                } else {
+                    // Add % total energy values (for just sectors) in
+                    // calculator section
+                    var percent_total_energy_sector = ((getEnergyProduced(total_energy_dict, fuel_name) / totalSectorEnergy(total_energy_dict)) * 100).toFixed(1);
+
+                    d3.select('#fuel-percent-total')
+                      .text("% Total Energy (Sectors): " + percent_total_energy_sector + " %");
+                };
+
+            };
         });
 
     // Custom colours for particular nodes
@@ -251,18 +270,28 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         return total_energy_dict[node];
     }
 
+    // Calculates total energy produced by fuels by adding energy production
+    // from each individual fuel
     function totalFuelEnergy(total_energy_dict) {
 
-        var fuels = ["Biomass", "Coal", "Geothermal", "Hydro", "Natural Gas",
-                     "Nuclear", "Petroleum", "Solar", "Wind"]
+        var total_fuel_energy = 0;
 
-        var total_fuel_energy = 0
-
-        for (i = 0; i < fuels.length; i++) {
-            var fuel = fuels[i];
+        for (i = 0; i < FUELS.length; i++) {
+            var fuel = FUELS[i];
             total_fuel_energy += total_energy_dict[fuel];
         }
 
         return total_fuel_energy;
+    };
+
+    function totalSectorEnergy(total_energy_dict) {
+        var total_sector_energy = 0;
+
+        for (i = 0; i < SECTORS.length; i++) {
+            var sector = SECTORS[i];
+            total_sector_energy += total_energy_dict[sector];
+        }
+
+        return total_sector_energy;
     };
 });
