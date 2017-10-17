@@ -150,12 +150,15 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                   .text('Fuel/Sector');
 
                 // When unclicked, remove energy produced value
-                d3.select('#fuel-total-energy')
-                  .text('Energy Produced: ');
+                d3.select('#fuel-total-energy-value')
+                  .text('');
 
-                // When unclicked, remove % total energy value
-                d3.select('#fuel-percent-total')
-                  .text('% Total Energy: ')
+                // When unclicked, remove % total energy value and reset field
+                d3.select('#fuel-percent-total-value')
+                  .text('');
+
+                d3.select('#fuel-percent-total-field')
+                  .text('% Total Energy:');
             } else {
                 var path_class = d3.select(this).attr('class')
                 colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
@@ -175,23 +178,23 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 // Add energy produced values in calculator section
                 var energy_produced = format(getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict));
 
-                d3.select('#fuel-total-energy')
-                  .text("Energy Produced: " + energy_produced);
+                d3.select('#fuel-total-energy-value')
+                  .text(energy_produced);
 
                 if (FUELS.includes(fuel_name)) {
                     // Add % total energy values (for just fuels) in calculator
                     // section
                     var percent_total_energy_fuel = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
 
-                    d3.select('#fuel-percent-total')
-                      .text("% Total Energy (Fuels): " + percent_total_energy_fuel + "%");
+                    d3.select('#fuel-percent-total-value')
+                      .text(percent_total_energy_fuel + "%");
                 } else {
                     // Add % total energy values (for just sectors) in
                     // calculator section
                     var percent_total_energy_sector = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalSectorEnergy(total_energy_dict, path_energies_dict)) * 100).toFixed(1);
 
-                    d3.select('#fuel-percent-total')
-                      .text("% Total Energy (Sectors): " + percent_total_energy_sector + "%");
+                    d3.select('#fuel-percent-total-value')
+                      .text(percent_total_energy_sector + "%");
                 };
 
             };

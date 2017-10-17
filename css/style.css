@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+table {
+  width: 100%;
+}
+
+td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 #heading {
   height: 100vh;
   background-color: #ececec;
