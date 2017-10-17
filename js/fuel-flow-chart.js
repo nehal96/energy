@@ -147,7 +147,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
                 // When unclicked, remove title from calculator section
                 d3.select('#fuel-name')
-                  .text('Fuel');
+                  .text('Fuel/Sector');
 
                 // When unclicked, remove energy produced value
                 d3.select('#fuel-total-energy')
@@ -184,14 +184,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                     var percent_total_energy_fuel = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
 
                     d3.select('#fuel-percent-total')
-                      .text("% Total Energy (Fuels): " + percent_total_energy_fuel + " %");
+                      .text("% Total Energy (Fuels): " + percent_total_energy_fuel + "%");
                 } else {
                     // Add % total energy values (for just sectors) in
                     // calculator section
                     var percent_total_energy_sector = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalSectorEnergy(total_energy_dict, path_energies_dict)) * 100).toFixed(1);
 
                     d3.select('#fuel-percent-total')
-                      .text("% Total Energy (Sectors): " + percent_total_energy_sector + " %");
+                      .text("% Total Energy (Sectors): " + percent_total_energy_sector + "%");
                 };
 
             };
