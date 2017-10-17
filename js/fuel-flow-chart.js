@@ -186,6 +186,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                     // section
                     var percent_total_energy_fuel = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
 
+                    d3.select('#fuel-percent-total-field')
+                      .text('% Total Energy (Fuels):')
+
                     d3.select('#fuel-percent-total-value')
                       .text(percent_total_energy_fuel + "%");
                 } else {
@@ -193,6 +196,8 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                     // calculator section
                     var percent_total_energy_sector = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalSectorEnergy(total_energy_dict, path_energies_dict)) * 100).toFixed(1);
 
+                    d3.select('#fuel-percent-total-field')
+                      .text('% Total Energy (Sectors):')
                     d3.select('#fuel-percent-total-value')
                       .text(percent_total_energy_sector + "%");
                 };
@@ -338,7 +343,4 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
         return total_sector_energy;
     };
-
-    //console.log(totalSectorEnergy(total_energy_dict, path_energies_dict));
-    //console.log(totalFuelEnergy(total_energy_dict));
 });

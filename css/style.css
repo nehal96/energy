@@ -102,12 +102,15 @@ td {
 #fuel-flow-prose-container {
   display: flex;
   padding: 0rem 1rem;
+  position: relative;
+  bottom: 100px;
 }
 
 #fuel-flow-prose {
   display: flex;
   width: 66.6666667%;
   padding: 0rem 1rem;
+  border-left: 4px solid #f67280;
 }
 
 #fuel-flow-calc {
@@ -116,21 +119,27 @@ td {
   width: 33.3333333%;
   padding: 0rem 1rem;
   align-items: center;
-  background-color: #eee;
-  border-top: 4px solid #f67280;
-  border-bottom: 4px solid #f67280;
+  background-color: rgba(246, 114, 128, 0.1);
+  border-left: 4px solid #f67280;
+  border-right: 4px solid #f67280;
 }
 
 #fuel-flow-calc h3 {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   margin-top: 0.5rem;
   font-weight: 500;
+  font-size: 22px;
 }
 
 #fuel-flow-calc p {
   align-self: flex-start;
   margin: 0.5rem 0rem;
+}
+
+#fuel-sector-breakdown {
+  margin-top: 0.5rem;
+  font-weight: 500;
 }
 
 #co2-ppm-title {
