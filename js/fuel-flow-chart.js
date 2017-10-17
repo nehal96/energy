@@ -173,7 +173,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                   .text(fuel_name);
 
                 // Add energy produced values in calculator section
-                var energy_produced = format(getEnergyProduced(total_energy_dict, fuel_name));
+                var energy_produced = format(getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict));
 
                 d3.select('#fuel-total-energy')
                   .text("Energy Produced: " + energy_produced);
@@ -181,14 +181,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 if (FUELS.includes(fuel_name)) {
                     // Add % total energy values (for just fuels) in calculator
                     // section
-                    var percent_total_energy_fuel = ((getEnergyProduced(total_energy_dict, fuel_name) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
+                    var percent_total_energy_fuel = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
 
                     d3.select('#fuel-percent-total')
                       .text("% Total Energy (Fuels): " + percent_total_energy_fuel + " %");
                 } else {
                     // Add % total energy values (for just sectors) in
                     // calculator section
-                    var percent_total_energy_sector = ((getEnergyProduced(total_energy_dict, fuel_name) / totalSectorEnergy(total_energy_dict)) * 100).toFixed(1);
+                    var percent_total_energy_sector = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalSectorEnergy(total_energy_dict, path_energies_dict)) * 100).toFixed(1);
 
                     d3.select('#fuel-percent-total')
                       .text("% Total Energy (Sectors): " + percent_total_energy_sector + " %");
@@ -261,13 +261,45 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         return total_energy_dict;
     };
 
-    // Create dictionary object
+    // Creates a dictionary object with a energy path/flow as the key (Ex:
+    // "Solar to Electricity Generation") and energy amount as the value.
+    function createPathEnergyDict(energy) {
+      var path_list = energy["links"];
+
+      var path_energies_dict = {};
+
+      for (i = 0; i < path_list.length; i++) {
+          var source = path_list[i]["source"]["name"];
+          var target = path_list[i]["target"]["name"];
+          var name = source + " to " + target;
+          var value = path_list[i]["value"];
+
+          path_energies_dict[name] = value;
+      }
+
+      return path_energies_dict;
+    }
+
+    // Create dictionary objects
     let total_energy_dict = createTotalEnergyDict(energy);
+    let path_energies_dict = createPathEnergyDict(energy);
 
     // Gets total energy for the particular energy source/target from
     // dictionary created above.
-    function getEnergyProduced(total_energy_dict, node) {
-        return total_energy_dict[node];
+    function getEnergyProduced(node, total_energy_dict, path_energies_dict) {
+        var exception_list = ["Transportation", "Industrial", "Commercial", "Residential"];
+
+        if (exception_list.includes(node)) {
+            var energy_w_elec_gen = total_energy_dict[node];
+            var path_name = "Electricity Generation to " + node;
+            var path_value = path_energies_dict[path_name];
+            var net_energy = energy_w_elec_gen - path_value;
+
+            return net_energy;
+        } else {
+            return total_energy_dict[node];
+        }
+
     }
 
     // Calculates total energy produced by fuels by adding energy production
@@ -284,14 +316,26 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         return total_fuel_energy;
     };
 
-    function totalSectorEnergy(total_energy_dict) {
+    // Calculates total energy produced for sectors by adding energy consumption
+    // for each individual sector
+    function totalSectorEnergy(total_energy_dict, path_energies_dict) {
         var total_sector_energy = 0;
 
         for (i = 0; i < SECTORS.length; i++) {
             var sector = SECTORS[i];
-            total_sector_energy += total_energy_dict[sector];
-        }
+            if (sector == "Electricity Generation") {
+                total_sector_energy += total_energy_dict[sector];
+            } else {
+                // Remove energy amount that comes from Electricity Generation
+                var path_name = "Electricity Generation to " + sector;
+                var path_value = path_energies_dict[path_name];
+                total_sector_energy += (total_energy_dict[sector] - path_value);
+            }
+        };
 
         return total_sector_energy;
     };
+
+    //console.log(totalSectorEnergy(total_energy_dict, path_energies_dict));
+    //console.log(totalFuelEnergy(total_energy_dict));
 });
