@@ -335,17 +335,19 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             total_energy += targets[target];
         }
 
-        for (var target in targets) {
-            var percent_by_sector = ((targets[target] / total_energy) * 100).toFixed(1);
+        if (d3.select('#fuel-sector-breakdown-table tbody').selectAll('tr').empty()) {
+            for (var target in targets) {
+                var percent_by_sector = ((targets[target] / total_energy) * 100).toFixed(1);
 
-            var table_row = d3.select('#fuel-sector-breakdown-table tbody')
-                              .append('tr')
+                var table_row = d3.select('#fuel-sector-breakdown-table tbody')
+                                  .append('tr')
 
-            table_row.append('td')
-                       .text(target)
+                table_row.append('td')
+                          .text(target)
 
-            table_row.append('td')
-                       .text(percent_by_sector + "%");
+                table_row.append('td')
+                          .text(percent_by_sector + "%");
+            }
         }
     };
 
