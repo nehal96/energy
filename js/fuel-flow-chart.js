@@ -127,11 +127,62 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     link.on('mouseover', function() {
             if (d3.select(this).classed('clicked') != true) {
               colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
+
+              // Add fuel name as title in calculator section
+              var node_g_id = "#" + d3.select(this).attr('class').split(" ")[0] + "-g";
+              var fuel_name = d3.select(node_g_id)
+                                .select("text") // Gets Title Cased text
+                                .text()
+
+              d3.select('#fuel-name')
+                .text(fuel_name);
+
+              // Add energy produced values in calculator section
+              var energy_produced = format(getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict));
+
+              d3.select('#fuel-total-energy-value')
+                .text(energy_produced);
+
+              if (FUELS.includes(fuel_name)) {
+                  // Add % total energy values (for just fuels) in calculator
+                  // section
+                  var percent_total_energy_fuel = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalFuelEnergy(total_energy_dict)) * 100).toFixed(1);
+
+                  d3.select('#fuel-percent-total-field')
+                    .text('% Total Energy (Fuels):')
+
+                  d3.select('#fuel-percent-total-value')
+                    .text(percent_total_energy_fuel + "%");
+              } else {
+                  // Add % total energy values (for just sectors) in
+                  // calculator section
+                  var percent_total_energy_sector = ((getEnergyProduced(fuel_name, total_energy_dict, path_energies_dict) / totalSectorEnergy(total_energy_dict, path_energies_dict)) * 100).toFixed(1);
+
+                  d3.select('#fuel-percent-total-field')
+                    .text('% Total Energy (Sectors):')
+                  d3.select('#fuel-percent-total-value')
+                    .text(percent_total_energy_sector + "%");
+              };
             }
         })
         .on('mouseout', function() {
             if (d3.select(this).classed('clicked') != true) {
               defaultColor('.' + d3.select(this).attr('class'))
+
+              // When unclicked, remove title from calculator section
+              d3.select('#fuel-name')
+                .text('Fuel/Sector');
+
+              // When unclicked, remove energy produced value
+              d3.select('#fuel-total-energy-value')
+                .text('');
+
+              // When unclicked, remove % total energy value and reset field
+              d3.select('#fuel-percent-total-value')
+                .text('');
+
+              d3.select('#fuel-percent-total-field')
+                .text('% Total Energy:');
             }
         })
         .on('click', function(d) {
