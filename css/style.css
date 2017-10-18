@@ -8,6 +8,7 @@
 
 table {
   width: 100%;
+  border-bottom: black solid 1px;
 }
 
 td {
@@ -110,7 +111,6 @@ td {
   display: flex;
   width: 66.6666667%;
   padding: 0rem 1rem;
-  border-left: 4px solid #f67280;
 }
 
 #fuel-flow-calc {
@@ -137,9 +137,14 @@ td {
   margin: 0.5rem 0rem;
 }
 
-#fuel-sector-breakdown {
+#fuel-sector-breakdown-title {
   margin-top: 0.5rem;
   font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+#fuel-sector-breakdown-table {
+  border-bottom: 0px;
 }
 
 #co2-ppm-title {

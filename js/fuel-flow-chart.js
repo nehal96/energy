@@ -128,7 +128,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             if (d3.select(this).classed('clicked') != true) {
               colorPaths('.' + d3.select(this).attr('class'), '#' + d3.select(this).attr('class'))
 
-              performCalculatorMagic(d3.select(this), total_energy_dict, path_energies_dict);
+              performCalculatorMagic(d3.select(this), total_energy_dict, path_energies_dict, sector_breakdown_dict);
             }
         })
         .on('mouseout', function() {
@@ -157,7 +157,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                 d3.selectAll('.' + path_class)
                   .classed('clicked', true);
 
-                performCalculatorMagic(d3.select(this), total_energy_dict, path_energies_dict);
+                performCalculatorMagic(d3.select(this), total_energy_dict, path_energies_dict, sector_breakdown_dict);
             };
         });
 
@@ -244,9 +244,33 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
       return path_energies_dict;
     }
 
+    // Creates a dictionary that has sources as the keys, with the values being
+    // a dictionary of targets with its respective values.
+    function createSectorBreakdownDict(energy) {
+        var path_list = energy["links"];
+
+        var sector_breakdown_dict = {};
+
+        for (i = 0; i < path_list.length; i++) {
+            var source = path_list[i]["source"]["name"];
+            var target = path_list[i]["target"]["name"];
+            var value = path_list[i]["value"];
+
+            if (!(source in sector_breakdown_dict)) {
+                sector_breakdown_dict[source] = {};
+                sector_breakdown_dict[source][target] = value;
+            } else {
+                sector_breakdown_dict[source][target] = value;
+            }
+        };
+
+        return sector_breakdown_dict;
+    };
+
     // Create dictionary objects
     let total_energy_dict = createTotalEnergyDict(energy);
     let path_energies_dict = createPathEnergyDict(energy);
+    let sector_breakdown_dict = createSectorBreakdownDict(energy);
 
     // Gets total energy for the particular energy source/target from
     // dictionary created above.
@@ -300,9 +324,38 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         return total_sector_energy;
     };
 
+    function getBreakdownBySector(node, sector_breakdown_dict) {
+        var targets = sector_breakdown_dict[node];
+        var total_energy = 0;
+
+        for (var target in targets) {
+            total_energy += targets[target];
+        }
+
+        for (var target in targets) {
+            var percent_by_sector = ((targets[target] / total_energy) * 100).toFixed(1);
+
+            var table_row = d3.select('#fuel-sector-breakdown-table')
+                              .append('tr')
+            table_row.append('td')
+                       .text(target)
+
+            table_row.append('td')
+                       .text(percent_by_sector + "%");
+        }
+    };
+
+    function removeBreakdownBySector() {
+        // Remove all table rows
+        d3.select('#fuel-sector-breakdown-table')
+          .selectAll('tr')
+          .remove();
+    };
+
     // Main function that performs all the tasks required to fill the Energy
     // Calculator section with information.
-    function performCalculatorMagic(DOM_elem, total_energy_dict, path_energies_dict) {
+    function performCalculatorMagic(DOM_elem, total_energy_dict,
+                  path_energies_dict, sector_breakdown_dict) {
       // Add fuel name as title in calculator section
       var node_g_id = "#" + DOM_elem.attr('class').split(" ")[0] + "-g";
       var fuel_name = d3.select(node_g_id)
@@ -339,6 +392,8 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             .text(percent_total_energy_sector + "%");
       };
 
+      getBreakdownBySector(fuel_name, sector_breakdown_dict);
+
     };
 
     // Removes all the information from the Energy Calculator section for
@@ -358,5 +413,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
       d3.select('#fuel-percent-total-field')
         .text('% Total Energy:');
+
+      removeBreakdownBySector();
     };
 });
