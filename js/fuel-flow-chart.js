@@ -324,6 +324,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         return total_sector_energy;
     };
 
+    // Calculates the percentage of energy that flows to each sector/next stage
+    // for a particular fuel or sector. Then appends a row for each fuel/sector
+    // in the Breakdown by Sector table.
     function getBreakdownBySector(node, sector_breakdown_dict) {
         var targets = sector_breakdown_dict[node];
         var total_energy = 0;
@@ -335,8 +338,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         for (var target in targets) {
             var percent_by_sector = ((targets[target] / total_energy) * 100).toFixed(1);
 
-            var table_row = d3.select('#fuel-sector-breakdown-table')
+            var table_row = d3.select('#fuel-sector-breakdown-table tbody')
                               .append('tr')
+
             table_row.append('td')
                        .text(target)
 
@@ -345,6 +349,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         }
     };
 
+    // Removes the Breakdown by Sector information (for mouseout and unclicking)
     function removeBreakdownBySector() {
         // Remove all table rows
         d3.select('#fuel-sector-breakdown-table')

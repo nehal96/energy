@@ -8,12 +8,10 @@
 
 table {
   width: 100%;
-  border-bottom: black solid 1px;
 }
 
 td {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.25rem 0rem;
 }
 
 #heading {
@@ -109,19 +107,32 @@ td {
 
 #fuel-flow-prose {
   display: flex;
-  width: 66.6666667%;
+  /*width: 66.6666667%;*/
+  width: 50%;
   padding: 0rem 1rem;
 }
 
 #fuel-flow-calc {
   display: flex;
-  flex-flow: column;
-  width: 33.3333333%;
-  padding: 0rem 1rem;
-  align-items: center;
+  /*flex-flow: column;*/
+  /*width: 33.3333333%;*/
+  width: 50%;
+  padding: 0.5rem 1rem;
+  align-items: flex-start;
   background-color: rgba(246, 114, 128, 0.1);
+  font-size: 14px;
   border-left: 4px solid #f67280;
   border-right: 4px solid #f67280;
+}
+
+#fuel-summary-stats {
+  width: 50%;
+  padding-right: 0.25rem;
+}
+
+#fuel-sector-breakdown-stats {
+  width: 50%;
+  padding-left: 0.25rem;
 }
 
 #fuel-flow-calc h3 {
@@ -130,6 +141,7 @@ td {
   margin-top: 0.5rem;
   font-weight: 500;
   font-size: 22px;
+  text-decoration: underline;
 }
 
 #fuel-flow-calc p {
@@ -138,13 +150,10 @@ td {
 }
 
 #fuel-sector-breakdown-title {
-  margin-top: 0.5rem;
+  font-size: 16px;
+  margin-top: 0.75rem;
   font-weight: 500;
   padding-bottom: 0.5rem;
-}
-
-#fuel-sector-breakdown-table {
-  border-bottom: 0px;
 }
 
 #co2-ppm-title {
