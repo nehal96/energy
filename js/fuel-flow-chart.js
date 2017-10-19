@@ -257,12 +257,21 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             var value = path_list[i]["value"];
 
             if (!(source in sector_breakdown_dict)) {
-                sector_breakdown_dict[source] = {};
-                sector_breakdown_dict[source][target] = value;
+                sector_breakdown_dict[source] = [];
+                sector_breakdown_dict[source].push({"target": target, "value": value});
             } else {
-                sector_breakdown_dict[source][target] = value;
+                sector_breakdown_dict[source].push({"target": target, "value": value});
             }
         };
+
+        // For each source, sort targets by descending order of energy usage.
+        for (var source in sector_breakdown_dict) {
+            for (i = 0; i < sector_breakdown_dict[source].length; i++) {
+              sector_breakdown_dict[source].sort(function(x, y) {
+                  return d3.descending(x.value, y.value)
+              })
+            }
+        }
 
         return sector_breakdown_dict;
     };
@@ -328,16 +337,21 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     // for a particular fuel or sector. Then appends a row for each fuel/sector
     // in the Breakdown by Sector table.
     function getBreakdownBySector(node, sector_breakdown_dict) {
-        var targets = sector_breakdown_dict[node];
+        var targets_array = sector_breakdown_dict[node];
         var total_energy = 0;
 
-        for (var target in targets) {
-            total_energy += targets[target];
+        for (i = 0; i < targets_array.length; i++) {
+            target_dict = targets_array[i];
+            total_energy += target_dict["value"];
         }
 
+        // Check if the table body is empty; if yes, append rows and data. This
+        // prevents the double addition of info if you hover and then click.
         if (d3.select('#fuel-sector-breakdown-table tbody').selectAll('tr').empty()) {
-            for (var target in targets) {
-                var percent_by_sector = ((targets[target] / total_energy) * 100).toFixed(1);
+            for (i = 0; i < targets_array.length; i++) {
+                target_dict = targets_array[i];
+                target = target_dict["target"];
+                var percent_by_sector = ((target_dict["value"] / total_energy) * 100).toFixed(1);
 
                 var table_row = d3.select('#fuel-sector-breakdown-table tbody')
                                   .append('tr')
