@@ -81,16 +81,6 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
    .attr('class', 'line-chart-y-axis')
    .call(y_axis)
 
-  // Create line path
-  g.append('path')
-   .attr('d', line(data))
-   .attr('fill', 'none')
-   .attr('stroke', '#f67280')
-   .attr('stroke-linejoin', 'round')
-   .attr('stroke-linecap', 'round')
-   .attr('stroke-width', 3);
-
-
   // Set up scrollytelling with ScrollMagic
 
   // Create ScrollMagic controller
@@ -110,6 +100,27 @@ d3.csv("data/CO2-PPM-Data.csv", function(d) {
     duration: 275
   })
   .setClassToggle('#co2-slide-1', "active")
+  .on('enter', function() {
+
+    // Create line path
+    this.path = g.append('path')
+                 .attr('d', line(data))
+                 .attr('fill', 'none')
+                 .attr('stroke', '#f67280')
+                 .attr('stroke-linejoin', 'round')
+                 .attr('stroke-linecap', 'round')
+                 .attr('stroke-width', 3);
+
+    var totalLength = this.path.node().getTotalLength();
+
+    // Implement line animation
+    this.path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+             .attr('stroke-dashoffset', -totalLength)
+             .transition()
+              .duration(4500)
+              .ease(d3.easeSin)
+              .attr('stroke-dashoffset', 0);
+  })
   .addTo(controller)
 
   new ScrollMagic.Scene({
