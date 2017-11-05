@@ -92,6 +92,7 @@ td {
   justify-content: center;
   text-align: center;
   margin: 0;
+  padding-bottom: 0;
 }
 
 #fuel-flow-title h2 {
