@@ -79,7 +79,13 @@ td {
 .graphic-title {
   font-weight: 600;
   margin: 0;
-  padding: 1rem 0rem;
+  padding: 1.2rem 0rem 0.2rem 0rem;
+}
+
+.graphic-subtitle {
+  margin-top: 0;
+  padding-bottom: 1rem;
+  font-size: 15px;
 }
 
 .prose-subtitle {
@@ -158,6 +164,10 @@ td {
 }
 
 #co2-ppm-title {
+  padding-left: 20px;
+}
+
+#co2-ppm-subtitle {
   padding-left: 20px;
 }
 
