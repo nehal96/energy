@@ -105,18 +105,39 @@ td {
   margin: 0;
 }
 
-#fuel-flow-prose-container {
+#fuel-flow-info-container {
   display: flex;
+  justify-content: space-between;
   padding: 0rem 1rem;
   position: relative;
   bottom: 100px;
 }
 
-#fuel-flow-prose {
+#fuel-flow-prose-container {
   display: flex;
+  justify-content: space-between;
   /*width: 66.6666667%;*/
   width: 50%;
   padding: 0rem 1rem;
+}
+
+#fuel-flow-prose {
+  display: flex;
+  width: 83%;
+}
+
+#fuel-flow-prose-arrows {
+  display: flex;
+  width: 17%;
+  justify-content: space-between;
+}
+
+.fuel-arrow {
+  margin: 1.5rem 0rem;
+}
+
+.fuel-spacer {
+  width: 30%;
 }
 
 #fuel-flow-calc {
