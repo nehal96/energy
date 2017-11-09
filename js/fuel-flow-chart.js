@@ -161,6 +161,46 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             };
         });
 
+
+    // Fuel flowchart section navigation.
+
+    const section_explanations = [
+        "We're at the beginning, Section 1!",
+        "Onto Section 2.",
+        "Wow, we're going quick! Say hi to section 3.",
+        "Last stop: Section 4."
+    ]
+
+    // Number that keeps track of which section we're currently on
+    var section_number = 0
+
+    d3.select('#fuel-flow-prose p')
+      .text(section_explanations[section_number]);
+
+    // Functionality when clicking the right (next) arrow
+    d3.select('#fuel-right-arrow')
+      .on('click', function() {
+          if (section_number < section_explanations.length - 1) {
+            console.log(section_number);
+            section_number += 1;
+            console.log(section_number);
+
+            d3.select('#fuel-flow-prose p')
+              .text(section_explanations[section_number]);
+          }
+      });
+
+    // Functionality when clicking the left (previous) arrow
+    d3.select('#fuel-left-arrow')
+      .on('click', function(d) {
+          if (section_number > 0) {
+            section_number -= 1;
+
+            d3.select('#fuel-flow-prose p')
+              .text(section_explanations[section_number]);
+          }
+      });
+
     // Custom colours for particular nodes
     function customNodeColors() {
         // Rejected Energy:

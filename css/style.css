@@ -134,6 +134,7 @@ td {
 
 .fuel-arrow {
   margin: 1.5rem 0rem;
+  cursor: pointer;
 }
 
 .fuel-spacer {
