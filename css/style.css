@@ -114,22 +114,19 @@ td {
   bottom: 125px;
 }
 
-#fuel-flow-prose-container {
+#fuel-flow-prose {
   display: flex;
   justify-content: space-between;
   /*width: 66.6666667%;*/
-  width: 50%;
+  width: 45%;
   padding: 0rem 1rem;
-}
-
-#fuel-flow-prose {
-  display: flex;
-  width: 83%;
+  border: 1px solid #eee;
 }
 
 #fuel-flow-prose-arrows {
   display: flex;
-  width: 17%;
+  width: 10%;
+  padding: 0rem 0.75rem;
   justify-content: space-between;
 }
 
@@ -146,7 +143,7 @@ td {
   display: flex;
   /*flex-flow: column;*/
   /*width: 33.3333333%;*/
-  width: 50%;
+  width: 45%;
   padding: 0.5rem 1rem;
   align-items: flex-start;
   background-color: rgba(246, 114, 128, 0.1);
