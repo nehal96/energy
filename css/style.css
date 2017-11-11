@@ -64,6 +64,7 @@ td {
 
 #fuel-flow-chart {
   padding-bottom: 0;
+  padding-top: 0;
 }
 
 .graphic-prose {
@@ -110,7 +111,7 @@ td {
   justify-content: space-between;
   padding: 0rem 1rem;
   position: relative;
-  bottom: 100px;
+  bottom: 125px;
 }
 
 #fuel-flow-prose-container {

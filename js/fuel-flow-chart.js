@@ -165,8 +165,12 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     // Fuel flowchart section navigation.
 
     const section_explanations = [
-        "We're at the beginning, Section 1!",
-        "Onto Section 2.",
+        "Click the right arrow to begin...",
+        "The United States uses a variety of fuels to feed its enormous energy \
+        appetite, creating a whopping 28,422 terawatt hours of energy (most of \
+        this will end up as waste, as you'll soon see). The logistics of this \
+        operation is probably exemplified by how confusing this graph looks \
+        right now, but it will all be clear in a second.",
         "Wow, we're going quick! Say hi to section 3.",
         "Last stop: Section 4."
     ]
@@ -181,12 +185,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     d3.select('#fuel-right-arrow')
       .on('click', function() {
           if (section_number < section_explanations.length - 1) {
-            console.log(section_number);
             section_number += 1;
-            console.log(section_number);
 
-            d3.select('#fuel-flow-prose p')
-              .text(section_explanations[section_number]);
+            navigation();
           }
       });
 
@@ -196,10 +197,49 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
           if (section_number > 0) {
             section_number -= 1;
 
-            d3.select('#fuel-flow-prose p')
-              .text(section_explanations[section_number]);
+            navigation();
           }
       });
+
+    // Function that changes elements in the flowchart to match section
+    // narrative (ex: highlighted sections, numbers.)
+
+    function navigation(d) {
+        // Change text to particular section
+        d3.select('#fuel-flow-prose p')
+          .text(section_explanations[section_number]);
+
+        if (section_number == 0) {
+            // If we're in the first section, make all path colours the default
+            // grey colour.
+            // (There's def a better way of doing this but for now, let's stick with this)
+            defaultColor('.Petroleum');
+            defaultColor('.Coal');
+            defaultColor('.Nuclear');
+            defaultColor('.NaturalGas');
+            defaultColor('.Hydro');
+            defaultColor('.Wind');
+            defaultColor('.Solar');
+            defaultColor('.Biomass');
+            defaultColor('.Geothermal');
+
+        }
+
+        if (section_number == 1) {
+            // In the first section, we're going to highlight all the fuel paths
+            // (There's def a better way of doing this but for now, let's stick with this)
+
+            colorPaths('.Petroleum', '#Petroleum');
+            colorPaths('.Coal', '#Coal');
+            colorPaths('.Nuclear', '#Nuclear');
+            colorPaths('.NaturalGas', '#NaturalGas');
+            colorPaths('.Hydro', '#Hydro');
+            colorPaths('.Wind', '#Wind');
+            colorPaths('.Solar', '#Solar');
+            colorPaths('.Biomass', '#Biomass');
+            colorPaths('.Geothermal', '#Geothermal');
+        }
+    }
 
     // Custom colours for particular nodes
     function customNodeColors() {
