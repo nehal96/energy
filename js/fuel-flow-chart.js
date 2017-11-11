@@ -188,7 +188,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         "Clean and/or renewable energy sources like Nuclear and Solar make up \
         the remaining 18.9%. In fact, renewable energy sources, which doesn't \
         include Nuclear, accounts for just above 10% of all of United States' \
-        primary energy production today. Solar accounts for just 0.4%!"
+        primary energy production today. Solar accounts for just 0.4%!",
+
+        "And we've reached the end! Feel free to explore the chart above by \
+        hovering or clicking. When you're done, scroll down to continue."
     ]
 
     // Number that keeps track of which section we're currently on
@@ -312,6 +315,19 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Insert Nuclear calc info (placeholder - want to do All Renewable
             // Energy)
             performCalculatorMagic(d3.select('#Nuclear2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+        }
+
+        if (section_number == 5) {
+          // Last section will encourage exploring the flowchart
+
+          // Un-highlight all paths.
+          for (i = 0; i < FUELS.length; i++) {
+            fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+            defaultColor(fuels_classed);
+          }
+
+          // Remove any info in calculator
+          defaultCalculator();
         }
     }
 
