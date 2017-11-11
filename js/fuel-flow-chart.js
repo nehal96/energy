@@ -210,7 +210,6 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     // Function that changes elements in the flowchart to match section
     // narrative (ex: highlighted sections, numbers.)
-
     function navigation(energy) {
         // Change text to particular section
         d3.select('#fuel-flow-prose p')
@@ -218,48 +217,35 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
         if (section_number == 0) {
             // If we're in the first section, make all path colours the default
-            // grey colour.
-            // (There's def a better way of doing this but for now, let's stick with this)
-            defaultColor('.Petroleum');
-            defaultColor('.Coal');
-            defaultColor('.Nuclear');
-            defaultColor('.NaturalGas');
-            defaultColor('.Hydro');
-            defaultColor('.Wind');
-            defaultColor('.Solar');
-            defaultColor('.Biomass');
-            defaultColor('.Geothermal');
-
+            // grey colour (for now, only does fuel paths).
+            for (i = 0; i < FUELS.length; i ++) {
+              fuel_classed = '.' + FUELS[i].replace(/ /g,'');
+              defaultColor(fuel_classed);
+            };
         }
 
         if (section_number == 1) {
             // In the first section, we're going to highlight all the fuel paths
-            // (There's def a better way of doing this but for now, let's stick with this)
+            for (i = 0; i < FUELS.length; i++) {
+              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+              fuels_ided = '#' + FUELS[i].replace(/ /g,'');
 
-            colorPaths('.Petroleum', '#Petroleum');
-            colorPaths('.Coal', '#Coal');
-            colorPaths('.Nuclear', '#Nuclear');
-            colorPaths('.NaturalGas', '#NaturalGas');
-            colorPaths('.Hydro', '#Hydro');
-            colorPaths('.Wind', '#Wind');
-            colorPaths('.Solar', '#Solar');
-            colorPaths('.Biomass', '#Biomass');
-            colorPaths('.Geothermal', '#Geothermal');
+              colorPaths(fuels_classed, fuels_ided);
+            };
         }
 
         if (section_number == 2) {
             // Second section focuses on Petroleum.
 
             // Un-highlight all paths except for Petroleum.
-            // (Again, there's a better way of doing this)
-            defaultColor('.Coal');
-            defaultColor('.Nuclear');
-            defaultColor('.NaturalGas');
-            defaultColor('.Hydro');
-            defaultColor('.Wind');
-            defaultColor('.Solar');
-            defaultColor('.Biomass');
-            defaultColor('.Geothermal');
+            for (i = 0; i < FUELS.length; i++) {
+              // Removing Petroleum from FUELS array would be more efficient but
+              // splicing index method is annoying.
+              if (FUELS[i] != "Petroleum") {
+                fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+                defaultColor(fuels_classed);
+              }
+            }
 
             // Place Calculator info into Energy Calc box
             performCalculatorMagic(d3.select('#Petroleum2Transportation'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
