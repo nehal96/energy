@@ -166,12 +166,19 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
     const section_explanations = [
         "Click the right arrow to begin...",
+
         "The United States uses a variety of fuels to feed its enormous energy \
         appetite, creating a whopping 28,422 terawatt hours of energy (most of \
         this will end up as waste, as you'll soon see). The logistics of this \
         operation is probably exemplified by how confusing this graph looks \
         right now, but it will all be clear in a second.",
-        "Wow, we're going quick! Say hi to section 3.",
+
+        "Petroleum, light up! Petroleum is the most popular fuel in the US. It \
+        is used primarly for transportation, which uses nearly 72% of all \
+        petroleum in the country. The rest is mostly gobbled up mostly by \
+        the industrial sector, with residential, commercial, and electricity \
+        generation taking the crumbs.",
+
         "Last stop: Section 4."
     ]
 
@@ -204,7 +211,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     // Function that changes elements in the flowchart to match section
     // narrative (ex: highlighted sections, numbers.)
 
-    function navigation(d) {
+    function navigation(energy) {
         // Change text to particular section
         d3.select('#fuel-flow-prose p')
           .text(section_explanations[section_number]);
@@ -238,6 +245,24 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             colorPaths('.Solar', '#Solar');
             colorPaths('.Biomass', '#Biomass');
             colorPaths('.Geothermal', '#Geothermal');
+        }
+
+        if (section_number == 2) {
+            // Second section focuses on Petroleum.
+
+            // Un-highlight all paths except for Petroleum.
+            // (Again, there's a better way of doing this)
+            defaultColor('.Coal');
+            defaultColor('.Nuclear');
+            defaultColor('.NaturalGas');
+            defaultColor('.Hydro');
+            defaultColor('.Wind');
+            defaultColor('.Solar');
+            defaultColor('.Biomass');
+            defaultColor('.Geothermal');
+
+            // Place Calculator info into Energy Calc box
+            performCalculatorMagic(d3.select('#Petroleum2Transportation'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
         }
     }
 
@@ -458,7 +483,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     function performCalculatorMagic(DOM_elem, total_energy_dict,
                   path_energies_dict, sector_breakdown_dict) {
       // Add fuel name as title in calculator section
+      //console.log(DOM_elem);
       var node_g_id = "#" + DOM_elem.attr('class').split(" ")[0] + "-g";
+      //console.log(node_g_id)
       var fuel_name = d3.select(node_g_id)
                         .select("text") // Gets Title Cased text
                         .text()
