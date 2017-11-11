@@ -226,6 +226,9 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
               fuel_classed = '.' + FUELS[i].replace(/ /g,'');
               defaultColor(fuel_classed);
             };
+
+            // Remove any info in calculator
+            defaultCalculator();
         }
 
         if (section_number == 1) {
@@ -236,22 +239,27 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
               colorPaths(fuels_classed, fuels_ided);
             };
+
+            // Remove any info in calculator
+            defaultCalculator();
         }
 
         if (section_number == 2) {
             // Second section focuses on Petroleum.
 
-            // Un-highlight all paths except for Petroleum.
+            // Un-highlight all paths.
             for (i = 0; i < FUELS.length; i++) {
-              // Removing Petroleum from FUELS array would be more efficient but
-              // splicing index method is annoying.
-              if (FUELS[i] != "Petroleum") {
-                fuels_classed = '.' + FUELS[i].replace(/ /g,'');
-                defaultColor(fuels_classed);
-              }
+              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+              defaultColor(fuels_classed);
             }
 
-            // Place Calculator info into Energy Calc box
+            // Highlight Petroleum
+            colorPaths('.Petroleum', '#Petroleum')
+
+            // Remove any info in calculator
+            defaultCalculator();
+
+            // Insert Petroleum calc info
             performCalculatorMagic(d3.select('#Petroleum2Transportation'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
         }
 
@@ -265,7 +273,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             colorPaths('.Coal', '#Coal')
             colorPaths('.NaturalGas', '#NaturalGas')
 
-            // Place Natural Gas calc info into calc box
+            // Remove any info in calculator
+            defaultCalculator();
+
+            // Insert Natural Gas calc info
             performCalculatorMagic(d3.select('#NaturalGas2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
         }
     }
