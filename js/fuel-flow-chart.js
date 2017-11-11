@@ -179,7 +179,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         the industrial sector, with residential, commercial, and electricity \
         generation taking the crumbs.",
 
-        "Last stop: Section 4."
+        "Natural Gas and Coal are next in the pecking order, making up 29.3% \
+        and 14.7% of total fuel energy, respectively. Most of coal (little \
+        more than 90%) is used for electricity generation, whereas natural gas \
+        is roughly split between all industries. Along with Petroleum, the \
+        fossil fuels make up 81.1% of all primary energy production."
     ]
 
     // Number that keeps track of which section we're currently on
@@ -249,6 +253,20 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
             // Place Calculator info into Energy Calc box
             performCalculatorMagic(d3.select('#Petroleum2Transportation'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+        }
+
+        if (section_number == 3) {
+            // Third section is on Coal and Natural Gas
+
+            // Un-highlight Petroleum
+            defaultColor('.Petroleum')
+
+            // Highlight Coal and Natural Gas
+            colorPaths('.Coal', '#Coal')
+            colorPaths('.NaturalGas', '#NaturalGas')
+
+            // Place Natural Gas calc info into calc box
+            performCalculatorMagic(d3.select('#NaturalGas2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
         }
     }
 
