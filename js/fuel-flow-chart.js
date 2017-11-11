@@ -183,7 +183,12 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         and 14.7% of total fuel energy, respectively. Most of coal (little \
         more than 90%) is used for electricity generation, whereas natural gas \
         is roughly split between all industries. Along with Petroleum, the \
-        fossil fuels make up 81.1% of all primary energy production."
+        fossil fuels make up 81.1% of all primary energy production.",
+
+        "Clean and/or renewable energy sources like Nuclear and Solar make up \
+        the remaining 18.9%. In fact, renewable energy sources, which doesn't \
+        include Nuclear, accounts for just above 10% of all of United States' \
+        primary energy production today. Solar accounts for just 0.4%!"
     ]
 
     // Number that keeps track of which section we're currently on
@@ -266,8 +271,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         if (section_number == 3) {
             // Third section is on Coal and Natural Gas
 
-            // Un-highlight Petroleum
-            defaultColor('.Petroleum')
+            // Un-highlight all paths.
+            for (i = 0; i < FUELS.length; i++) {
+              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+              defaultColor(fuels_classed);
+            }
 
             // Highlight Coal and Natural Gas
             colorPaths('.Coal', '#Coal')
@@ -276,8 +284,34 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Remove any info in calculator
             defaultCalculator();
 
-            // Insert Natural Gas calc info
+            // Insert Natural Gas calc info (placeholder - want to do total for
+            // Coal and NG).
             performCalculatorMagic(d3.select('#NaturalGas2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+        }
+
+        if (section_number == 4) {
+            // Fourth section is on clean/renewable energy sources.
+
+            // Un-highlight all paths.
+            for (i = 0; i < FUELS.length; i++) {
+              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
+              defaultColor(fuels_classed);
+            }
+
+            // Highlight Nuclear, Hydro, Wind, Solar, Biomass, and Geothermal
+            colorPaths('.Nuclear', '#Nuclear')
+            colorPaths('.Hydro', '#Hydro')
+            colorPaths('.Wind', '#Wind')
+            colorPaths('.Solar', '#Solar')
+            colorPaths('.Biomass', '#Biomass')
+            colorPaths('.Geothermal', '#Geothermal')
+
+            // Remove any info in calculator
+            defaultCalculator();
+
+            // Insert Nuclear calc info (placeholder - want to do All Renewable
+            // Energy)
+            performCalculatorMagic(d3.select('#Nuclear2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
         }
     }
 
