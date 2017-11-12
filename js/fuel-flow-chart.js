@@ -200,8 +200,13 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         for nearly 40% of all fuel consumption. It's quite inefficient, with \
         66% of its energy production being waste (heat, mostly).\
         Unsurprisingly, most of it is delivered to the Residential and \
-        Commercial sector, but it's still early days in its foray into \
-        Transportation.",
+        Commercial sector.",
+
+        "The second largest is Transportation, which accounts for nearly 29% of \
+        fuel consumption, and together with Electricity Generation makes up \
+        almost 70%. The Transportation sector is almost entirely fueled by \
+        Petroleum, the most widely used fossil fuel. It is also the most \
+        inefficient sector, with only 21% of the energy converted being useful.",
 
         "And we've reached the end! Feel free to explore the chart above by \
         hovering or clicking. When you're done, scroll down to continue."
@@ -245,7 +250,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
           .text(section_explanations[section_number]);
 
         if (section_number == 0) {
-            // If we're in the first section, make all path colours the default
+            // If we're in Section 0, make all path colours the default
             // grey colour.
             for (i = 0; i < NODES.length; i ++) {
               node_classed = '.' + NODES[i].replace(/ /g,'');
@@ -367,13 +372,41 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
             // Insert Electricity Generation calc info
             performCalculatorMagic(d3.select('#ElectricityGeneration2Residential'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
-
-            // Bring opacity of left arrow back to normal
-            d3.select('#fuel-right-arrow')
-              .style('opacity', 1)
         }
 
         if (section_number == 6) {
+            // Sixth section is on Transportation
+
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
+
+            // Highlight only Petroleum2Transportation
+            var color = d3.select('#Petroleum')
+                          .attr('fill')
+
+            d3.select('#Petroleum2Transportation')
+              .attr('stroke', color)
+              .attr('stroke-opacity', 0.3)
+              .style('cursor', 'pointer')
+
+            // Highlight Transportation
+            colorPaths('.Transportation', '#Transportation')
+
+            // Remove any info in calculator
+            defaultCalculator();
+
+            // Insert Electricity Generation calc info
+            performCalculatorMagic(d3.select('#Petroleum2Transportation'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+
+            // Bring opacity of left arrow back to normal
+            d3.select('#fuel-right-arrow')
+              .style('opacity', 1);
+        }
+
+        if (section_number == 7) {
           // Last section will encourage exploring the flowchart
 
           // Un-highlight all paths
