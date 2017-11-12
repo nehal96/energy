@@ -252,10 +252,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         if (section_number == 0) {
             // If we're in Section 0, make all path colours the default
             // grey colour.
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Remove any info in calculator
             defaultCalculator();
@@ -269,10 +266,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // In the first section, we're going to highlight all the fuel paths
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight all fuels
             for (i = 0; i < FUELS.length; i++) {
@@ -294,10 +288,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Second section focuses on Petroleum.
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight Petroleum
             colorPaths('.Petroleum', '#Petroleum')
@@ -313,10 +304,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Third section is on Coal and Natural Gas
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight Coal and Natural Gas
             colorPaths('.Coal', '#Coal')
@@ -334,10 +322,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Fourth section is on clean/renewable energy sources.
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight Nuclear, Hydro, Wind, Solar, Biomass, and Geothermal
             colorPaths('.Nuclear', '#Nuclear')
@@ -359,10 +344,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Fifth section is on Electricity Generation
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight Electricity Generation
             colorPaths('.ElectricityGeneration', '#ElectricityGeneration')
@@ -378,10 +360,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Sixth section is on Transportation
 
             // Un-highlight all paths
-            for (i = 0; i < NODES.length; i ++) {
-              node_classed = '.' + NODES[i].replace(/ /g,'');
-              defaultColor(node_classed);
-            };
+            unhighlight();
 
             // Highlight only Petroleum2Transportation
             var color = d3.select('#Petroleum')
@@ -410,10 +389,7 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
           // Last section will encourage exploring the flowchart
 
           // Un-highlight all paths
-          for (i = 0; i < NODES.length; i ++) {
-            node_classed = '.' + NODES[i].replace(/ /g,'');
-            defaultColor(node_classed);
-          };
+          unhighlight();
 
           // Remove any info in calculator
           defaultCalculator();
@@ -466,6 +442,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
                  // Increases opacity so coloured path stands out
                  .attr('stroke-opacity', 0.3)
                  .style('cursor', 'pointer')
+    };
+
+    // Un-highlights all paths in the sankey diagram/flow-chart
+    function unhighlight() {
+        for (i = 0; i < NODES.length; i ++) {
+          node_classed = '.' + NODES[i].replace(/ /g,'');
+          defaultColor(node_classed);
+        };
     };
 
     // Creates a dictionary object with energy source/target as the key and total
