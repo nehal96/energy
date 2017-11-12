@@ -200,6 +200,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     d3.select('#fuel-flow-prose p')
       .text(section_explanations[section_number]);
 
+    // Initialise left arrow with low opacity to signify there's no left
+    d3.select('#fuel-left-arrow')
+      .style('opacity', 0.2)
+
     // Functionality when clicking the right (next) arrow
     d3.select('#fuel-right-arrow')
       .on('click', function() {
@@ -237,6 +241,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
             // Remove any info in calculator
             defaultCalculator();
+
+            // Change opacity of left arrow to signify there's no more left (hehe)
+            d3.select('#fuel-left-arrow')
+              .style('opacity', 0.2)
         }
 
         if (section_number == 1) {
@@ -250,6 +258,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
             // Remove any info in calculator
             defaultCalculator();
+
+            // Bring opacity of left arrow back to normal
+            d3.select('#fuel-left-arrow')
+              .style('opacity', 1)
         }
 
         if (section_number == 2) {
@@ -315,6 +327,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Insert Nuclear calc info (placeholder - want to do All Renewable
             // Energy)
             performCalculatorMagic(d3.select('#Nuclear2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+
+            // Bring opacity of left arrow back to normal
+            d3.select('#fuel-right-arrow')
+              .style('opacity', 1)
         }
 
         if (section_number == 5) {
@@ -328,6 +344,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
           // Remove any info in calculator
           defaultCalculator();
+
+          // Change opacity of right arrow to signify there's no more left
+          d3.select('#fuel-right-arrow')
+            .style('opacity', 0.2)
         }
     }
 
