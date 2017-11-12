@@ -3,10 +3,15 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
     if (error) throw error;
 
     const FUELS = ["Biomass", "Coal", "Geothermal", "Hydro", "Natural Gas",
-                 "Nuclear", "Petroleum", "Solar", "Wind"];
+                   "Nuclear", "Petroleum", "Solar", "Wind"];
 
     const SECTORS = ["Electricity Generation", "Residential", "Commercial",
                      "Industrial", "Transportation"];
+
+    const NODES = ["Biomass", "Coal", "Geothermal", "Hydro", "Natural Gas",
+                   "Nuclear", "Petroleum", "Solar", "Wind",
+                   "Electricity Generation", "Residential", "Commercial",
+                 "Industrial", "Transportation"];
 
     var margin = 100,
         width = 900 - margin,
@@ -190,6 +195,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         include Nuclear, accounts for just above 10% of all of United States' \
         primary energy production today. Solar accounts for just 0.4%!",
 
+        "Now, let's see what all those fuels are being used for. The largest \
+        sector, by quite a margin, is Electricity Generation, which accounts \
+        for nearly 40% of all fuel consumption. It's quite inefficient, with \
+        66% of its energy production being waste (heat, mostly).\
+        Unsurprisingly, most of it is delivered to the Residential and \
+        Commercial sector, but it's still early days in its foray into \
+        Transportation.",
+
         "And we've reached the end! Feel free to explore the chart above by \
         hovering or clicking. When you're done, scroll down to continue."
     ]
@@ -233,10 +246,10 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
         if (section_number == 0) {
             // If we're in the first section, make all path colours the default
-            // grey colour (for now, only does fuel paths).
-            for (i = 0; i < FUELS.length; i ++) {
-              fuel_classed = '.' + FUELS[i].replace(/ /g,'');
-              defaultColor(fuel_classed);
+            // grey colour.
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
             };
 
             // Remove any info in calculator
@@ -249,6 +262,14 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
 
         if (section_number == 1) {
             // In the first section, we're going to highlight all the fuel paths
+
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
+
+            // Highlight all fuels
             for (i = 0; i < FUELS.length; i++) {
               fuels_classed = '.' + FUELS[i].replace(/ /g,'');
               fuels_ided = '#' + FUELS[i].replace(/ /g,'');
@@ -267,11 +288,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         if (section_number == 2) {
             // Second section focuses on Petroleum.
 
-            // Un-highlight all paths.
-            for (i = 0; i < FUELS.length; i++) {
-              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
-              defaultColor(fuels_classed);
-            }
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
 
             // Highlight Petroleum
             colorPaths('.Petroleum', '#Petroleum')
@@ -286,11 +307,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         if (section_number == 3) {
             // Third section is on Coal and Natural Gas
 
-            // Un-highlight all paths.
-            for (i = 0; i < FUELS.length; i++) {
-              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
-              defaultColor(fuels_classed);
-            }
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
 
             // Highlight Coal and Natural Gas
             colorPaths('.Coal', '#Coal')
@@ -307,11 +328,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         if (section_number == 4) {
             // Fourth section is on clean/renewable energy sources.
 
-            // Un-highlight all paths.
-            for (i = 0; i < FUELS.length; i++) {
-              fuels_classed = '.' + FUELS[i].replace(/ /g,'');
-              defaultColor(fuels_classed);
-            }
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
 
             // Highlight Nuclear, Hydro, Wind, Solar, Biomass, and Geothermal
             colorPaths('.Nuclear', '#Nuclear')
@@ -327,20 +348,39 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
             // Insert Nuclear calc info (placeholder - want to do All Renewable
             // Energy)
             performCalculatorMagic(d3.select('#Nuclear2ElectricityGeneration'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
+        }
+
+        if (section_number == 5) {
+            // Fifth section is on Electricity Generation
+
+            // Un-highlight all paths
+            for (i = 0; i < NODES.length; i ++) {
+              node_classed = '.' + NODES[i].replace(/ /g,'');
+              defaultColor(node_classed);
+            };
+
+            // Highlight Electricity Generation
+            colorPaths('.ElectricityGeneration', '#ElectricityGeneration')
+
+            // Remove any info in calculator
+            defaultCalculator();
+
+            // Insert Electricity Generation calc info
+            performCalculatorMagic(d3.select('#ElectricityGeneration2Residential'), total_energy_dict, path_energies_dict, sector_breakdown_dict);
 
             // Bring opacity of left arrow back to normal
             d3.select('#fuel-right-arrow')
               .style('opacity', 1)
         }
 
-        if (section_number == 5) {
+        if (section_number == 6) {
           // Last section will encourage exploring the flowchart
 
-          // Un-highlight all paths.
-          for (i = 0; i < FUELS.length; i++) {
-            fuels_classed = '.' + FUELS[i].replace(/ /g,'');
-            defaultColor(fuels_classed);
-          }
+          // Un-highlight all paths
+          for (i = 0; i < NODES.length; i ++) {
+            node_classed = '.' + NODES[i].replace(/ /g,'');
+            defaultColor(node_classed);
+          };
 
           // Remove any info in calculator
           defaultCalculator();
