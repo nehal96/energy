@@ -44,6 +44,14 @@ td {
     margin-top: 4rem;
     max-width: 1280px; /* Otherwise it gets way too wide on large desktops*/
   }
+
+  #fuel-flow-info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    position: relative;
+    bottom: 110px;
+  }
 }
 
 @media only screen and (min-width: 1150px) and (max-width: 1379px) {
@@ -54,15 +62,49 @@ td {
     margin-bottom: 0;
     margin-top: 4rem;
   }
+
+  #fuel-flow-info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    position: relative;
+    bottom: 110px;
+  }
 }
 
-@media only screen and (max-width: 1149px) {
+@media only screen and (min-width: 980px) and (max-width: 1149px) {
   #fuel-sankey {
     flex-direction: column;
     margin-left: 32px;
     margin-right: 32px;
     margin-bottom: 0;
     margin-top: 4rem;
+  }
+
+  #fuel-flow-info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    position: relative;
+    bottom: 90px;
+  }
+}
+
+@media only screen and (max-width: 979px) {
+  #fuel-sankey {
+    flex-direction: column;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 0;
+    margin-top: 4rem;
+  }
+
+  #fuel-flow-info-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    position: relative;
+    bottom: 70px;
   }
 }
 
@@ -129,14 +171,6 @@ td {
 
 #fuel-flow-title h2 {
   margin: 0;
-}
-
-#fuel-flow-info-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 0rem 1rem;
-  position: relative;
-  bottom: 125px;
 }
 
 #fuel-flow-prose-container {
