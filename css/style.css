@@ -33,7 +33,7 @@ td {
 
 .line-scrolly {
   display: flex;
-  margin: 0 2rem;
+  margin: 0 50px;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -207,6 +207,12 @@ td {
 }
 
 @media only screen and (min-width: 1380px) {
+  .line-scrolly {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+  }
+
   #fuel-sankey {
     flex-direction: column;
     margin-left: auto;
@@ -243,6 +249,10 @@ td {
 }
 
 @media only screen and (min-width: 1150px) and (max-width: 1379px) {
+  .line-scrolly {
+    margin: 0 50px;
+  }
+
   #fuel-sankey {
     flex-direction: column;
     margin-left: 50px;
@@ -278,6 +288,10 @@ td {
 }
 
 @media only screen and (min-width: 980px) and (max-width: 1149px) {
+  .line-scrolly {
+    margin: 0 32px;
+  }
+
   #fuel-sankey {
     flex-direction: column;
     margin-left: 32px;
@@ -310,9 +324,17 @@ td {
     font-weight: 500;
     padding-bottom: 0.5rem;
   }
+
+  #fuel-flow-prose p {
+    font-size: 15px;
+  }
 }
 
 @media only screen and (max-width: 979px) {
+  .line-scrolly {
+    margin: 0 32px;
+  }
+  
   #fuel-sankey {
     flex-direction: column;
     margin-left: 32px;
@@ -340,10 +362,18 @@ td {
   }
 
   #fuel-sector-breakdown-title {
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 0.5rem;
     font-weight: 500;
     padding-bottom: 0.5rem;
+  }
+
+  td {
+      font-size: 13px;
+  }
+
+  #fuel-flow-prose p {
+    font-size: 15px;
   }
 }
 
