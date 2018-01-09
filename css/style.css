@@ -35,10 +35,35 @@ td {
   z-index: 1;
 }
 
-#fuel-sankey {
-  flex-direction: column;
-  margin-bottom: 0;
-  margin-top: 4rem;
+@media only screen and (min-width: 1380px) {
+  #fuel-sankey {
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 4rem;
+    max-width: 1280px; /* Otherwise it gets way too wide on large desktops*/
+  }
+}
+
+@media only screen and (min-width: 1150px) and (max-width: 1379px) {
+  #fuel-sankey {
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 0;
+    margin-top: 4rem;
+  }
+}
+
+@media only screen and (max-width: 1149px) {
+  #fuel-sankey {
+    flex-direction: column;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 0;
+    margin-top: 4rem;
+  }
 }
 
 .graphic-container {
