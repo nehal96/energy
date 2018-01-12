@@ -19,8 +19,22 @@ d3.csv("data/energy-consumption-per-capita.csv", function(d) {
 }, function(error, data) {
   if (error) throw error;
 
-  d3.select('#energy-per-capita h2')
-    .text('Energy Consumption per capita');
+  // Setting margin, width, height of plot
+  var margin = 50,
+      width = 850 - margin,
+      height = 500 - margin;
 
-  console.log('Loaded function!');
+  // Creating a responsive svg element for the plot
+  var svg = d3.select('#energy-per-capita-chart')
+              .append('svg')
+              .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
+
+  var g = svg.append('g')
+             .attr('transform', 'translate(' + margin + ',' + 20 + ')');
+
+  var x = d3.scaleTime()
+            .rangeRound([0, width]);
+
+  var y = d3.scaleLinear()
+            .rangeRound([height, 0]);
 });
