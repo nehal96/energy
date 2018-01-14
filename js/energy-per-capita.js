@@ -6,9 +6,9 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 50,
+  var margin = 100,
       width = 850 - margin,
-      height = 500 - margin;
+      height = 550 - margin;
 
   // Creating a responsive svg element for the plot
   var svg = d3.select('#energy-per-capita-chart')
@@ -16,7 +16,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
 
   var g = svg.append('g')
-             .attr('transform', 'translate(' + margin + ',' + 20 + ')');
+             .attr('transform', 'translate(' + 50 + ',' + 20 + ')');
 
   var x = d3.scaleTime()
             .rangeRound([0, width]);
@@ -74,7 +74,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   var y_axis = d3.axisLeft(y);
 
-  x_axis.ticks(10)
+  x_axis.ticks(6)
         .tickSizeOuter(0)
         .tickSizeInner(5)
         .tickPadding(4);
@@ -115,7 +115,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
          .attr('x', 3)
          .attr('dy', '0.35em')
-         //.style('font', '10px sans-serif')
+         .style('font', '10px sans-serif')
          .text(function(d) { return d.id; });
 });
 

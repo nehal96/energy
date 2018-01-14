@@ -121,6 +121,10 @@ td {
   border-right: 4px solid #f67280;
 }
 
+#energy-per-capita-graphic {
+  width: 80%;
+}
+
 /*
   Fuel-sankey specific CSS
 */
@@ -334,7 +338,7 @@ td {
   .line-scrolly {
     margin: 0 32px;
   }
-  
+
   #fuel-sankey {
     flex-direction: column;
     margin-left: 32px;
