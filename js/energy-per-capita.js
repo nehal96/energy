@@ -57,13 +57,15 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
           });
         })
 
+  console.log(max_energy_per);
+
   y.domain([
     //d3.min(countries, function(c) {
     //  return d3.min(c.values, function(d) {
     //    return d['Energy'];
     //  });
     //})
-    0, 10000
+    0, 14000
   ]);
 
   z.domain(countries.map(function(c) {
@@ -98,6 +100,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
     .attr('class', 'line-chart-y-axis')
     .call(y_axis)
 
+  // Create groups for each country
   var country = g.selectAll('.country')
                   .data(countries)
                   .enter()
@@ -105,10 +108,14 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                   .attr('class', 'country')
                   .attr('id', function(d) { return d.id; });
 
+  // Draw path for each country
   country.append('path')
          .attr('d', function(d) { return line(d.values); })
          .attr('fill', 'none')
-         .attr('stroke', function(d) { return z(d.id); })
+         .attr('stroke', '#ccc')
+         .attr('stroke-linejoin', 'round')
+         .attr('stroke-linecap', 'round')
+         //.attr('stroke', function(d) { return z(d.id); })
          .attr('stroke-width', 3);
 
   country.append('text')
@@ -118,6 +125,10 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .attr('dy', '0.35em')
          .style('font', '10px sans-serif')
          .text(function(d) { return d.id; });
+
+  // Colouring the paths of select countries
+  d3.select('#Canada path')
+    .attr('stroke', '#f67280')
 });
 
 
