@@ -28,6 +28,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Initialise d3 line function
   var line = d3.line()
+               .defined(function(d) { return !isNaN(d['Energy']); })
                .curve(d3.curveLinear)
                .x(function(d) {
                  return x(d['Year']);
