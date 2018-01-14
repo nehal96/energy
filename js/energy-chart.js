@@ -11,7 +11,7 @@ d3.csv("data/Energy-Consumption-Data.csv", function(d) {
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 50,
+  var margin = 60,
       width = 850 - margin,
       height = 500 - margin;
 
@@ -23,7 +23,7 @@ d3.csv("data/Energy-Consumption-Data.csv", function(d) {
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
 
   var g = svg.append('g')
-             .attr('transform', 'translate(' + margin + ',' + 20 + ')');
+             .attr('transform', 'translate(' + 50 + ',' + 20 + ')');
 
   // Set x- and y-axis scales
   var x = d3.scaleTime()
