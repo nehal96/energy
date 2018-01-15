@@ -116,6 +116,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          //.attr('stroke', function(d) { return z(d.id); })
          .attr('stroke-width', 3);
 
+  // Add a text element at the end of each line path for each country.
   country.append('text')
          .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
          .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
@@ -125,18 +126,11 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .style('font-size', '10px')
          .text(function(d) { return d.id; });
 
-  // Colouring the paths of select countries
-  d3.select('#Canada path')
-    .attr('stroke', '#f67280');
-
-  d3.select('#UnitedStates path')
-    .attr('stroke', '#446cb3')
-
-  d3.select('#India path')
-    .attr('stroke', '#f9690e')
-
-  d3.select('#China path')
-    .attr('stroke', '#f7ca18')
+  // Colour the paths of select countries
+  colourLine('Canada', '#f67280');
+  colourLine('United States', '#446cb3');
+  colourLine('India', '#f9690e');
+  colourLine('China', '#f7ca18');
 });
 
 
@@ -146,4 +140,13 @@ function type(d, _, columns) {
     d[c = columns[i]] = +d[c];
     return d;
   }
+}
+
+// Colours the line path given the name of the country and a hexadecimal colour
+// code.
+function colourLine(country, colour) {
+  pathId = '#' + country.replace(/ /g,'') + ' path'
+
+  return d3.select(pathId)
+           .attr('stroke', colour);
 }
