@@ -6,7 +6,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 100,
+  var margin = 130,
       width = 850 - margin,
       height = 550 - margin;
 
@@ -57,15 +57,13 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
           });
         })
 
-  console.log(max_energy_per);
-
   y.domain([
     //d3.min(countries, function(c) {
     //  return d3.min(c.values, function(d) {
     //    return d['Energy'];
     //  });
     //})
-    0, 14000
+    0, 20000
   ]);
 
   z.domain(countries.map(function(c) {
@@ -123,7 +121,8 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
          .attr('x', 3)
          .attr('dy', '0.35em')
-         .style('font', '10px sans-serif')
+         .attr('class', 'tk-atlas')
+         .style('font-size', '10px')
          .text(function(d) { return d.id; });
 
   // Colouring the paths of select countries

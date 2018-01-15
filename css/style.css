@@ -122,7 +122,11 @@ td {
 }
 
 #energy-per-capita-graphic {
-  width: 80%;
+  width: 75%;
+}
+
+#energy-per-capita-graphic-prose {
+  width: 25%;
 }
 
 /*
