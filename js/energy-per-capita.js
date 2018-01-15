@@ -104,7 +104,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                   .enter()
                   .append('g')
                   .attr('class', 'country')
-                  .attr('id', function(d) { return d.id; });
+                  .attr('id', function(d) { return d.id.replace(/ /g,''); });
 
   // Draw path for each country
   country.append('path')
@@ -127,7 +127,16 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Colouring the paths of select countries
   d3.select('#Canada path')
-    .attr('stroke', '#f67280')
+    .attr('stroke', '#f67280');
+
+  d3.select('#UnitedStates path')
+    .attr('stroke', '#446cb3')
+
+  d3.select('#India path')
+    .attr('stroke', '#f9690e')
+
+  d3.select('#China path')
+    .attr('stroke', '#f7ca18')
 });
 
 
