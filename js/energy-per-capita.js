@@ -63,7 +63,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
     //    return d['Energy'];
     //  });
     //})
-    0, 25000
+    0, 250000
   ]);
 
   z.domain(countries.map(function(c) {
