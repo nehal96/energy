@@ -138,16 +138,28 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   //colourLine('China', '#f7ca18');
 
   country.on('mouseover', function(d) {
-    //var id = '#' + d.id.replace(/ /g,'') + "-path";
-    //d3.select(id)
-      //.attr('stroke', function(d) { return color(d.id); })
-      //.attr('stroke-width', 5)
-      //.style('cursor', 'pointer');
-    colourLine(d.id, color(d.id), hover=true);
-  })
-  .on('mouseout', function(d) {
-    colourLine(d.id, '#ccc')
-  })
+           if (d3.select(this).classed('clicked') != true) {
+             colourLine(d.id, color(d.id), hover=true);
+           }
+         })
+         .on('mouseout', function(d) {
+           if (d3.select(this).classed('clicked') != true) {
+             colourLine(d.id, '#ccc');
+           }
+         })
+         .on('click', function(d) {
+           if (d3.select(this).classed('clicked')) {
+             colourLine(d.id, '#ccc');
+
+             d3.select(this)
+               .classed('clicked', false);
+           } else {
+             colourLine(d.id, color(d.id))
+
+             d3.select(this)
+               .classed('clicked', true);
+           }
+         })
 
 
 });
