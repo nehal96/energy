@@ -2,6 +2,10 @@
 // Convert Year column into date format
 var parseYear = d3.timeParse("%Y")
 
+var color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
+                         "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
+                         "#F7CA18", "#F9690E", "#F64747"])
+
 d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data) {
   if (error) throw error;
 
@@ -66,7 +70,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
     0, 250000
   ]);
 
-  z.domain(countries.map(function(c) {
+  color.domain(countries.map(function(c) {
     return c.id;
   }));
 
@@ -108,6 +112,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Draw path for each country
   country.append('path')
+         .attr('id', function(d) { return d.id.replace(/ /g,'') + "-path" })
          .attr('d', function(d) { return line(d.values); })
          .attr('fill', 'none')
          .attr('stroke', '#ccc')
@@ -128,9 +133,23 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Colour the paths of select countries
   colourLine('Canada', '#f67280');
-  colourLine('United States', '#446cb3');
-  colourLine('India', '#f9690e');
-  colourLine('China', '#f7ca18');
+  //colourLine('United States', '#446cb3');
+  //colourLine('India', '#f9690e');
+  //colourLine('China', '#f7ca18');
+
+  country.on('mouseover', function(d) {
+    //var id = '#' + d.id.replace(/ /g,'') + "-path";
+    //d3.select(id)
+      //.attr('stroke', function(d) { return color(d.id); })
+      //.attr('stroke-width', 5)
+      //.style('cursor', 'pointer');
+    colourLine(d.id, color(d.id), hover=true);
+  })
+  .on('mouseout', function(d) {
+    colourLine(d.id, '#ccc')
+  })
+
+
 });
 
 
@@ -144,9 +163,19 @@ function type(d, _, columns) {
 
 // Colours the line path given the name of the country and a hexadecimal colour
 // code.
-function colourLine(country, colour) {
-  pathId = '#' + country.replace(/ /g,'') + ' path'
+function colourLine(country, colour, hover=false) {
+  pathId = '#' + country.replace(/ /g,'') + '-path'
 
-  return d3.select(pathId)
-           .attr('stroke', colour);
+  if (hover == false) {
+    return d3.select(pathId)
+             .style('cursor', 'pointer')
+             .attr('stroke', colour)
+             .attr('stroke-width', 3);
+  } else {
+    return d3.select(pathId)
+             .style('cursor', 'pointer')
+             .attr('stroke', colour)
+             .attr('stroke-width', 5);
+  }
+
 }
