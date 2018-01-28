@@ -108,7 +108,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                   .enter()
                   .append('g')
                   .attr('class', 'country')
-                  .attr('id', function(d) { return d.id.replace(/ /g,''); });
+                  .attr('id', function(d) { return d.id.replace(/ /g,'') + '-per-cap'; });
 
   // Draw path for each country
   country.append('path')
