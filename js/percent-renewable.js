@@ -114,6 +114,33 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
                            .style('font-size', '10px')
                            .text(function(d) { return d.id; });
 
+  // Colour the paths of select countries
+  colourLine('Canada', '#f67280');
+
+  country_percent_renewable.on('mouseover', function(d) {
+           if (d3.select(this).classed('clicked') != true) {
+             colourLine(d.id, color(d.id), hover=true);
+           }
+         })
+         .on('mouseout', function(d) {
+           if (d3.select(this).classed('clicked') != true) {
+             colourLine(d.id, '#ccc');
+           }
+         })
+         .on('click', function(d) {
+           if (d3.select(this).classed('clicked')) {
+             colourLine(d.id, '#ccc');
+
+             d3.select(this)
+               .classed('clicked', false);
+           } else {
+             colourLine(d.id, color(d.id))
+
+             d3.select(this)
+               .classed('clicked', true);
+           }
+         })
+
 })
 
 function type(d, _, columns) {
@@ -122,4 +149,23 @@ function type(d, _, columns) {
     d[c = columns[i]] = +d[c];
     return d;
   }
+}
+
+// Colours the line path given the name of the country and a hexadecimal colour
+// code.
+function colourLine(country, colour, hover=false) {
+  pathId = '#' + country.replace(/ /g,'') + '-percent-renewable-path'
+
+  if (hover == false) {
+    return d3.select(pathId)
+             .style('cursor', 'pointer')
+             .attr('stroke', colour)
+             .attr('stroke-width', 3);
+  } else {
+    return d3.select(pathId)
+             .style('cursor', 'pointer')
+             .attr('stroke', colour)
+             .attr('stroke-width', 5);
+  }
+
 }
