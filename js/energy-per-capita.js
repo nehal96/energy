@@ -6,6 +6,8 @@ var color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
                          "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
                          "#F7CA18", "#F9690E", "#F64747"])
 
+let LINE_GRAPHS = ['per-cap', 'percent-renewable']
+
 d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data) {
   if (error) throw error;
 
@@ -112,7 +114,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Draw path for each country
   country_per_cap.append('path')
-                 .attr('id', function(d) { return d.id.replace(/ /g,'') + "-path" })
+                 .attr('id', function(d) { return d.id.replace(/ /g,'') + "-per-cap-path" })
                  .attr('d', function(d) { return line(d.values); })
                  .attr('fill', 'none')
                  .attr('stroke', '#ccc')
@@ -132,29 +134,29 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                  .text(function(d) { return d.id; });
 
   // Colour the paths of select countries
-  colourLine('Canada', '#f67280');
+  colourLine('Canada', LINE_GRAPHS[0], '#f67280');
   //colourLine('United States', '#446cb3');
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
 
   country_per_cap.on('mouseover', function(d) {
            if (d3.select(this).classed('clicked') != true) {
-             colourLine(d.id, color(d.id), hover=true);
+             colourLine(d.id, LINE_GRAPHS[0], color(d.id), hover=true);
            }
          })
          .on('mouseout', function(d) {
            if (d3.select(this).classed('clicked') != true) {
-             colourLine(d.id, '#ccc');
+             colourLine(d.id, LINE_GRAPHS[0], '#ccc');
            }
          })
          .on('click', function(d) {
            if (d3.select(this).classed('clicked')) {
-             colourLine(d.id, '#ccc');
+             colourLine(d.id, LINE_GRAPHS[0], '#ccc');
 
              d3.select(this)
                .classed('clicked', false);
            } else {
-             colourLine(d.id, color(d.id))
+             colourLine(d.id, LINE_GRAPHS[0], color(d.id))
 
              d3.select(this)
                .classed('clicked', true);
@@ -175,8 +177,8 @@ function type(d, _, columns) {
 
 // Colours the line path given the name of the country and a hexadecimal colour
 // code.
-function colourLine(country, colour, hover=false) {
-  pathId = '#' + country.replace(/ /g,'') + '-path'
+function colourLine(country, chart_name, colour, hover=false) {
+  pathId = '#' + country.replace(/ /g,'') + '-' + chart_name + '-path'
 
   if (hover == false) {
     return d3.select(pathId)
