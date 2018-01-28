@@ -10,7 +10,7 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 100,
+  var margin = 130,
       width = 850 - margin,
       height = 550 - margin;
 
@@ -31,7 +31,7 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
 
   // Initialise d3 line function
   var line = d3.line()
-               .defined(function(d) { return !isNaN(d['Energy']); })
+               .defined(function(d) { return !isNaN(d['Percentage']); })
                .curve(d3.curveLinear)
                .x(function(d) {
                  return x(d['Year']);
@@ -85,6 +85,34 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
     .attr('id', 'percent-renewable-y-axis')
     .attr('class', 'line-chart-y-axis')
     .call(y_axis);
+
+  // Create groups for each country
+  var country_percent_renewable = g.selectAll('.country-percent-renewable')
+                                    .data(countries)
+                                    .enter()
+                                    .append('g')
+                                    .attr('class', 'country country-percent-renewable')
+                                    .attr('id', function(d) { return d.id.replace(/ /g, '') + '-percent-renewable'; });
+
+  // Draw path for each country
+  country_percent_renewable.append('path')
+                           .attr('id', function(d) { return d.id.replace(/ /g, '') + '-percent-renewable-path'; })
+                           .attr('d', function(d) { return line(d.values); })
+                           .attr('fill', 'none')
+                           .attr('stroke', '#ccc')
+                           .attr('stroke-linejoin', 'round')
+                           .attr('stroke-linecap', 'round')
+                           .attr('stroke-width', 3);
+
+  // Add a text element at the end of each line path for each country.
+  country_percent_renewable.append('text')
+                           .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+                           .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Percentage) + ")"; })
+                           .attr('x', 3)
+                           .attr('dy', '0.35em')
+                           .attr('class', 'tk-atlas')
+                           .style('font-size', '10px')
+                           .text(function(d) { return d.id; });
 
 })
 
