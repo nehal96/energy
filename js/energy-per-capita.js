@@ -12,7 +12,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 130,
+  var margin = 135,
       width = 850 - margin,
       height = 550 - margin;
 
