@@ -22,7 +22,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin))
 
   var g = svg.append('g')
-             .attr('transform', 'translate(' + 50 + ',' + 20 + ')');
+             .attr('transform', 'translate(' + 55 + ',' + 20 + ')');
 
   var x = d3.scaleTime()
             .rangeRound([0, width]);
