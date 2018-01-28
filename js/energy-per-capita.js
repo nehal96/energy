@@ -103,33 +103,33 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
     .call(y_axis)
 
   // Create groups for each country
-  var country = g.selectAll('.country')
-                  .data(countries)
-                  .enter()
-                  .append('g')
-                  .attr('class', 'country')
-                  .attr('id', function(d) { return d.id.replace(/ /g,'') + '-per-cap'; });
+  var country_per_cap = g.selectAll('.country-per-cap')
+                          .data(countries)
+                          .enter()
+                          .append('g')
+                          .attr('class', 'country country-per-cap')
+                          .attr('id', function(d) { return d.id.replace(/ /g,'') + '-per-cap'; });
 
   // Draw path for each country
-  country.append('path')
-         .attr('id', function(d) { return d.id.replace(/ /g,'') + "-path" })
-         .attr('d', function(d) { return line(d.values); })
-         .attr('fill', 'none')
-         .attr('stroke', '#ccc')
-         .attr('stroke-linejoin', 'round')
-         .attr('stroke-linecap', 'round')
-         //.attr('stroke', function(d) { return z(d.id); })
-         .attr('stroke-width', 3);
+  country_per_cap.append('path')
+                 .attr('id', function(d) { return d.id.replace(/ /g,'') + "-path" })
+                 .attr('d', function(d) { return line(d.values); })
+                 .attr('fill', 'none')
+                 .attr('stroke', '#ccc')
+                 .attr('stroke-linejoin', 'round')
+                 .attr('stroke-linecap', 'round')
+                 //.attr('stroke', function(d) { return z(d.id); })
+                 .attr('stroke-width', 3);
 
   // Add a text element at the end of each line path for each country.
-  country.append('text')
-         .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-         .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
-         .attr('x', 3)
-         .attr('dy', '0.35em')
-         .attr('class', 'tk-atlas')
-         .style('font-size', '10px')
-         .text(function(d) { return d.id; });
+  country_per_cap.append('text')
+                 .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+                 .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
+                 .attr('x', 3)
+                 .attr('dy', '0.35em')
+                 .attr('class', 'tk-atlas')
+                 .style('font-size', '10px')
+                 .text(function(d) { return d.id; });
 
   // Colour the paths of select countries
   colourLine('Canada', '#f67280');
@@ -137,7 +137,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
 
-  country.on('mouseover', function(d) {
+  country_per_cap.on('mouseover', function(d) {
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, color(d.id), hover=true);
            }
