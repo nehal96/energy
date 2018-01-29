@@ -141,7 +141,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   country_per_cap.append('text')
                  .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
                  .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; })
-                 .attr('x', 3)
+                 .attr('x', 6)
                  .attr('dy', '0.35em')
                  .attr('class', 'tk-atlas')
                  .style('font-size', '10px')

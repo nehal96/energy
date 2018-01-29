@@ -120,7 +120,7 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
   country_percent_renewable.append('text')
                            .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
                            .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Percentage) + ")"; })
-                           .attr('x', 3)
+                           .attr('x', 6)
                            .attr('dy', '0.35em')
                            .attr('class', 'tk-atlas')
                            .style('font-size', '10px')
