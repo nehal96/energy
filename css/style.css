@@ -438,3 +438,10 @@ td {
   font-size: 12px;
   font-weight: 400;
 }
+
+.dot {
+  fill: white;
+  stroke: grey;
+  stroke-width: 1.5px;
+  cursor: pointer;
+}

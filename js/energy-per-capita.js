@@ -123,6 +123,20 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                  //.attr('stroke', function(d) { return z(d.id); })
                  .attr('stroke-width', 3);
 
+  // Draw circles for each data point on the path
+  country_per_cap.selectAll('.dot')
+                 .data((function(d) {
+                   return d.values;
+                 }))
+                 .enter().append('circle')
+                 .attr('class', 'dot')
+                 .attr('cx', line.x())
+                 .attr('cy', line.y())
+                 .attr('r', function(d) {
+                   return d['Energy'] == ".." ? 0 : 3;
+                 })
+                 .attr('opacity', 0);
+
   // Add a text element at the end of each line path for each country.
   country_per_cap.append('text')
                  .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
@@ -142,11 +156,15 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
   country_per_cap.on('mouseover', function(d) {
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[0], color(d.id), hover=true);
+
+             showCircles(d.id, LINE_GRAPHS[0]);
            }
          })
          .on('mouseout', function(d) {
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[0], '#ccc');
+
+             hideCircles(d.id, LINE_GRAPHS[0]);
            }
          })
          .on('click', function(d) {
@@ -192,4 +210,21 @@ function colourLine(country, chart_name, colour, hover=false) {
              .attr('stroke-width', 5);
   }
 
+}
+
+// Makes circle elements on path (which show data points) visible (changes
+// opacity to 1).
+function showCircles(country, chart_name) {
+  var circleElems = '#' + country.replace(/ /g, '') + '-' + chart_name + ' .dot';
+
+  return d3.selectAll(circleElems)
+           .attr('opacity', 1);
+}
+
+// Hides circle elements on path (changes opacity to 0).
+function hideCircles(country, chart_name) {
+  var circleElems = '#' + country.replace(/ /g, '') + '-' + chart_name + ' .dot';
+
+  return d3.selectAll(circleElems)
+           .attr('opacity', 0);
 }
