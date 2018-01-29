@@ -50,7 +50,7 @@ d3.csv("data/Energy-Consumption-Data.csv", function(d) {
         return d['World (TWh)'];
   })
 
-  y.domain([min_energy, 160000]);
+  y.domain([0, 160000]);
 
   // Set x- and y-axes
   var x_axis = d3.axisBottom(x)
@@ -62,7 +62,7 @@ d3.csv("data/Energy-Consumption-Data.csv", function(d) {
         .tickSizeInner(5)
         .tickPadding(4);
 
-  y_axis.ticks(5)
+  y_axis.ticks(6)
         .tickSizeInner(-width)
         .tickSizeOuter(0)
         .tickPadding(8);
