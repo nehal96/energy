@@ -104,6 +104,18 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
                            .attr('stroke-linecap', 'round')
                            .attr('stroke-width', 3);
 
+  // Draw circles for each data point on the path
+  country_percent_renewable.selectAll('.dot')
+                           .data(function(d) { return d.values; })
+                           .enter().append('circle')
+                           .attr('class', 'dot')
+                           .attr('cx', line.x())
+                           .attr('cy', line.y())
+                           .attr('r', function(d) {
+                             return d['Percentage'] == ".." ? 0 : 3;
+                           })
+                           .attr('opacity', 0);
+
   // Add a text element at the end of each line path for each country.
   country_percent_renewable.append('text')
                            .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
@@ -121,11 +133,15 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
   country_percent_renewable.on('mouseover', function(d) {
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[1], color(d.id), hover=true);
+
+             showCircles(d.id, LINE_GRAPHS[1]);
            }
          })
          .on('mouseout', function(d) {
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[1], '#ccc');
+
+             hideCircles(d.id, LINE_GRAPHS[1]);
            }
          })
          .on('click', function(d) {
