@@ -14,6 +14,10 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
       width = 850 - margin,
       height = 550 - margin;
 
+  // Initialise tooltip as hidden
+  d3.select('#percent-renewable-tooltip')
+    .classed('hidden', true);
+
   var svg = d3.select('#percent-renewable-chart')
               .append('svg')
               .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin));
@@ -135,6 +139,9 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
              colourLine(d.id, LINE_GRAPHS[1], color(d.id), hover=true);
 
              showCircles(d.id, LINE_GRAPHS[1]);
+
+             d3.select('#percent-renewable-tooltip')
+               .classed('hidden', false);
            }
          })
          .on('mouseout', function(d) {
@@ -143,6 +150,9 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
 
              hideCircles(d.id, LINE_GRAPHS[1]);
            }
+
+          d3.select('#percent-renewable-tooltip')
+            .classed('hidden', true);
          })
          .on('click', function(d) {
            if (d3.select(this).classed('clicked')) {
@@ -156,6 +166,23 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
              d3.select(this)
                .classed('clicked', true);
            }
+         })
+         .on('mousemove', function(d) {
+           var coordinates = [0, 0];
+           coordinates = d3.mouse(this);
+
+           var xPosition = coordinates[0];
+           var yPosition = coordinates[1] + 50;
+
+           console.log(xPosition);
+           console.log(yPosition);
+
+           d3.select('#percent-renewable-tooltip')
+             .style('left', xPosition + 'px')
+             .style('top', yPosition + 'px');
+
+          d3.select('#percent-renewable-tooltip')
+            .classed('hidden', false);
          })
 
 })
