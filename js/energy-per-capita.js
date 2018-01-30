@@ -16,6 +16,10 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
       width = 850 - margin,
       height = 550 - margin;
 
+  // Initialise tooltip as hidden
+  d3.select('#energy-per-capita-tooltip')
+    .classed('hidden', true);
+
   // Creating a responsive svg element for the plot
   var svg = d3.select('#energy-per-capita-chart')
               .append('svg')
@@ -157,8 +161,11 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[0], color(d.id), hover=true);
 
-             showCircles(d.id, LINE_GRAPHS[0]);
+             showCircles(d.id, LINE_GRAPHS[0]);   
            }
+
+           d3.select('#energy-per-capita-tooltip')
+             .classed('hidden', false);
          })
          .on('mouseout', function(d) {
            if (d3.select(this).classed('clicked') != true) {
@@ -166,6 +173,9 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
              hideCircles(d.id, LINE_GRAPHS[0]);
            }
+
+           d3.select('#energy-per-capita-tooltip')
+             .classed('hidden', true);
          })
          .on('click', function(d) {
            if (d3.select(this).classed('clicked')) {
@@ -179,6 +189,20 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
              d3.select(this)
                .classed('clicked', true);
            }
+         })
+         .on('mousemove', function(d) {
+           var coordinates = [0, 0];
+           coordinates = d3.mouse(this);
+
+           var xPosition = coordinates[0];
+           var yPosition = coordinates[1] + 50;
+
+           d3.select('#energy-per-capita-tooltip')
+             .style('left', xPosition + 'px')
+             .style('top', yPosition + 'px');
+
+           d3.select('energy-per-capita-tooltip')
+             .classed('hiiden', false);
          })
 
 

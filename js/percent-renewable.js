@@ -139,10 +139,10 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
              colourLine(d.id, LINE_GRAPHS[1], color(d.id), hover=true);
 
              showCircles(d.id, LINE_GRAPHS[1]);
-
-             d3.select('#percent-renewable-tooltip')
-               .classed('hidden', false);
            }
+
+           d3.select('#percent-renewable-tooltip')
+             .classed('hidden', false);
          })
          .on('mouseout', function(d) {
            if (d3.select(this).classed('clicked') != true) {
@@ -173,9 +173,6 @@ d3.csv("data/percentage-renewables.csv", type, function(error, data) {
 
            var xPosition = coordinates[0];
            var yPosition = coordinates[1] + 50;
-
-           console.log(xPosition);
-           console.log(yPosition);
 
            d3.select('#percent-renewable-tooltip')
              .style('left', xPosition + 'px')
