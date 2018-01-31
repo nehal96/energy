@@ -106,6 +106,20 @@ td {
   pointer-events: none;
 }
 
+.tooltip-heading {
+  margin: 0px 0px 8px 0px;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+}
+
+.tooltip-data {
+  margin: 0;
+  font-size: 13px;
+  color: white;
+}
+
 .hidden {
   display: none;
 }
