@@ -6,7 +6,7 @@ var parseYear = d3.timeParse("%Y")
 var formatYear = d3.timeFormat("%Y");
 
 // Format number with decimals into an integer
-var formatInteger = d3.format(".0f")
+var formatInteger = d3.format(",.0f")
 
 // Bisect function magic
 var bisectDate = d3.bisector(function(d) { return d.Year; }).left;

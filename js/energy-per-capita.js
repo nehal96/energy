@@ -2,6 +2,15 @@
 // Convert Year column into date format
 var parseYear = d3.timeParse("%Y")
 
+// Convert Date format into year
+var formatYear = d3.timeFormat("%Y");
+
+// Format number with decimals into an integer
+var formatInteger = d3.format(".0f")
+
+// Bisect function magic
+var bisectDate = d3.bisector(function(d) { return d.Year; }).left;
+
 var color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
                          "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
                          "#F7CA18", "#F9690E", "#F64747"])
@@ -161,7 +170,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            if (d3.select(this).classed('clicked') != true) {
              colourLine(d.id, LINE_GRAPHS[0], color(d.id), hover=true);
 
-             showCircles(d.id, LINE_GRAPHS[0]);   
+             showCircles(d.id, LINE_GRAPHS[0]);
            }
 
            d3.select('#energy-per-capita-tooltip')
@@ -201,8 +210,23 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
              .style('left', xPosition + 'px')
              .style('top', yPosition + 'px');
 
+           d3.select('#energy-per-capita-tooltip-heading')
+             .text(d.id);
+
+           var x0 = x.invert(xPosition),
+               i = bisectDate(d.values, x0, 1);
+               d0 = d.values[i - 1],
+               d1 = d.values[i],
+               d = x0 - d0.Year > d1.Year - x0 ? d1 : d0;
+
+           d3.select('#energy-per-capita-tooltip-y')
+             .text("Year: " + formatYear(d.Year));
+
+           d3.select('#energy-per-capita-tooltip-x')
+             .text("Cons. per cap.: " + formatInteger(y.invert(yPosition - 50)) + " kWh");
+
            d3.select('energy-per-capita-tooltip')
-             .classed('hiiden', false);
+             .classed('hidden', false);
          })
 
 
