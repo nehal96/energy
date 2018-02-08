@@ -148,6 +148,11 @@ td {
   line-height: 1.5;
 }
 
+.slide-right {
+  border-left: none;
+  border-right: 4px solid #f7ca18;
+}
+
 .active {
   opacity: 1;
 }

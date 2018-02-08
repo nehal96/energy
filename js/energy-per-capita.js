@@ -229,6 +229,51 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
              .classed('hidden', false);
          })
 
+         // Set up scrollytelling for prose and line animation
+
+         // Create ScrollMagic controller
+         var controller = new ScrollMagic.Controller();
+
+         // Scene that pins the energy per capita plot when scrolled to
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-1",
+           duration: 1100
+         })
+         .setPin('#energy-per-capita-chart')
+         .addTo(controller)
+
+         // Scene that activates 1st slide
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-1",
+           duration: 275
+         })
+         .setClassToggle("#energy-per-capita-slide-1", "active")
+         .addTo(controller)
+
+         // Scene that activates 2nd slide
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-2",
+           duration: 275
+         })
+         .setClassToggle("#energy-per-capita-slide-2", "active")
+         .addTo(controller)
+
+         // Scene that activates 3rd slide
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-3",
+           duration: 275
+         })
+         .setClassToggle("#energy-per-capita-slide-3", "active")
+         .addTo(controller)
+
+         // Scene that activates 4th slide
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-4",
+           duration: 275
+         })
+         .setClassToggle("#energy-per-capita-slide-4", "active")
+         .addTo(controller)
+
 
 });
 
