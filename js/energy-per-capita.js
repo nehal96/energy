@@ -161,7 +161,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                  .text(function(d) { return d.id; });
 
   // Colour the paths of select countries
-  colourLine('Canada', LINE_GRAPHS[0], '#f67280');
+  colourLine('World', LINE_GRAPHS[0], '#36d7b7');
   //colourLine('United States', '#446cb3');
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
