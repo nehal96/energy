@@ -82,7 +82,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
     //    return d['Energy'];
     //  });
     //})
-    0, 250000
+    0, 100000
   ]);
 
   color.domain(countries.map(function(c) {
@@ -162,6 +162,13 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Colour the paths of select countries
   colourLine('World', LINE_GRAPHS[0], '#36d7b7');
+
+  // Hide Qatar path and text initially
+  d3.select('#Qatar-per-cap path')
+    .style('opacity', 0);
+
+  d3.select('#Qatar-per-cap text')
+    .style('opacity', 0);
   //colourLine('United States', '#446cb3');
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
