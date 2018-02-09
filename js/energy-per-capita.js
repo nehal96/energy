@@ -165,10 +165,13 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
   // Hide Qatar path and text initially
   d3.select('#Qatar-per-cap path')
-    .style('opacity', 0);
+    .style('visibility', 'hidden');
+
+  d3.selectAll('#Qatar-per-cap .dot')
+    .style('visibility', 'hidden')
 
   d3.select('#Qatar-per-cap text')
-    .style('opacity', 0);
+    .style('visibility', 'hidden');
   //colourLine('United States', '#446cb3');
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
@@ -272,6 +275,48 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          })
          .setClassToggle("#energy-per-capita-slide-3", "active")
          .addTo(controller)
+         .on('enter', function(d) {
+           // Extend y-axis domain
+           y.domain([0, 250000]);
+
+           // Change y-axis with transition to new domain
+           d3.select('#energy-per-cap-y-axis')
+             .transition()
+             .duration(1000)
+             .call(y_axis);
+
+           // Set transition for paths
+           country_per_cap.select('path')
+                          .transition()
+                          .duration(1000)
+                          .attr('d', function(d) { return line(d.values); })
+
+           // Set transitions for circles
+           country_per_cap.selectAll('.dot')
+                          .transition()
+                          .duration(1000)
+                          .attr('cx', line.x())
+                          .attr('cy', line.y());
+
+           // Set transitions for country labels
+           country_per_cap.select('text')
+                          .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+                          .transition()
+                          .duration(1000)
+                          .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; });
+
+           setTimeout(function() {
+             // Show Qatar path and text
+             d3.select('#Qatar-per-cap path')
+               .style('visibility', 'visible');
+
+             d3.selectAll('#Qatar-per-cap .dot')
+               .style('visibility', 'visible')
+
+             d3.select('#Qatar-per-cap text')
+               .style('visibility', 'visible');
+           }, 1000);
+         })
 
          // Scene that activates 4th slide
          new ScrollMagic.Scene({
