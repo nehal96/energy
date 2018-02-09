@@ -274,7 +274,6 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            duration: 275
          })
          .setClassToggle("#energy-per-capita-slide-3", "active")
-         .addTo(controller)
          .on('enter', function(d) {
            // Extend y-axis domain
            y.domain([0, 250000]);
@@ -305,18 +304,34 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                           .duration(1000)
                           .attr('transform', function(d) { return 'translate(' + x(d.value.Year) + "," + y(d.value.Energy) + ")"; });
 
+           // Implement line animation for Qatar path after axis transition
            setTimeout(function() {
+             var totalLength = d3.select('#Qatar-per-cap path').node().getTotalLength();
+
              // Show Qatar path and text
              d3.select('#Qatar-per-cap path')
+               .style('visibility', 'visible')
+               // Implement line animation
+               .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+               .attr('stroke-dashoffset', totalLength)
+               .transition()
+                .duration(1300)
+                .ease(d3.easeLinear)
+                .attr('stroke-dashoffset', 0);
+           }, 1000);
+
+           // Show data points and country label after line animation
+           setTimeout(function() {
+             // Show data point circles
+             d3.selectAll('#Qatar-per-cap .dot')
                .style('visibility', 'visible');
 
-             d3.selectAll('#Qatar-per-cap .dot')
-               .style('visibility', 'visible')
-
+             // Show country label
              d3.select('#Qatar-per-cap text')
                .style('visibility', 'visible');
-           }, 1000);
+           }, 2350)
          })
+         .addTo(controller)
 
          // Scene that activates 4th slide
          new ScrollMagic.Scene({
