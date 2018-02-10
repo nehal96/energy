@@ -308,27 +308,33 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            setTimeout(function() {
              var totalLength = d3.select('#Qatar-per-cap path').node().getTotalLength();
 
-             // Show Qatar path and text
-             d3.select('#Qatar-per-cap path')
-               .style('visibility', 'visible')
-               // Implement line animation
-               .attr('stroke-dasharray', totalLength + ' ' + totalLength)
-               .attr('stroke-dashoffset', totalLength)
-               .transition()
-                .duration(1300)
-                .ease(d3.easeLinear)
-                .attr('stroke-dashoffset', 0);
+             if (d3.select('#Qatar-per-cap path').style('visibility') == "hidden") {
+               // Show Qatar path and text
+               d3.select('#Qatar-per-cap path')
+                 .style('visibility', 'visible')
+                 // Implement line animation
+                 .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+                 .attr('stroke-dashoffset', totalLength)
+                 .transition()
+                  .duration(1300)
+                  .ease(d3.easeLinear)
+                  .attr('stroke-dashoffset', 0);
+             }
            }, 1000);
 
            // Show data points and country label after line animation
            setTimeout(function() {
-             // Show data point circles
-             d3.selectAll('#Qatar-per-cap .dot')
-               .style('visibility', 'visible');
+             // If data point circles are hidden, show them
+             if (d3.selectAll('#Qatar-per-cap .dot').style('visibility') == "hidden") {
+               d3.selectAll('#Qatar-per-cap .dot')
+                 .style('visibility', 'visible');
+             }
 
-             // Show country label
-             d3.select('#Qatar-per-cap text')
-               .style('visibility', 'visible');
+             // If country label is hidden, show label
+             if (d3.select('#Qatar-per-cap text').style('visibility') == "hidden") {
+               d3.select('#Qatar-per-cap text')
+                 .style('visibility', 'visible');
+             }
            }, 2350)
          })
          .addTo(controller)
