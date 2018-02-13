@@ -162,6 +162,10 @@ td {
   border-right: 4px solid #f67280;
 }
 
+#energy-per-capita {
+  padding-bottom: 0rem;
+}
+
 #energy-per-capita-graphic {
   width: 75%;
 }
