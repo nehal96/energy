@@ -236,15 +236,8 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          // Colour the path of World
          colourLine('World', LINE_GRAPHS[0], '#36d7b7');
 
-         // Hide Qatar path and text initially
-         d3.select('#Qatar-per-cap path')
-           .style('visibility', 'hidden');
-
-         d3.selectAll('#Qatar-per-cap .dot')
-           .style('visibility', 'hidden')
-
-         d3.select('#Qatar-per-cap text')
-           .style('visibility', 'hidden');
+         hideCountry('Qatar', LINE_GRAPHS[0]);
+         hideCountry('Iceland', LINE_GRAPHS[0]);
 
          // Scene that pins the energy per capita plot when scrolled to
          new ScrollMagic.Scene({
@@ -456,4 +449,20 @@ function hideCircles(country, chart_name) {
 
   return d3.selectAll(circleElems)
            .attr('opacity', 0);
+}
+
+function hideCountry(country, chart_name) {
+  var countryElem = '#' + country.replace(/ /g, '') + '-' + chart_name,
+      pathId = countryElem + ' path',
+      circles = countryElem + ' .dot',
+      label = countryElem + ' text';
+
+  d3.select(pathId)
+    .style('visibility', 'hidden');
+
+  d3.selectAll(circles)
+    .style('visibility', 'hidden')
+
+  d3.select(label)
+    .style('visibility', 'hidden');
 }
