@@ -295,7 +295,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            defaultLine(['United States', 'Canada', 'Sweden', 'Japan', 'United Kingdom'], LINE_GRAPHS[0]);
 
            // Set Qatar back to default colour for reverse scroll
-           defaultLine('Qatar', LINE_GRAPHS[0]);
+           defaultLine(['Qatar', 'Iceland'], LINE_GRAPHS[0]);
 
            // Colour developing countries
            colourLine('China', LINE_GRAPHS[0], '#f9690e');
@@ -314,8 +314,9 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            // Set developing countries back to default colour
            defaultLine(['China', 'Brazil', 'India'], LINE_GRAPHS[0]);
 
-           // Colour Qatar line
+           // Colour Qatar and Iceland line
            colourLine('Qatar', LINE_GRAPHS[0], '#f7ca18');
+           colourLine('Iceland', LINE_GRAPHS[0], '#19b5fe');
 
            // Extend y-axis domain
            y.domain([0, 250000]);
@@ -348,34 +349,22 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
 
            // Implement line animation for Qatar path after axis transition
            setTimeout(function() {
-             var totalLength = d3.select('#Qatar-per-cap path').node().getTotalLength();
+             var totalLengthQatar = d3.select('#Qatar-per-cap path').node().getTotalLength(),
+                 totalLengthIceland = d3.select('#Iceland-per-cap-path').node().getTotalLength();
 
              if (d3.select('#Qatar-per-cap path').style('visibility') == "hidden") {
-               // Show Qatar path and text
-               d3.select('#Qatar-per-cap path')
-                 .style('visibility', 'visible')
-                 // Implement line animation
-                 .attr('stroke-dasharray', totalLength + ' ' + totalLength)
-                 .attr('stroke-dashoffset', totalLength)
-                 .transition()
-                  .duration(1300)
-                  .ease(d3.easeLinear)
-                  .attr('stroke-dashoffset', 0);
+               // Show animated Qatar and Iceland paths
+                drawCountry('Qatar', LINE_GRAPHS[0])
+                drawCountry('Iceland', LINE_GRAPHS[0])
              }
            }, 1000);
 
            // Show data points and country label after line animation
            setTimeout(function() {
-             // If data point circles are hidden, show them
+             // If data point circles are hidden, show them and the label
              if (d3.selectAll('#Qatar-per-cap .dot').style('visibility') == "hidden") {
-               d3.selectAll('#Qatar-per-cap .dot')
-                 .style('visibility', 'visible');
-             }
-
-             // If country label is hidden, show label
-             if (d3.select('#Qatar-per-cap text').style('visibility') == "hidden") {
-               d3.select('#Qatar-per-cap text')
-                 .style('visibility', 'visible');
+               showCountryInfo('Qatar', LINE_GRAPHS[0]);
+               showCountryInfo('Iceland', LINE_GRAPHS[0]);
              }
            }, 2350)
          })
@@ -465,4 +454,33 @@ function hideCountry(country, chart_name) {
 
   d3.select(label)
     .style('visibility', 'hidden');
+}
+
+function drawCountry(country, chart_name) {
+  var pathId = '#' + country.replace(/ /g, '') + '-' + chart_name + '-path';
+
+  var totalLength = d3.select(pathId).node().getTotalLength();
+
+  // Show path
+  d3.select(pathId)
+    .style('visibility', 'visible')
+    // Implement line animation
+    .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+    .attr('stroke-dashoffset', totalLength)
+    .transition()
+     .duration(1300)
+     .ease(d3.easeLinear)
+     .attr('stroke-dashoffset', 0);
+}
+
+function showCountryInfo(country, chart_name) {
+  var countryElem = '#' + country.replace(/ /g, '') + '-' + chart_name,
+      circles = countryElem + ' .dot',
+      label = countryElem + ' text';
+
+  d3.selectAll(circles)
+    .style('visibility', 'visible');
+
+  d3.select(label)
+    .style('visibility', 'visible');
 }
