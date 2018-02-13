@@ -263,6 +263,9 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .on('enter', function() {
            // Colour the path of World
            colourLine('World', LINE_GRAPHS[0], '#36d7b7');
+
+           // Set developed countries to default colour for reverse scroll
+           defaultLine(['United States', 'Canada', 'Sweden', 'Japan', 'United Kingdom'], LINE_GRAPHS[0]);
          })
          .addTo(controller)
 
@@ -274,7 +277,10 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .setClassToggle("#energy-per-capita-slide-2", "active")
          .on('enter', function() {
            // Set World back as default colour
-           colourLine('World', LINE_GRAPHS[0], '#ccc');
+           defaultLine('World', LINE_GRAPHS[0]);
+
+           // Set developing countries to default colour for reverse scroll
+           defaultLine(['China', 'Brazil', 'India'], LINE_GRAPHS[0]);
 
            // Colour developed countries
            colourLine('United States', LINE_GRAPHS[0], '#00b16a');
@@ -293,11 +299,10 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .setClassToggle("#energy-per-capita-slide-3", "active")
          .on('enter', function() {
            // Set developed countries back to default colour
-           colourLine('United States', LINE_GRAPHS[0], '#ccc');
-           colourLine('Canada', LINE_GRAPHS[0], '#ccc');
-           colourLine('Sweden', LINE_GRAPHS[0], '#ccc');
-           colourLine('Japan', LINE_GRAPHS[0], '#ccc');
-           colourLine('United Kingdom', LINE_GRAPHS[0], '#ccc');
+           defaultLine(['United States', 'Canada', 'Sweden', 'Japan', 'United Kingdom'], LINE_GRAPHS[0]);
+
+           // Set Qatar back to default colour for reverse scroll
+           defaultLine('Qatar', LINE_GRAPHS[0]);
 
            // Colour developing countries
            colourLine('China', LINE_GRAPHS[0], '#f9690e');
@@ -314,9 +319,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          .setClassToggle("#energy-per-capita-slide-4", "active")
          .on('enter', function(d) {
            // Set developing countries back to default colour
-           colourLine('China', LINE_GRAPHS[0], '#ccc');
-           colourLine('Brazil', LINE_GRAPHS[0], '#ccc');
-           colourLine('India', LINE_GRAPHS[0], '#ccc');
+           defaultLine(['China', 'Brazil', 'India'], LINE_GRAPHS[0]);
 
            // Colour Qatar line
            colourLine('Qatar', LINE_GRAPHS[0], '#f7ca18');
@@ -412,6 +415,28 @@ function colourLine(country, chart_name, colour, hover=false) {
              .style('cursor', 'pointer')
              .attr('stroke', colour)
              .attr('stroke-width', 5);
+  }
+
+}
+
+//
+function defaultLine(country, chart_name, colour='#ccc') {
+  if (typeof country == "object") {
+    for (i = 0; i < country.length; i++) {
+      pathId = '#' + country[i].replace(/ /g,'') + '-' + chart_name + '-path'
+
+      d3.select(pathId)
+        .style('cursor', 'pointer')
+        .attr('stroke', colour)
+        .attr('stroke-width', 3);
+    }
+  } else {
+    pathId = '#' + country.replace(/ /g,'') + '-' + chart_name + '-path'
+
+    return d3.select(pathId)
+             .style('cursor', 'pointer')
+             .attr('stroke', colour)
+             .attr('stroke-width', 3);
   }
 
 }
