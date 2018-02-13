@@ -160,18 +160,7 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
                  .style('font-size', '10px')
                  .text(function(d) { return d.id; });
 
-  // Colour the paths of select countries
-  colourLine('World', LINE_GRAPHS[0], '#36d7b7');
 
-  // Hide Qatar path and text initially
-  d3.select('#Qatar-per-cap path')
-    .style('visibility', 'hidden');
-
-  d3.selectAll('#Qatar-per-cap .dot')
-    .style('visibility', 'hidden')
-
-  d3.select('#Qatar-per-cap text')
-    .style('visibility', 'hidden');
   //colourLine('United States', '#446cb3');
   //colourLine('India', '#f9690e');
   //colourLine('China', '#f7ca18');
@@ -244,10 +233,23 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
          // Create ScrollMagic controller
          var controller = new ScrollMagic.Controller();
 
+         // Colour the path of World
+         colourLine('World', LINE_GRAPHS[0], '#36d7b7');
+
+         // Hide Qatar path and text initially
+         d3.select('#Qatar-per-cap path')
+           .style('visibility', 'hidden');
+
+         d3.selectAll('#Qatar-per-cap .dot')
+           .style('visibility', 'hidden')
+
+         d3.select('#Qatar-per-cap text')
+           .style('visibility', 'hidden');
+
          // Scene that pins the energy per capita plot when scrolled to
          new ScrollMagic.Scene({
            triggerElement: "#energy-per-capita-slide-1",
-           duration: 1100
+           duration: 1300
          })
          .setPin('#energy-per-capita-chart')
          .addTo(controller)
@@ -258,6 +260,10 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            duration: 275
          })
          .setClassToggle("#energy-per-capita-slide-1", "active")
+         .on('enter', function() {
+           // Colour the path of World
+           colourLine('World', LINE_GRAPHS[0], '#36d7b7');
+         })
          .addTo(controller)
 
          // Scene that activates 2nd slide
@@ -266,6 +272,17 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            duration: 275
          })
          .setClassToggle("#energy-per-capita-slide-2", "active")
+         .on('enter', function() {
+           // Set World back as default colour
+           colourLine('World', LINE_GRAPHS[0], '#ccc');
+
+           // Colour developed countries
+           colourLine('United States', LINE_GRAPHS[0], '#00b16a');
+           colourLine('Canada', LINE_GRAPHS[0], '#ef4836');
+           colourLine('Sweden', LINE_GRAPHS[0], '#f9690e');
+           colourLine('Japan', LINE_GRAPHS[0], '#f7ca18');
+           colourLine('United Kingdom', LINE_GRAPHS[0], '#19b5fe');
+         })
          .addTo(controller)
 
          // Scene that activates 3rd slide
@@ -274,7 +291,36 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
            duration: 275
          })
          .setClassToggle("#energy-per-capita-slide-3", "active")
+         .on('enter', function() {
+           // Set developed countries back to default colour
+           colourLine('United States', LINE_GRAPHS[0], '#ccc');
+           colourLine('Canada', LINE_GRAPHS[0], '#ccc');
+           colourLine('Sweden', LINE_GRAPHS[0], '#ccc');
+           colourLine('Japan', LINE_GRAPHS[0], '#ccc');
+           colourLine('United Kingdom', LINE_GRAPHS[0], '#ccc');
+
+           // Colour developing countries
+           colourLine('China', LINE_GRAPHS[0], '#f9690e');
+           colourLine('Brazil', LINE_GRAPHS[0], '#f7ca18');
+           colourLine('India', LINE_GRAPHS[0], '#663399');
+         })
+         .addTo(controller)
+
+         // Scene that activates 4th slide
+         new ScrollMagic.Scene({
+           triggerElement: "#energy-per-capita-slide-4",
+           duration: 275
+         })
+         .setClassToggle("#energy-per-capita-slide-4", "active")
          .on('enter', function(d) {
+           // Set developing countries back to default colour
+           colourLine('China', LINE_GRAPHS[0], '#ccc');
+           colourLine('Brazil', LINE_GRAPHS[0], '#ccc');
+           colourLine('India', LINE_GRAPHS[0], '#ccc');
+
+           // Colour Qatar line
+           colourLine('Qatar', LINE_GRAPHS[0], '#f7ca18');
+
            // Extend y-axis domain
            y.domain([0, 250000]);
 
@@ -337,14 +383,6 @@ d3.csv("data/test-energy-consumption-per-capita.csv", type, function(error, data
              }
            }, 2350)
          })
-         .addTo(controller)
-
-         // Scene that activates 4th slide
-         new ScrollMagic.Scene({
-           triggerElement: "#energy-per-capita-slide-4",
-           duration: 275
-         })
-         .setClassToggle("#energy-per-capita-slide-4", "active")
          .addTo(controller)
 
 
