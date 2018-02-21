@@ -182,6 +182,10 @@ td {
   width: 25%;
 }
 
+#levelized-energy-cost-graphic {
+  width: 80%;
+}
+
 /*
   Fuel-sankey specific CSS
 */
