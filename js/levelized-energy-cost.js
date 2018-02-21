@@ -25,15 +25,14 @@ d3.csv("data/levelized-energy-cost.csv", function(d) {
             .rangeRound([0, width]);
 
   var y = d3.scaleBand()
-            .rangeRound([0, height]);
+            .rangeRound([0, height])
+            .padding(0.15);
 
-  var color = d3.scaleOrdinal(["#EF4836", "#F62459", "#BF55EC", "#663399",
-                              "#446CB3", "#19B5FE", "#00B16A", "#36D7B7",
-                              "#F7CA18", "#F9690E", "#F64747"]);
+  var colours = {'Turquoise': '#36D7B7', 'Lynch Grey': '#6C7A89'};
 
   // Set x- and y-axis domains
   x.domain([0, d3.max(data, function(d) {
-    return Math.ceil(d["High"]/100.0) * 100;
+    return d['High'] + 31; // Need to find a better way to get 350
   })]);
 
   y.domain(data.map(function(d) {
@@ -67,5 +66,58 @@ d3.csv("data/levelized-energy-cost.csv", function(d) {
     .attr('id', 'levelized-cost-y-axis')
     .attr('class', 'line-chart-y-axis')
     .call(y_axis);
+
+  // Add bar element for each electricity-generating technology
+   var bars = g.selectAll(".electricity-generator")
+               .data(data)
+               .enter()
+               .append('g')
+               .attr('class', 'electricity-generator')
+               .attr('transform', function(d) {
+                 return "translate(0, " + y(d['Energy Technology']) + ")";
+               });
+
+  // Create the bar and set position and fill.
+  bars.append('rect')
+      .attr('class', 'bar')
+      .attr('x', function(d) {
+        return x(d['Low']);
+      })
+      .attr('width', function(d) {
+        return x(d['High']) - x(d['Low']);
+      })
+      .attr('height', y.bandwidth())
+      .attr('fill', function(d) {
+        if (d['Type'] == "Alternative Energy") {
+          return colours['Turquoise']; // Turquoise
+        } else {
+          return colours['Lynch Grey']; // Lynch Grey
+        }
+      });
+
+  // Add the left text element that shows low-end price
+  bars.append('text')
+      .attr('x', function(d) {
+        return x(d['Low']);
+      })
+      .attr('y', y.bandwidth()/2)
+      .attr('dy', '0.35em')
+      .attr('dx', '-0.35em')
+      .attr('text-anchor', 'end')
+      .text(function(d) {
+        return '$' + d['Low'];
+      });
+
+  // Add the right text element that shows the high-end price
+  bars.append('text')
+      .attr('x', function(d) {
+        return x(d['High']);
+      })
+      .attr('y', y.bandwidth()/2)
+      .attr('dy', '0.35em')
+      .attr('dx', '0.35em')
+      .text(function(d) {
+        return '$' + d['High'];
+      });
 
 })

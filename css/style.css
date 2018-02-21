@@ -186,6 +186,12 @@ td {
   width: 80%;
 }
 
+.electricity-generator text {
+  font-size: 10px;
+  font-weight: 400;
+  font-family: sans-serif;
+}
+
 /*
   Fuel-sankey specific CSS
 */
