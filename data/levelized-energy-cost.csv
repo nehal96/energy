@@ -1,0 +1,19 @@
+Energy Technology,Type,Low,High
+Solar PV: Rooftop Residential,Alternative Energy,187,319
+Solar PV: Rooftop C&I,Alternative Energy,85,194
+Solar PV: Community,Alternative Energy,76,150
+Solar PV: Crystalline Utility Scale,Alternative Energy,46,53
+Solar PV: Thin Film Utility Scale,Alternative Energy,43,48
+Solar Thermal Tower with Storage,Alternative Energy,98,181
+Fuel Cell,Alternative Energy,106,167
+Microturbine,Alternative Energy,59,89
+Geothermal,Alternative Energy,77,117
+Biomass Direct,Alternative Energy,55,114
+Wind,Alternative Energy,30,60
+Diesel Reciprocating Engine,Conventional Energy,197,281
+Natural Gas Reciprocating Engine,Conventional Energy,68,106
+Gas Peaking,Conventional Energy,156,210
+IGCC,Conventional Energy,96,231
+Nuclear,Conventional Energy,112,183
+Coal,Conventional Energy,60,143
+Gas Combined Cycle,Conventional Energy,42,78
