@@ -101,12 +101,46 @@ d3.csv('data/renewable-energy-investment.csv', function(d) {
     .enter()
     .append('rect')
      .attr('x', function(d) { return x1(d.key); })
-     .attr('y', function(d) { return y(d.value); })
+     //.attr('y', function(d) { return y(d.value); })
+     .attr('y', function(d) { return height; })
      .attr('width', x1.bandwidth())
      .attr('height', function(d) {
-       return height - y(d.value);
+       //return height - y(d.value);
+       return 0;
      })
-     .attr('fill', function(d) { return z(d.key); });
+     .attr('fill', function(d) { return z(d.key); })
+     .transition()
+      .duration(1000)
+      .delay(500)
+      .attr('y', function(d) {
+        return y(d.value);
+      })
+      .attr('height', function(d) {
+        return height - y(d.value);
+      })
+
+  var legend = g.append('g')
+                 .attr('class', 'legend')
+                 .attr('transform', 'translate(0, 22)')
+                 .selectAll('g')
+                  .data(keys.slice().reverse())
+                  .enter()
+                 .append('g')
+                  .attr('transform', function(d, i) {
+                    return "translate(0," + i * 28 + ")";
+                  });
+
+  legend.append('rect')
+         .attr('x', width - 25)
+         .attr('width', 25)
+         .attr('height', 25)
+         .attr('fill', z);
+
+  legend.append('text')
+         .attr('x', width - 30)
+         .attr('y', 12.5)
+         .attr('dy', '0.35em')
+         .text(function(d) { return d; })
 
 })
 

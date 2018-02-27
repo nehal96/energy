@@ -190,6 +190,13 @@ td {
   width: 80%;
 }
 
+.legend {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: sans-serif;
+  text-anchor: end;
+}
+
 .electricity-generator text {
   font-size: 10px;
   font-weight: 400;
