@@ -8,7 +8,7 @@ d3.csv('data/renewable-energy-investment.csv', function(d) {
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 50,
+  var margin = 70,
       width = 950 - margin,
       height = 450 - margin;
 
@@ -73,7 +73,9 @@ d3.csv('data/renewable-energy-investment.csv', function(d) {
     .attr('transform', 'translate(0,' + height + ')')
     .attr('id', 'renewable-energy-investment-x-axis')
     .attr('class', 'line-chart-x-axis')
-    .call(x_axis);
+    .call(x_axis)
+   .selectAll('.tick text')
+    .call(wrap, x0.bandwidth());
 
   // Add y-axis to plot
   g.append('g')
@@ -106,5 +108,30 @@ d3.csv('data/renewable-energy-investment.csv', function(d) {
      })
      .attr('fill', function(d) { return z(d.key); });
 
-
 })
+
+// https://bl.ocks.org/ericsoco/647db6ebadd4f4756cae (v3 didn't work)
+// https://gist.github.com/guypursey/f47d8cd11a8ff24854305505dbbd8c07
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+    while (word = words.pop()) {
+      line.push(word)
+      tspan.text(line.join(" "))
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop()
+        tspan.text(line.join(" "))
+        line = [word]
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+      }
+    }
+  })
+}
