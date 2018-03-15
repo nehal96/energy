@@ -10,7 +10,7 @@ d3.csv("data/levelized-energy-cost.csv", function(d) {
   // Setting margin, width, height of plot
   var margin = 210,
       width = 950 - margin,
-      height = 675 - margin;
+      height = 635 - margin;
 
   // Creating a responsive svg element for the plot
   var svg = d3.select('#levelized-energy-cost-chart')

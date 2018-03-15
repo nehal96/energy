@@ -43,6 +43,11 @@ td {
   width: 66.666667%;
 }
 
+.centered-graphic-container {
+  width: 80%;
+  max-width: 1300px;
+}
+
 .graphic-prose-container {
   width: 33.333333%;
 }
@@ -174,22 +179,6 @@ td {
   width: 25%;
 }
 
-#percent-renewable-graphic {
-  width: 75%;
-}
-
-#percent-renewable-prose {
-  width: 25%;
-}
-
-#levelized-energy-cost-graphic {
-  width: 80%;
-}
-
-#renewable-energy-investment-graphic {
-  width: 80%;
-}
-
 .legend {
   font-size: 12px;
   font-weight: 400;
@@ -292,7 +281,7 @@ td {
   .line-scrolly {
     margin-left: auto;
     margin-right: auto;
-    max-width: 1280px;
+    max-width: 1300px;
   }
 
   #fuel-sankey {
@@ -301,7 +290,7 @@ td {
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 4rem;
-    max-width: 1280px; /* Otherwise it gets way too wide on large desktops*/
+    max-width: 1300px; /* Otherwise it gets way too wide on large desktops*/
   }
 
   #fuel-flow-info-container {

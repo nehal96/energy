@@ -10,7 +10,7 @@ d3.csv('data/renewable-energy-investment.csv', function(d) {
   // Setting margin, width, height of plot
   var margin = 70,
       width = 950 - margin,
-      height = 450 - margin;
+      height = 425 - margin;
 
   // Create responsive svg element for plot
   var svg = d3.select('#renewable-energy-investment-chart')
