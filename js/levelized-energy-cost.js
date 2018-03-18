@@ -8,17 +8,18 @@ d3.csv("data/levelized-energy-cost.csv", function(d) {
   if (error) throw error;
 
   // Setting margin, width, height of plot
-  var margin = 210,
-      width = 950 - margin,
-      height = 635 - margin;
+  var margin_left = 210,
+      margin_bottom = 50,
+      width = 950 - margin_left,
+      height = 450 - margin_bottom;
 
   // Creating a responsive svg element for the plot
   var svg = d3.select('#levelized-energy-cost-chart')
               .append('svg')
-              .attr('viewBox', '0 0 ' + (width + margin) + ' ' + (height + margin));
+              .attr('viewBox', '0 0 ' + (width + margin_left) + ' ' + (height + margin_bottom));
 
   var g = svg.append('g')
-             .attr('transform', 'translate(' + (margin - 20) + ',' + 20 + ')');
+             .attr('transform', 'translate(' + (margin_left - 20) + ',' + 20 + ')');
 
   // Set x-, y-, and color axes
   var x = d3.scaleLinear()
@@ -56,7 +57,7 @@ d3.csv("data/levelized-energy-cost.csv", function(d) {
 
   // Add x-axis to plot
   g.append('g')
-    .attr('transform', 'translate(0,' + height + ')')
+    .attr('transform', 'translate(0,' + (height) + ')')
     .attr('id', 'levelized-cost-x-axis')
     .attr('class', 'line-chart-x-axis')
     .call(x_axis);
