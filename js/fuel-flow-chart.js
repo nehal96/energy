@@ -178,11 +178,11 @@ d3.json('data/fuel-flow-chart.json', function(error, energy) {
         operation is probably exemplified by how confusing this graph looks \
         right now, but it will all be clear in a second.",
 
-        "Petroleum, light up! Petroleum is the most popular fuel in the US. It \
-        is used primarly for transportation, which uses nearly 72% of all \
+        "Petroleum is the most popular fuel in the US. It's \
+        used primarly for transportation, which uses nearly 72% of all \
         petroleum in the country. The rest is mostly gobbled up mostly by \
         the industrial sector, with residential, commercial, and electricity \
-        generation taking the crumbs.",
+        generation taking the last few drops.",
 
         "Natural Gas and Coal are next in the pecking order, making up 29.3% \
         and 14.7% of total fuel energy, respectively. Most of coal (little \
