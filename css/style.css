@@ -75,6 +75,10 @@ td {
   flex-direction: column;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .graphic-title {
   font-weight: 600;
   margin: 0;
@@ -275,6 +279,25 @@ td {
 #fuel-sector-breakdown-stats {
   width: 50%;
   padding-left: 0.25rem;
+}
+
+#percent-renewable-table-container {
+  padding-top: 1.5rem;
+}
+
+#percent-renewable-table thead {
+  border-bottom: 1px solid black;
+}
+
+#percent-renewable-table th {
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 0.25rem;
+}
+
+#percent-renewable td {
+  font-size: 15px;
+  border-bottom: 1px solid #ccc;
 }
 
 @media only screen and (min-width: 1380px) {
