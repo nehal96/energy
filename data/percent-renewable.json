@@ -1,0 +1,14 @@
+[
+  {"name": "Afghanistan", "region": "South Asia", "percent": 85.32},
+  {"name": "Albania", "region": "", "percent": 100},
+  {"name": "Algeria", "region": "", "percent": 0.40},
+  {"name": "American Samoa", "region": "", "percent": 0.70},
+  {"name": "Andorra", "region": "", "percent": 89.43},
+  {"name": "Angola", "region": "", "percent": 53.18},
+  {"name": "Antigua and Barbuda", "region": "", "percent": 0},
+  {"name": "Argentina", "region": "", "percent": 31.54},
+  {"name": "Armenia", "region": "", "percent": 25.75},
+  {"name": "Aruba", "region": "", "percent": 15.10},
+  {"name": "Australia", "region": "", "percent": 14.91},
+  {"name": "Azerbaijan", "region": "", "percent": 5.63}
+]
