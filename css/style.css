@@ -281,6 +281,10 @@ td {
   padding-left: 0.25rem;
 }
 
+#percent-renewable-graphic {
+  width: 70%;
+}
+
 #percent-renewable-table-container {
   padding-top: 1.5rem;
 }
@@ -298,6 +302,24 @@ td {
 #percent-renewable td {
   font-size: 15px;
   border-bottom: 1px solid #ccc;
+}
+
+.rank {
+  width: 10%;
+}
+
+.country-name {
+  width: 40%;
+}
+
+.country-percent-renewable {
+  width: 50%;
+  padding: 0rem;
+}
+
+.percent-bar {
+  height: 1.25rem;
+  background-color: #6BB9F0; /* Malibu blue (Maliblue?)*/
 }
 
 @media only screen and (min-width: 1380px) {
