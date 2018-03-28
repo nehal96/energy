@@ -10,8 +10,10 @@ d3.json('data/percent-renewable.json', function(error, data) {
                    .domain([0, 100])
                    .range([1, barWidth]);
 
-  for (i = 0; i < data.length; i++) {
-    var country_info = data[i],
+  var ordered_data = orderData(data);
+
+  for (i = 0; i < ordered_data.length; i++) {
+    var country_info = ordered_data[i],
         country_name = country_info.name,
         region = country_info.region,
         percent_renewable = country_info.percent;
@@ -53,15 +55,13 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
   };
 
+  function orderData(data) {
+    for (i = 0; i < data.length; i++) {
+      data.sort(function(x, y) {
+        return d3.descending(x.percent, y.percent);
+      })
+    }
 
-
-  //d3.selectAll('.country-percent-renewable')
-    //.append('div')
-    //.classed('percent-bar', true);
-
-
-  //var p = d3.values(data);
-  //console.log(p);
-
-  //console.log(maxPercent);
+    return data;
+  }
 })
