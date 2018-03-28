@@ -322,6 +322,12 @@ td {
   background-color: #6BB9F0; /* Malibu blue (Maliblue?)*/
 }
 
+.percent-renewable-label {
+  font-size: 90%;
+  font-weight: 500;
+  padding-left: 0.4rem;
+}
+
 @media only screen and (min-width: 1380px) {
   .line-scrolly {
     margin-left: auto;
