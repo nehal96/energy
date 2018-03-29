@@ -35,10 +35,17 @@ d3.json('data/percent-renewable.json', function(error, data) {
                  .classed('percent-bar', true)
                  .style('width', barScale(percent_renewable) + 'px')
 
-    if (percent_renewable <= 1) {
-      bar.append('text')
-         .attr('class', 'percent-renewable-label')
-          .text(percent_renewable.toFixed(1) + '%');
+    // There is probably a much better way to do this but it's late so I'm going to commit
+    if (percent_renewable <= 1 && percent_renewable > 0) {
+      if (percent_renewable < 0.05) {
+        bar.append('text')
+           .attr('class', 'percent-renewable-label')
+            .text(percent_renewable + '%');
+      } else {
+        bar.append('text')
+           .attr('class', 'percent-renewable-label')
+            .text(percent_renewable.toFixed(1) + '%');
+      }
     } else {
       if (Math.floor(percent_renewable) <= 4) {
         bar.append('text')
