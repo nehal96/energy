@@ -329,6 +329,18 @@ td {
   padding-bottom: 0.25rem;
 }
 
+#rank-column {
+  width: 10%;
+}
+
+#country-column {
+  width: 40%;
+}
+
+#percent-renewable-column {
+  width: 50%;
+}
+
 #percent-renewable td {
   font-size: 15px;
   border-bottom: 1px solid #ccc;
