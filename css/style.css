@@ -304,9 +304,15 @@ td {
   justify-content: center;
   padding: 0.2rem 0.5rem;
   text-align: center;
-  border: 1px solid #bbb;
+  border: 1px solid #ccc;
   align-items: center;
   cursor: pointer;
+}
+
+.active-button {
+  background-color: rgb(38, 166, 91, 0.4);
+  border: 1px solid #666;
+  font-weight: 700;
 }
 
 .first-button-curve {

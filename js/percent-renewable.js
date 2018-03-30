@@ -11,9 +11,19 @@ d3.json('data/percent-renewable.json', function(error, data) {
   region_controls.append('a')
                  .classed('region-button', true)
                  .classed('first-button-curve', true)   // Rounded rectangle
+                 .classed('active-button', true)
                  .style('width', 100/(REGIONS.length + 1) + '%') // Divide widths for each region equally
                  .text('All Regions')
                  .on('click', function(o) {
+                   // Check if element is not the active button
+                   if (!d3.select(this).classed('active-button')) {
+                     // If not, remove active-button class from all region buttons first
+                     d3.selectAll('.region-button').classed('active-button', false);
+
+                     // Add active-button class to clicked element
+                     d3.select(this).classed('active-button', true);
+                   }
+                   
                    var region = d3.select(this).text();
                    // Call sorting function
                    sortByRegion(ordered_data, region);
@@ -26,6 +36,15 @@ d3.json('data/percent-renewable.json', function(error, data) {
                                        .style('width', 100/(REGIONS.length + 1) + '%')
                                        .text(REGIONS[i])
                                        .on('click', function(o) {
+                                         // Check if element is not the active button
+                                         if (!d3.select(this).classed('active-button')) {
+                                           // If not, remove active-button class from all region buttons first
+                                           d3.selectAll('.region-button').classed('active-button', false);
+
+                                           // Add active-button class to clicked element
+                                           d3.select(this).classed('active-button', true);
+                                         }
+
                                          var region = d3.select(this).text();
                                          // Call sorting function
                                          sortByRegion(ordered_data, region);
