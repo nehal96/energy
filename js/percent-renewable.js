@@ -161,4 +161,34 @@ d3.json('data/percent-renewable.json', function(error, data) {
       }
     }
   }
+
+  // Input element
+  const input = document.getElementById('percent-renewable-search')
+
+  // When letters are typed into the search field, run searchTable function.
+  input.onkeyup = function() {searchTable()};
+
+  // Very simple search algo (https://www.w3schools.com/howto/howto_js_filter_table.asp).
+  // (It looks for the letter typed anywhere in the string - for example, if you type 'b',
+  // it will show all countries that have a b in it anywhere - which looks weird sometimes.
+  // Might need to add to it later).
+  function searchTable() {
+    var filter = input.value.toLowerCase(),  // letters typed in search field
+        table = document.getElementById('percent-renewable-table')
+        tr = table.getElementsByTagName('tr');
+
+    for (i = 1; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[1];
+
+      if (td) {
+        if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+
+    }
+  }
+
 })
