@@ -1,54 +1,1067 @@
 [
-  {"name": "Afghanistan", "region": "South Asia", "percent": 85.32},
-  {"name": "Albania", "region": "Europe & Central Asia", "percent": 100},
-  {"name": "Algeria", "region": "Middle East & North Africa", "percent": 0.40},
-  {"name": "American Samoa", "region": "East Asia and Pacific", "percent": 0.70},
-  {"name": "Andorra", "region": "Europe & Central Asia", "percent": 89.43},
-  {"name": "Angola", "region": "Sub-Saharan Africa", "percent": 53.18},
-  {"name": "Antigua and Barbuda", "region": "Latin America & Caribbean", "percent": 0},
-  {"name": "Argentina", "region": "Latin America & Caribbean", "percent": 31.54},
-  {"name": "Armenia", "region": "Europe & Central Asia", "percent": 25.75},
-  {"name": "Aruba", "region": "Latin America & Caribbean", "percent": 15.10},
-  {"name": "Australia", "region": "East Asia & Pacific", "percent": 14.91},
-  {"name": "Austria", "region": "Europe & Central Asia", "percent": 81.13},
-  {"name": "Azerbaijan", "region": "Europe & Central Asia", "percent": 5.63},
-  {"name": "The Bahamas", "region": "Latin America & Caribbean", "percent": 0},
-  {"name": "Bahrain", "region": "Middle East & North Africa", "percent": 0},
-  {"name": "Bangladesh", "region": "South Asia", "percent": 1.32},
-  {"name": "Barbados", "region": "Latin America & Caribbean", "percent": 0},
-  {"name": "Belarus", "region": "Europe & Central Asia", "percent": 0.72},
-  {"name": "Belgium", "region": "Europe & Central Asia", "percent": 17.03},
-  {"name": "Belize", "region": "Latin America & Caribbean", "percent": 50.71},
-  {"name": "Benin", "region": "Sub-Saharan Africa", "percent": 0.54},
-  {"name": "Bermuda", "region": "North America", "percent": 0},
-  {"name": "Bhutan", "region": "South Asia", "percent": 99.99},
-  {"name": "Bolivia", "region": "Latin America & Caribbean", "percent": 28.01},
-  {"name": "Bosnia and Herzegovina", "region": "Europe & Central Asia", "percent": 36.73},
-  {"name": "Botswana", "region": "Sub-Saharan Africa", "percent": 0.04},
-  {"name": "Brazil", "region": "Latin America & Caribbean", "percent": 73.08},
-  {"name": "British Virgin Islands", "region": "Latin America & Caribbean", "percent": 0},
-  {"name": "Brunei Darussalam", "region": "East Asia & Pacific", "percent": 0.04},
-  {"name": "Bulgaria", "region": "Europe & Central Asia", "percent": 15.74},
-  {"name": "Burkina Faso", "region": "Sub-Saharan Africa", "percent": 10.40},
-  {"name": "Burundi", "region": "Sub-Saharan Africa", "percent": 80.72},
-  {"name": "Cabo Verde", "region": "Sub-Saharan Africa", "percent": 17.29},
-  {"name": "Cambodia", "region": "East Asia & Pacific", "percent": 61.10},
-  {"name": "Cameroon", "region": "Sub-Saharan Africa", "percent": 74.26},
-  {"name": "Canada", "region": "North America", "percent": 62.80},
-  {"name": "Cayman Islands", "region": "Latin America & Caribbean", "percent": 0},
-  {"name": "Central African Republic", "region": "Sub-Saharan Africa", "percent": 85.79},
-  {"name": "Chad", "region": "Sub-Saharan Africa", "percent": 0},
-  {"name": "Chile", "region": "Latin America & Caribbean", "percent": 41.18},
-  {"name": "China", "region": "East Asia & Pacific", "percent": 22.61},
-  {"name": "Colombia", "region": "Latin America & Caribbean", "percent": 74.25},
-  {"name": "Comoros", "region": "Sub-Saharan Africa", "percent": 0},
-  {"name": "Democratic Republic of Congo", "region": "Sub-Saharan Africa", "percent": 99.88},
-  {"name": "Republic of Congo", "region": "Sub-Saharan Africa", "percent": 54.71},
-  {"name": "Costa Rica", "region": "Latin America & Caribbean", "percent": 89.79},
-  {"name": "Cote d'Ivoire", "region": "Sub-Saharan Africa", "percent": 23.93},
-  {"name": "Croatia", "region": "Europe & Central Asia", "percent": 73.96},
-  {"name": "Cuba", "region": "Latin America & Caribbean", "percent": 4.02},
-  {"name": "Curacao", "region": "Latin America & Caribbean", "percent": 3.59},
-  {"name": "Cyprus", "region": "Europe & Central Asia", "percent": 7.29},
-  {"name": "Czech Republic", "region": "Europe & Central Asia", "percent": 10.79}
+  {
+    "name": "Afghanistan",
+    "region": "South Asia",
+    "percent": 85.32
+  },
+  {
+    "name": "Albania",
+    "region": "Europe & Central Asia",
+    "percent": 100
+  },
+  {
+    "name": "Algeria",
+    "region": "Middle East & North Africa",
+    "percent": 0.4
+  },
+  {
+    "name": "American Samoa",
+    "region": "East Asia & Pacific",
+    "percent": 0.7
+  },
+  {
+    "name": "Andorra",
+    "region": "Europe & Central Asia",
+    "percent": 89.43
+  },
+  {
+    "name": "Angola",
+    "region": "Sub-Saharan Africa",
+    "percent": 53.18
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Argentina",
+    "region": "Latin America & Caribbean",
+    "percent": 31.54
+  },
+  {
+    "name": "Armenia",
+    "region": "Europe & Central Asia",
+    "percent": 25.75
+  },
+  {
+    "name": "Aruba",
+    "region": "Latin America & Caribbean",
+    "percent": 15.1
+  },
+  {
+    "name": "Australia",
+    "region": "East Asia & Pacific",
+    "percent": 14.91
+  },
+  {
+    "name": "Austria",
+    "region": "Europe & Central Asia",
+    "percent": 81.13
+  },
+  {
+    "name": "Azerbaijan",
+    "region": "Europe & Central Asia",
+    "percent": 5.63
+  },
+  {
+    "name": "Bahamas, The",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Bahrain",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Bangladesh",
+    "region": "South Asia",
+    "percent": 1.32
+  },
+  {
+    "name": "Barbados",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Belarus",
+    "region": "Europe & Central Asia",
+    "percent": 0.72
+  },
+  {
+    "name": "Belgium",
+    "region": "Europe & Central Asia",
+    "percent": 17.03
+  },
+  {
+    "name": "Belize",
+    "region": "Latin America & Caribbean",
+    "percent": 50.71
+  },
+  {
+    "name": "Benin",
+    "region": "Sub-Saharan Africa",
+    "percent": 0.54
+  },
+  {
+    "name": "Bermuda",
+    "region": "North America",
+    "percent": 0
+  },
+  {
+    "name": "Bhutan",
+    "region": "South Asia",
+    "percent": 99.99
+  },
+  {
+    "name": "Bolivia",
+    "region": "Latin America & Caribbean",
+    "percent": 28.01
+  },
+  {
+    "name": "Bosnia and Herzegovina",
+    "region": "Europe & Central Asia",
+    "percent": 36.73
+  },
+  {
+    "name": "Botswana",
+    "region": "Sub-Saharan Africa",
+    "percent": 0.04
+  },
+  {
+    "name": "Brazil",
+    "region": "Latin America & Caribbean",
+    "percent": 73.08
+  },
+  {
+    "name": "British Virgin Islands",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Brunei Darussalam",
+    "region": "East Asia & Pacific",
+    "percent": 0.04
+  },
+  {
+    "name": "Bulgaria",
+    "region": "Europe & Central Asia",
+    "percent": 15.74
+  },
+  {
+    "name": "Burkina Faso",
+    "region": "Sub-Saharan Africa",
+    "percent": 10.4
+  },
+  {
+    "name": "Burundi",
+    "region": "Sub-Saharan Africa",
+    "percent": 80.72
+  },
+  {
+    "name": "Cabo Verde",
+    "region": "Sub-Saharan Africa",
+    "percent": 17.29
+  },
+  {
+    "name": "Cambodia",
+    "region": "East Asia & Pacific",
+    "percent": 61.1
+  },
+  {
+    "name": "Cameroon",
+    "region": "Sub-Saharan Africa",
+    "percent": 74.26
+  },
+  {
+    "name": "Canada",
+    "region": "North America",
+    "percent": 62.8
+  },
+  {
+    "name": "Cayman Islands",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Central African Republic",
+    "region": "Sub-Saharan Africa",
+    "percent": 85.79
+  },
+  {
+    "name": "Chad",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Chile",
+    "region": "Latin America & Caribbean",
+    "percent": 41.18
+  },
+  {
+    "name": "China",
+    "region": "East Asia & Pacific",
+    "percent": 22.61
+  },
+  {
+    "name": "Colombia",
+    "region": "Latin America & Caribbean",
+    "percent": 74.25
+  },
+  {
+    "name": "Comoros",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Congo, Dem. Rep.",
+    "region": "Sub-Saharan Africa",
+    "percent": 99.88
+  },
+  {
+    "name": "Congo, Rep.",
+    "region": "Sub-Saharan Africa",
+    "percent": 54.71
+  },
+  {
+    "name": "Costa Rica",
+    "region": "Latin America & Caribbean",
+    "percent": 89.79
+  },
+  {
+    "name": "Cote d'Ivoire",
+    "region": "Sub-Saharan Africa",
+    "percent": 23.93
+  },
+  {
+    "name": "Croatia",
+    "region": "Europe & Central Asia",
+    "percent": 73.96
+  },
+  {
+    "name": "Cuba",
+    "region": "Latin America & Caribbean",
+    "percent": 4.02
+  },
+  {
+    "name": "Curaçao",
+    "region": "Latin America & Caribbean",
+    "percent": 3.59
+  },
+  {
+    "name": "Cyprus",
+    "region": "Europe & Central Asia",
+    "percent": 7.29
+  },
+  {
+    "name": "Czech Republic",
+    "region": "Europe & Central Asia",
+    "percent": 10.79
+  },
+  {
+    "name": "Denmark",
+    "region": "Europe & Central Asia",
+    "percent": 55.87
+  },
+  {
+    "name": "Djibouti",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Dominica",
+    "region": "Latin America & Caribbean",
+    "percent": 29.91
+  },
+  {
+    "name": "Dominican Republic",
+    "region": "Latin America & Caribbean",
+    "percent": 13.26
+  },
+  {
+    "name": "Ecuador",
+    "region": "Latin America & Caribbean",
+    "percent": 49.18
+  },
+  {
+    "name": "Egypt, Arab Rep.",
+    "region": "Middle East & North Africa",
+    "percent": 9.05
+  },
+  {
+    "name": "El Salvador",
+    "region": "Latin America & Caribbean",
+    "percent": 59.7
+  },
+  {
+    "name": "Equatorial Guinea",
+    "region": "Sub-Saharan Africa",
+    "percent": 44.87
+  },
+  {
+    "name": "Eritrea",
+    "region": "Sub-Saharan Africa",
+    "percent": 0.54
+  },
+  {
+    "name": "Estonia",
+    "region": "Europe & Central Asia",
+    "percent": 11.16
+  },
+  {
+    "name": "Ethiopia",
+    "region": "Sub-Saharan Africa",
+    "percent": 99.91
+  },
+  {
+    "name": "Faroe Islands",
+    "region": "Europe & Central Asia",
+    "percent": 50.81
+  },
+  {
+    "name": "Fiji",
+    "region": "East Asia & Pacific",
+    "percent": 47.17
+  },
+  {
+    "name": "Finland",
+    "region": "Europe & Central Asia",
+    "percent": 38.58
+  },
+  {
+    "name": "France",
+    "region": "Europe & Central Asia",
+    "percent": 16.41
+  },
+  {
+    "name": "French Polynesia",
+    "region": "East Asia & Pacific",
+    "percent": 31.72
+  },
+  {
+    "name": "Gabon",
+    "region": "Sub-Saharan Africa",
+    "percent": 34.09
+  },
+  {
+    "name": "Gambia, The",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Georgia",
+    "region": "Europe & Central Asia",
+    "percent": 80.37
+  },
+  {
+    "name": "Germany",
+    "region": "Europe & Central Asia",
+    "percent": 26.13
+  },
+  {
+    "name": "Ghana",
+    "region": "Sub-Saharan Africa",
+    "percent": 64.73
+  },
+  {
+    "name": "Gibraltar",
+    "region": "Europe & Central Asia",
+    "percent": 0
+  },
+  {
+    "name": "Greece",
+    "region": "Europe & Central Asia",
+    "percent": 24.19
+  },
+  {
+    "name": "Greenland",
+    "region": "Europe & Central Asia",
+    "percent": 68.35
+  },
+  {
+    "name": "Grenada",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Guam",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Guatemala",
+    "region": "Latin America & Caribbean",
+    "percent": 68.61
+  },
+  {
+    "name": "Guinea",
+    "region": "Sub-Saharan Africa",
+    "percent": 48.28
+  },
+  {
+    "name": "Guinea-Bissau",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Guyana",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Haiti",
+    "region": "Latin America & Caribbean",
+    "percent": 8.71
+  },
+  {
+    "name": "Honduras",
+    "region": "Latin America & Caribbean",
+    "percent": 43.83
+  },
+  {
+    "name": "Hong Kong SAR, China",
+    "region": "East Asia & Pacific",
+    "percent": 0.25
+  },
+  {
+    "name": "Hungary",
+    "region": "Europe & Central Asia",
+    "percent": 10.68
+  },
+  {
+    "name": "Iceland",
+    "region": "Europe & Central Asia",
+    "percent": 99.98
+  },
+  {
+    "name": "India",
+    "region": "South Asia",
+    "percent": 15.41
+  },
+  {
+    "name": "Indonesia",
+    "region": "East Asia & Pacific",
+    "percent": 11.44
+  },
+  {
+    "name": "Iran, Islamic Rep.",
+    "region": "Middle East & North Africa",
+    "percent": 5.2
+  },
+  {
+    "name": "Iraq",
+    "region": "Middle East & North Africa",
+    "percent": 4.33
+  },
+  {
+    "name": "Ireland",
+    "region": "Europe & Central Asia",
+    "percent": 24.52
+  },
+  {
+    "name": "Isle of Man",
+    "region": "Europe & Central Asia",
+    "percent": 0.79
+  },
+  {
+    "name": "Israel",
+    "region": "Middle East & North Africa",
+    "percent": 1.51
+  },
+  {
+    "name": "Italy",
+    "region": "Europe & Central Asia",
+    "percent": 43.39
+  },
+  {
+    "name": "Jamaica",
+    "region": "Latin America & Caribbean",
+    "percent": 9.77
+  },
+  {
+    "name": "Japan",
+    "region": "East Asia & Pacific",
+    "percent": 14.03
+  },
+  {
+    "name": "Jordan",
+    "region": "Middle East & North Africa",
+    "percent": 0.36
+  },
+  {
+    "name": "Kazakhstan",
+    "region": "Europe & Central Asia",
+    "percent": 7.88
+  },
+  {
+    "name": "Kenya",
+    "region": "Sub-Saharan Africa",
+    "percent": 81.49
+  },
+  {
+    "name": "Kiribati",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Korea, Dem. People's Rep.",
+    "region": "East Asia & Pacific",
+    "percent": 72.59
+  },
+  {
+    "name": "Korea, Rep.",
+    "region": "East Asia & Pacific",
+    "percent": 1.57
+  },
+  {
+    "name": "Kosovo",
+    "region": "Europe & Central Asia",
+    "percent": 2.78
+  },
+  {
+    "name": "Kuwait",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Kyrgyz Republic",
+    "region": "Europe & Central Asia",
+    "percent": 91.26
+  },
+  {
+    "name": "Lao PDR",
+    "region": "East Asia & Pacific",
+    "percent": 93.15
+  },
+  {
+    "name": "Latvia",
+    "region": "Europe & Central Asia",
+    "percent": 54.54
+  },
+  {
+    "name": "Lebanon",
+    "region": "Middle East & North Africa",
+    "percent": 1.08
+  },
+  {
+    "name": "Lesotho",
+    "region": "Sub-Saharan Africa",
+    "percent": 100
+  },
+  {
+    "name": "Liberia",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Libya",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Liechtenstein",
+    "region": "Europe & Central Asia",
+    "percent": 93.81
+  },
+  {
+    "name": "Lithuania",
+    "region": "Europe & Central Asia",
+    "percent": 40.75
+  },
+  {
+    "name": "Luxembourg",
+    "region": "Europe & Central Asia",
+    "percent": 20.93
+  },
+  {
+    "name": "Macao SAR, China",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Macedonia, FYR",
+    "region": "Europe & Central Asia",
+    "percent": 24.04
+  },
+  {
+    "name": "Madagascar",
+    "region": "Sub-Saharan Africa",
+    "percent": 53.27
+  },
+  {
+    "name": "Malawi",
+    "region": "Sub-Saharan Africa",
+    "percent": 91.37
+  },
+  {
+    "name": "Malaysia",
+    "region": "East Asia & Pacific",
+    "percent": 9.71
+  },
+  {
+    "name": "Maldives",
+    "region": "South Asia",
+    "percent": 0.61
+  },
+  {
+    "name": "Mali",
+    "region": "Sub-Saharan Africa",
+    "percent": 42.87
+  },
+  {
+    "name": "Malta",
+    "region": "Middle East & North Africa",
+    "percent": 3.34
+  },
+  {
+    "name": "Marshall Islands",
+    "region": "East Asia & Pacific",
+    "percent": 0.23
+  },
+  {
+    "name": "Mauritania",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "Mauritius",
+    "region": "Sub-Saharan Africa",
+    "percent": 20.31
+  },
+  {
+    "name": "Mexico",
+    "region": "Latin America & Caribbean",
+    "percent": 17.54
+  },
+  {
+    "name": "Micronesia, Fed. Sts.",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Moldova",
+    "region": "Europe & Central Asia",
+    "percent": 6.2
+  },
+  {
+    "name": "Mongolia",
+    "region": "East Asia & Pacific",
+    "percent": 3.16
+  },
+  {
+    "name": "Montenegro",
+    "region": "Europe & Central Asia",
+    "percent": 55.2
+  },
+  {
+    "name": "Morocco",
+    "region": "Middle East & North Africa",
+    "percent": 12.39
+  },
+  {
+    "name": "Mozambique",
+    "region": "Sub-Saharan Africa",
+    "percent": 91.16
+  },
+  {
+    "name": "Myanmar",
+    "region": "East Asia & Pacific",
+    "percent": 62.36
+  },
+  {
+    "name": "Namibia",
+    "region": "Sub-Saharan Africa",
+    "percent": 99.13
+  },
+  {
+    "name": "Nauru",
+    "region": "East Asia & Pacific",
+    "percent": 0.22
+  },
+  {
+    "name": "Nepal",
+    "region": "South Asia",
+    "percent": 99.97
+  },
+  {
+    "name": "Netherlands",
+    "region": "Europe & Central Asia",
+    "percent": 11.32
+  },
+  {
+    "name": "New Caledonia",
+    "region": "East Asia & Pacific",
+    "percent": 13.35
+  },
+  {
+    "name": "New Zealand",
+    "region": "East Asia & Pacific",
+    "percent": 79.12
+  },
+  {
+    "name": "Nicaragua",
+    "region": "Latin America & Caribbean",
+    "percent": 53.89
+  },
+  {
+    "name": "Niger",
+    "region": "Sub-Saharan Africa",
+    "percent": 0.58
+  },
+  {
+    "name": "Nigeria",
+    "region": "Sub-Saharan Africa",
+    "percent": 17.59
+  },
+  {
+    "name": "Northern Mariana Islands",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Norway",
+    "region": "Europe & Central Asia",
+    "percent": 97.69
+  },
+  {
+    "name": "Oman",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Pakistan",
+    "region": "South Asia",
+    "percent": 30.22
+  },
+  {
+    "name": "Palau",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Panama",
+    "region": "Latin America & Caribbean",
+    "percent": 55.8
+  },
+  {
+    "name": "Papua New Guinea",
+    "region": "East Asia & Pacific",
+    "percent": 44.11
+  },
+  {
+    "name": "Paraguay",
+    "region": "Latin America & Caribbean",
+    "percent": 99.99
+  },
+  {
+    "name": "Peru",
+    "region": "Latin America & Caribbean",
+    "percent": 52.19
+  },
+  {
+    "name": "Philippines",
+    "region": "East Asia & Pacific",
+    "percent": 25.6
+  },
+  {
+    "name": "Poland",
+    "region": "Europe & Central Asia",
+    "percent": 12.52
+  },
+  {
+    "name": "Portugal",
+    "region": "Europe & Central Asia",
+    "percent": 60.74
+  },
+  {
+    "name": "Puerto Rico",
+    "region": "Latin America & Caribbean",
+    "percent": 1.63
+  },
+  {
+    "name": "Qatar",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Romania",
+    "region": "Europe & Central Asia",
+    "percent": 41.61
+  },
+  {
+    "name": "Russian Federation",
+    "region": "Europe & Central Asia",
+    "percent": 16.57
+  },
+  {
+    "name": "Rwanda",
+    "region": "Sub-Saharan Africa",
+    "percent": 39.03
+  },
+  {
+    "name": "Samoa",
+    "region": "East Asia & Pacific",
+    "percent": 29.52
+  },
+  {
+    "name": "Sao Tome and Principe",
+    "region": "Sub-Saharan Africa",
+    "percent": 10.45
+  },
+  {
+    "name": "Saudi Arabia",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Senegal",
+    "region": "Sub-Saharan Africa",
+    "percent": 10.43
+  },
+  {
+    "name": "Serbia",
+    "region": "Europe & Central Asia",
+    "percent": 32.98
+  },
+  {
+    "name": "Seychelles",
+    "region": "Sub-Saharan Africa",
+    "percent": 2.15
+  },
+  {
+    "name": "Sierra Leone",
+    "region": "Sub-Saharan Africa",
+    "percent": 65.36
+  },
+  {
+    "name": "Singapore",
+    "region": "East Asia & Pacific",
+    "percent": 1.66
+  },
+  {
+    "name": "Sint Maarten (Dutch part)",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Slovak Republic",
+    "region": "Europe & Central Asia",
+    "percent": 22.94
+  },
+  {
+    "name": "Slovenia",
+    "region": "Europe & Central Asia",
+    "percent": 38.52
+  },
+  {
+    "name": "Solomon Islands",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Somalia",
+    "region": "Sub-Saharan Africa",
+    "percent": 0
+  },
+  {
+    "name": "South Africa",
+    "region": "Sub-Saharan Africa",
+    "percent": 1.39
+  },
+  {
+    "name": "South Sudan",
+    "region": "Sub-Saharan Africa",
+    "percent": 0.41
+  },
+  {
+    "name": "Spain",
+    "region": "Europe & Central Asia",
+    "percent": 40.11
+  },
+  {
+    "name": "Sri Lanka",
+    "region": "South Asia",
+    "percent": 39.2
+  },
+  {
+    "name": "St. Kitts and Nevis",
+    "region": "Latin America & Caribbean",
+    "percent": 4.09
+  },
+  {
+    "name": "St. Lucia",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "St. Vincent and the Grenadines",
+    "region": "Latin America & Caribbean",
+    "percent": 22
+  },
+  {
+    "name": "Sudan",
+    "region": "Sub-Saharan Africa",
+    "percent": 78.35
+  },
+  {
+    "name": "Suriname",
+    "region": "Latin America & Caribbean",
+    "percent": 62.34
+  },
+  {
+    "name": "Swaziland",
+    "region": "Sub-Saharan Africa",
+    "percent": 53.26
+  },
+  {
+    "name": "Sweden",
+    "region": "Europe & Central Asia",
+    "percent": 55.84
+  },
+  {
+    "name": "Switzerland",
+    "region": "Europe & Central Asia",
+    "percent": 58.02
+  },
+  {
+    "name": "Syrian Arab Republic",
+    "region": "Middle East & North Africa",
+    "percent": 13.81
+  },
+  {
+    "name": "Tajikistan",
+    "region": "Europe & Central Asia",
+    "percent": 97.13
+  },
+  {
+    "name": "Tanzania",
+    "region": "Sub-Saharan Africa",
+    "percent": 42.29
+  },
+  {
+    "name": "Thailand",
+    "region": "East Asia & Pacific",
+    "percent": 9.08
+  },
+  {
+    "name": "Timor-Leste",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Togo",
+    "region": "Sub-Saharan Africa",
+    "percent": 88.03
+  },
+  {
+    "name": "Tonga",
+    "region": "East Asia & Pacific",
+    "percent": 4.58
+  },
+  {
+    "name": "Trinidad and Tobago",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Tunisia",
+    "region": "Middle East & North Africa",
+    "percent": 3.09
+  },
+  {
+    "name": "Turkey",
+    "region": "Europe & Central Asia",
+    "percent": 20.89
+  },
+  {
+    "name": "Turkmenistan",
+    "region": "Europe & Central Asia",
+    "percent": 0
+  },
+  {
+    "name": "Turks and Caicos Islands",
+    "region": "Latin America & Caribbean",
+    "percent": 0
+  },
+  {
+    "name": "Tuvalu",
+    "region": "East Asia & Pacific",
+    "percent": 0
+  },
+  {
+    "name": "Uganda",
+    "region": "Sub-Saharan Africa",
+    "percent": 78.6
+  },
+  {
+    "name": "Ukraine",
+    "region": "Europe & Central Asia",
+    "percent": 5.59
+  },
+  {
+    "name": "United Arab Emirates",
+    "region": "Middle East & North Africa",
+    "percent": 0.27
+  },
+  {
+    "name": "United Kingdom",
+    "region": "Europe & Central Asia",
+    "percent": 19.44
+  },
+  {
+    "name": "United States",
+    "region": "North America",
+    "percent": 12.95
+  },
+  {
+    "name": "Uruguay",
+    "region": "Latin America & Caribbean",
+    "percent": 90.92
+  },
+  {
+    "name": "Uzbekistan",
+    "region": "Europe & Central Asia",
+    "percent": 21.35
+  },
+  {
+    "name": "Vanuatu",
+    "region": "East Asia & Pacific",
+    "percent": 15.32
+  },
+  {
+    "name": "Venezuela, RB",
+    "region": "Latin America & Caribbean",
+    "percent": 68.26
+  },
+  {
+    "name": "Vietnam",
+    "region": "East Asia & Pacific",
+    "percent": 41.65
+  },
+  {
+    "name": "Virgin Islands (U.S.)",
+    "region": "Latin America & Caribbean",
+    "percent": 0.77
+  },
+  {
+    "name": "West Bank and Gaza",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Yemen, Rep.",
+    "region": "Middle East & North Africa",
+    "percent": 0
+  },
+  {
+    "name": "Zambia",
+    "region": "Sub-Saharan Africa",
+    "percent": 97.16
+  },
+  {
+    "name": "Zimbabwe",
+    "region": "Sub-Saharan Africa",
+    "percent": 55.62
+  }
 ]
