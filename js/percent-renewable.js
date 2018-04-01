@@ -23,7 +23,7 @@ d3.json('data/percent-renewable.json', function(error, data) {
                      // Add active-button class to clicked element
                      d3.select(this).classed('active-button', true);
                    }
-                   
+
                    var region = d3.select(this).text();
                    // Call sorting function
                    sortByRegion(ordered_data, region);
@@ -73,7 +73,7 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
   // Add table rows for each country, adding the name, region, and drawing the bar graph.
   for (i = 0; i < ordered_data.length; i++) {
-    populateTable(ordered_data);
+    populateTable(ordered_data, i);
   };
 
   // Rearrange data in descending order of percentage.
@@ -89,18 +89,19 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
   // Add table rows for each country, adding the name, region, and drawing the bar graph.
   // Also, add formatting for percentage number labels.
-  function populateTable(ordered_data) {
+  function populateTable(ordered_data, index) {
     var country_info = ordered_data[i],
         country_name = country_info.name,
         region = country_info.region,
-        percent_renewable = country_info.percent;
+        percent_renewable = country_info.percent,
+        rank = (index + 1) + '.';
 
     var table_row = d3.select('#percent-renewable-table tbody')
                       .append('tr');
 
     table_row.append('td')
              .attr('class', 'rank')
-             .text('');
+             .text(rank);
 
     table_row.append('td')
              .attr('class', 'country-name')
@@ -147,14 +148,16 @@ d3.json('data/percent-renewable.json', function(error, data) {
     d3.selectAll('#percent-renewable-table tbody tr').remove();
 
     if (region != 'All Regions') {
+      var j = 0;
       for (i = 0; i < ordered_data.length; i++) {
         if (region == ordered_data[i].region) {
-          populateTable(ordered_data);
+          populateTable(ordered_data, j);
+          j += 1;
         }
       }
     } else {
       for (i = 0; i < ordered_data.length; i++) {
-        populateTable(ordered_data);
+        populateTable(ordered_data, i);
       }
     }
   }
