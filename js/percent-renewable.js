@@ -8,6 +8,16 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
   const region_controls = d3.select('.region-controls');
 
+  // Rearrange data in descending order of percentage.
+  var ordered_data = orderData(data);
+
+  // Number limits for the number of rows shown in the table. Starts at 10, then
+  // when the 'Show More' button is clicked, enables an increase to 30, and
+  // finally when the 'Show All' button is clicked, enables increase to all data
+  const INITIAL_LIMIT = 10;
+  const SHOW_MORE = 30;
+  const SHOW_ALL = ordered_data.length;
+
   region_controls.append('a')
                  .classed('region-button', true)
                  .classed('first-button-curve', true)   // Rounded rectangle
@@ -26,7 +36,7 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
                    var region = d3.select(this).text();
                    // Call sorting function
-                   sortByRegion(ordered_data, region);
+                   sortByRegion(ordered_data, region, btn_setting);
                  });;
 
   // Populate region control buttons
@@ -47,7 +57,7 @@ d3.json('data/percent-renewable.json', function(error, data) {
 
                                          var region = d3.select(this).text();
                                          // Call sorting function
-                                         sortByRegion(ordered_data, region);
+                                         sortByRegion(ordered_data, region, btn_setting);
                                        });
 
     // If it's the last button, add the rounded rectangle curves; otherwise, normal buttons.
@@ -68,13 +78,51 @@ d3.json('data/percent-renewable.json', function(error, data) {
                    .domain([0, 100])
                    .range([1, barWidth]);
 
-  // Rearrange data in descending order of percentage.
-  var ordered_data = orderData(data);
-
   // Add table rows for each country, adding the name, region, and drawing the bar graph.
-  for (i = 0; i < ordered_data.length; i++) {
+  for (i = 0; i < INITIAL_LIMIT; i++) {
     populateTable(ordered_data, i);
   };
+
+  // Save chart element so it can be used later to scroll to the top of, once
+  // we've gone too far down and clicked 'Show Less'.
+  var percent_graphic = document.getElementById('percent-renewable')
+
+  // Select 'Show More' button element
+  var show_more_btn = d3.select('.expander-btn');
+
+  // Button state options
+  const BTN_OPTIONS = ['initial', 'show more', 'show all'];
+
+  // Initial button setting
+  var btn_setting = 'initial';
+
+  // Show More button functionality
+  show_more_btn.on('click', function() {
+    // Get the active region so that when you click any region after clicking
+    // Show More button, the countries don't mix up.
+    active_region = d3.select('.active-button').text();
+
+    if (btn_setting == 'initial') {
+      // Change button state
+      btn_setting = 'show more';
+      // Populate table with countries
+      sortByRegion(ordered_data, active_region, btn_setting);
+      // Change button text
+      show_more_btn.text('Show All...');
+      // Show countries between rank 10 and 30.
+    } else if (btn_setting == 'show more') {
+      btn_setting = 'show all';
+      sortByRegion(ordered_data, active_region, btn_setting);
+      show_more_btn.text('Show Less...');
+    } else {
+      btn_setting = 'initial'
+      sortByRegion(ordered_data, active_region, btn_setting);
+      // Going back to top 10 means getting rid of a lot of content, which means
+      // we have to scroll back up to the beginning of the chart.
+      percent_graphic.scrollIntoView();
+      show_more_btn.text('Show More...');
+    }
+  })
 
   // Rearrange data in descending order of percentage.
   function orderData(data) {
@@ -143,20 +191,30 @@ d3.json('data/percent-renewable.json', function(error, data) {
   }
 
   // Sorts data to show only data for selected regions.
-  function sortByRegion(ordered_data, region) {
+  function sortByRegion(ordered_data, region, btn_state='initial') {
     // Remove all existing rows in table
     d3.selectAll('#percent-renewable-table tbody tr').remove();
 
+    // Link button state to row limits
+    if (btn_state == 'initial') {
+      limit = INITIAL_LIMIT;
+    } else if (btn_state == 'show more') {
+      limit = SHOW_MORE;
+    } else {
+      limit = SHOW_ALL;
+    }
+
     if (region != 'All Regions') {
+      // Initialise rank      
       var j = 0;
       for (i = 0; i < ordered_data.length; i++) {
-        if (region == ordered_data[i].region) {
+        if (region == ordered_data[i].region && j < limit) {
           populateTable(ordered_data, j);
           j += 1;
         }
       }
     } else {
-      for (i = 0; i < ordered_data.length; i++) {
+      for (i = 0; i < limit; i++) {
         populateTable(ordered_data, i);
       }
     }

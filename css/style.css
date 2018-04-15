@@ -402,6 +402,24 @@ input {
   padding-left: 0.4rem;
 }
 
+.expander-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.expander-btn {
+  padding: .5rem;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+}
+
+.expander-btn:hover {
+  background-color: #eee;
+}
+
 @media only screen and (min-width: 1380px) {
   .line-scrolly {
     margin-left: auto;
