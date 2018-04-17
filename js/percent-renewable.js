@@ -37,6 +37,9 @@ d3.json('data/percent-renewable.json', function(error, data) {
                    var region = d3.select(this).text();
                    // Call sorting function
                    sortByRegion(ordered_data, region, btn_setting);
+
+                   // Trying to remove Show More button if unnecessary. Need to get back to this later.
+                   //var num_table_rows = document.getElementById('percent-renewable-table').rows.length - 1;
                  });;
 
   // Populate region control buttons
@@ -58,6 +61,9 @@ d3.json('data/percent-renewable.json', function(error, data) {
                                          var region = d3.select(this).text();
                                          // Call sorting function
                                          sortByRegion(ordered_data, region, btn_setting);
+
+                                         // Trying to remove Show More button if unnecessary. Need to get back to this later.
+                                         //var num_table_rows = document.getElementById('percent-renewable-table').rows.length - 1;
                                        });
 
     // If it's the last button, add the rounded rectangle curves; otherwise, normal buttons.
@@ -90,8 +96,12 @@ d3.json('data/percent-renewable.json', function(error, data) {
   // Select 'Show More' button element
   var show_more_btn = d3.select('.expander-btn');
 
-  // Button state options
-  const BTN_OPTIONS = ['initial', 'show more', 'show all'];
+  // Dictionary mapping button state options to row limits
+  const BTN_OPTIONS = {
+    "initial": INITIAL_LIMIT,
+    "show more": SHOW_MORE,
+    "show all": SHOW_ALL
+  }
 
   // Initial button setting
   var btn_setting = 'initial';
@@ -196,16 +206,10 @@ d3.json('data/percent-renewable.json', function(error, data) {
     d3.selectAll('#percent-renewable-table tbody tr').remove();
 
     // Link button state to row limits
-    if (btn_state == 'initial') {
-      limit = INITIAL_LIMIT;
-    } else if (btn_state == 'show more') {
-      limit = SHOW_MORE;
-    } else {
-      limit = SHOW_ALL;
-    }
+    var limit = BTN_OPTIONS[btn_state];
 
     if (region != 'All Regions') {
-      // Initialise rank      
+      // Initialise rank
       var j = 0;
       for (i = 0; i < ordered_data.length; i++) {
         if (region == ordered_data[i].region && j < limit) {
